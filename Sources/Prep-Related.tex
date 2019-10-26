@@ -1,0 +1,91 @@
+% !TEX root = ../Thesis.tex
+\chapter{Trabalho relacionado}
+\label{ch:relatedwork}
+
+Como já se referiu, existem estudos que avaliam o recurso a ferramentas de modelação e simulação, bem como a emuladores, no contexto do ensino das redes e da investigação científica \cite{netvirtwithgns3}.
+
+\section{Fundamentos tecnológicos}
+\label{sec:techintro}
+
+% Antes de mais, é importante dar uma definição mais rigorosa de alguns termos usados nesta dissertação, bem como as características tecnológicas fundamentais dos paradigmas de simulação e emulação.
+
+%\subsection{Simuladores, emuladores, \emph{testbeds} e redes reais}
+%\label{subsec:simemultestbeds}
+
+Um \textbf{simulador} é uma solução de software que, servindo-se de um modelo matemático da rede e a uma arquitectura guiada por \emph{eventos}, \emph{simula} o que acontece numa rede real, com os seus nós e canais, colocando os eventos em filas e processando-os como um fluxo de dados interno. \cite{netsimulationoremulation} O ns-2, ns-3 e o Packet Tracer são exemplos de aplicações com essas características.
+
+Os \textbf{emuladores} são programas que executam código real a vários níveis da pilha de protocolos. Os canais podem ser reais ou virtualizados, mas os emuladores substituem-se aos \emph{switches} e \emph{routers} que estão a emular, fornecendo a sua funcionalidade completa. \cite{netsimulationoremulation}
+
+Chama-se \textbf{\emph{testbeds}} às aplicações (geralmente distribuídas) que oferecem a possibilidade de testar redes total ou parcialmente reais, executadas em servidores e disponibilizadas para que estudantes, docentes e investigadores possam interagir com ambientes de teste. Um exemplo conhecido é a plataforma Emulab \cite{hermenier2012build}. Simuladores como o ns-3 podem ser integrados em \emph{testbeds} partilhados \cite{Henderson08networksimulations}.
+
+\section{Avaliação de simuladores e emuladores}
+\label{sec:evalsimulators}
+
+No estudo da aplicação do emulador Mininet Hi-Fi (uma variante do Mininet, apresentado em~\ref{subsec:mininet}) é feito um levantamento interessante das características desejáveis de emuladores, simuladores e \emph{testbeds} e como é que as várias abordagens as conferem \cite{reproduciblemininethifi}. Passemos a enumerá-las, tal como é descrito no artigo.
+
+Se o propósito é criar ``experiências'' \emph{realistas} e \emph{reproduzíveis}, é necessária uma plataforma com as seguintes características:
+\begin{itemize}
+	\item \textbf{Realismo funcional}: o sistema deve ter a mesma funcionalidade que o hardware real num ambiente real e deve executar exactamente o mesmo código.
+	\item \textbf{Realismo temporal}: o comportamento temporal do sistema deve ser parecido com (ou indistinguível de) o comportamento de hardware em operação.
+	\item \textbf{Realismo de tráfego}: o sistema deve ser capaz de gerar e receber tráfego real, tráfego de rede interactivo de e para a Internet, ou de utilizadores ou sistemas numa rede local.
+\end{itemize}
+
+Além de realista, o sistema deve tornar fácil reproduzir resultados:
+\begin{itemize}
+	\item \textbf{Flexibilidade na topologia}: deve ser fácil criar uma ``experiência'' com qualquer topologia.
+	\item \textbf{Fácil replicação}: deve ser fácil duplicar um ambiente (\emph{setup}) experimental e executar uma ``experiência''.
+	\item \textbf{Baixo custo}: não deve ser caro duplicar uma ``experiência'' (por exemplo, para os alunos de uma disciplina).
+\end{itemize}
+
+Mais, o artigo em causa apresenta-nos a tabela que não existe lol que evidencia que, para as seis características procuradas num ambiente que facilite a reprodução de ``experiências'' (por exemplo, artigos científicos) em redes, apenas uma delas --- o realismo temporal --- é uma questão para um sistema baseado em emuladores. No caso concreto, o objectivo do Mininet Hi-Fi é o de dar resposta à problemática do realismo temporal.
+
+\section{Simuladores}
+
+Programas de simulação como o RouterSim \cite{routersimsite}, o Boson NetSim Simulator \cite{bosonnetsimsite} ou o Packet Tracer \cite{packettrackersite} permitem simular redes com routers Cisco. Embora bastante úteis no ensino em geral para um estudo, como referido na introdução~(\ref{sec:intro}) e em~\ref{sec:techintro}, existem limitações ``incontornáveis'' impostas pelo que os programadores determinam como sendo o âmbito da simulação.
+
+\subsection{Packet Tracer}
+
+Por ser tão prevalente no ensino, provavelmente devido ao facto de ser desenvolvido e comercializado pela própria Cisco, é importante mencionar-se o Packet Tracer. Esta aplicação, que, embora seja proprietária e paga, é disponibilizada a estudantes de certificações Cisco, tem especial utilidade se se quiser estudar redes com equipamento deste fabricante. Existe uma grande variedade de diferentes equipamentos que se podem inserir no ambiente de simulação, sobre o qual é disponibilizado uma interface gráfica em que se vêem claramente os diversos elementos da rede simulada.
+
+O Packet Tracer é um programa relativamente leve, no que diz respeito à exigência de recursos da máquina, e por isso é especialmente apelativo para estudantes, cujos PCs podem não comportar uma simulação/emulação muito pesada.
+
+Sem entrar nos detalhes do que se pode fazer com este programa --- certamente útil e, para algumas tarefas, bastante completo ---, que estão descritos, por exemplo, em \cite{ZHANG2012504}, é importante debruçarmo-nos sobre alguns dos seus inconvenientes:
+\begin{itemize}
+	\item O facto já citado de ser um software proprietário e pago.
+	\item Permitir exclusivamente trabalhar com hardware Cisco.
+	\item Mesmo para o hardware Cisco com que é compatível, não fornece a totalidade das operações do sistema operativo IOS \cite{ioswikipedia}.
+	\item A análise do tráfego simulado tem de ser feita exclusivamente com as ferramentas da aplicação (isto é, não é possível, por exemplo, usar o Wireshark \cite{lamping2004wireshark} para analisar o tráfego num canal).
+	\item Não existe a possibilidade de integrar \emph{hosts} (físicos ou virtuais) completos na rede simulada.
+\end{itemize}
+
+\section{Emuladores}
+
+O trabalho de aprofundamento, avaliação comparativa e casos de estudo que será realizado para esta dissertação incidirá sobretudo sobre duas ferramentas particulares: o Mininet~(\ref{subsec:mininet}) e o GNS3~(\ref{subsec:gns3}).
+
+Os dois emuladores são software de código-aberto ou \emph{livre} \cite{freesoftdefinition} --- o Mininet usa licença especial de quase domínio público \cite{mininetlicense} e o GNS3 é GNU General Public License \cite{gplv3}.
+
+\subsection{GNS3}
+\label{subsec:gns3}
+
+O GNS3 \cite{gns3} é um projecto de software constituído por várias partes que permite obter um simulador de redes gráfico multi-plataforma (funciona sobre macOS, GNU/Linux e Windows) que permite desenhar, construir e testar redes virtuais (Cisco IOS, Juniper, MikroTik, Arista e Vyatta, entre outros fabricantes) num PC. É frequentemente utilizado por estudantes que precisam de experiência ``\emph{hands on}'' com \emph{routing} e \emph{switching} Cisco IOS para estudar para exames CCNA e CCNP.
+
+Os componentes básicos dos GNS3 são o emulador, que permite executar as imagens de sistema de routers e switches, o cliente gráfico que fornece uma interface amigável, e o GNS3 server. Para hardware Cisco mais antigo, o emulador é um programa escrito em C chamado Dynamips (que emula o processador MIPS); para hardware mais recente Cisco e de outros fabricantes (e.g. Arista) que corre em versões ``customizadas'' de Linux, são disponibilizadas máquinas virtuais com as respectivas imagens. Esta arquitectura desacoplada é de especial interesse tendo em conta o que é dito por exemplo em \cite{chou2016comparison}, uma comparação entre o Packet Tracer e o GNS3, relativamente ao uso elevado de recursos por parte do GNS3, já que pode ser de especial interesse executar em máquinas mais poderosas a componente ``servidor'' deixando o PC de um estudante correr apenas o cliente com a interface gráfica.
+
+É importante notar que, além de ser um software exigente em termos de recursos do computador em que é executado, o GNS3 não suporta qualquer imagem IOS (embora, nas que suporta, a funcionalidade seja completa) \cite{chou2016comparison}.
+
+Contrariamente ao que acontece no Packet Tracer, a inspecção da informação nos canais e interfaces não é uma funcionalidade ``interna'' do GNS3, é antes feita com um analisador de pacotes como o Wireshark, tal como na realidade. Na verdade, qualquer utilitário (geradores de tráfego, aplicações P2P, etc.) de software passível de ser usado numa rede de computadores em geral pode ser incorporado num ``fluxo de trabalho'' de GNS3, e o mesmo acontece com hardware ligado à máquina em que o emulador está a correr. Trata-se, como se pode ver, de um projecto muito extensível.
+
+A disponibilidade das imagens dos \emph{routers} é variável conforme o seu licenciamento. Por exemplo, embora o GNS3 não tenha qualquer custo, é necessário ter acesso (licenciado) a uma imagem IOS para executar um \emph{router} Cisco. Em contrapartida, é muito interessante a possibilidade de usar equipamento experimental e ``clones'' livres de \emph{routers} mais ou menos equivalentes para o ensino universitário, já que a aplicação dos conceitos teóricos não é propriamente dependente de detalhes de interface (ou mesmo de desempenho) de equipamento comercial.
+
+\subsection{Mininet}
+\label{subsec:mininet}
+
+O Mininet \cite{mininet2010} é um emulador que cria uma rede de \emph{hosts}, \emph{switches} e \emph{canais} virtuais. Funciona sobre a pilha de processos e suporte de redes \emph{standard} Linux.
+
+O funcionamento do Mininet baseia-se na abstracção de processos fornecida por quase todos os sistemas de operação; no caso concreto do Linux, para o qual o Mininet foi desenvolvido, serve-se dos \emph{process namespaces}, que são uma funcionalidade de virtualização ``leve'' que confere aos processos interfaces de rede (basicamente: \emph{containers}) e tabelas de encaminhamento separadas \cite{mininetsite}.
+
+Como é dito no artigo citado no início desta secção, o projecto foi criado tendo em vista o estudo de Software Defined Networks (SDN), mas é evidente que, dada a sua flexibilidade, não está, de todo, limitado a isso.
+
+Embora o Mininet não permita emular \emph{routers} reais (ou, melhor dizendo, ``industriais''), é possível correr software completo sobre ele podendo, potencialmente, ser executado software arbitrário de encaminhamento e comutação de pacotes para as interfaces virtuais ``montadas'' nos \emph{containers}.
+
+É importante notar que, oficialmente, na sua forma distribuída, a interface para o Mininet é por linha de comandos (a partir de uma \emph{shell} Unix standard) ou programática (na linguagem Python). Não existe, ``de origem'' (ainda que seja interessante, para o trabalho seguinte de elaboração da dissertação, estudar interfaces alternativas), uma interface gráfica que dê uma visualização da rede como a que é dada pelo GNS3 ou por simuladores como o Packet Tracer.

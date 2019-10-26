@@ -1,0 +1,38 @@
+% !TEX root = ../Thesis.tex
+% !TEX spellcheck = pt-PT
+
+\chapter{Introdução e objectivos}
+
+\section{Introdução}
+\label{sec:intro}
+
+Na maior parte das instituições de ensino superior, o ensino das redes de computadores tem recorrido ao uso de laboratórios, possibilitando aos estudantes exercitarem experimentalmente os conhecimentos adquiridos na componente teórica de disciplinas cujo desenvolvimento curricular pretenda ir além de uma abordagem restringida à prática alcançável com exercícios de programação, isto é, envolva contacto com redes reais e equipamento concreto.
+
+Tal é, ainda hoje, prática habitual em muitos estabelecimentos do ensino superior. A FCT/NOVA, que não é excepção, dispõe para isso de uma sala com \emph{routers}/\emph{switches} para a realização exercícios.
+
+Este método, não obstante as suas virtudes, desde logo respondendo à necessidade pedagógica no ensino da engenharia da aplicação e observação prática ``\emph{hands on}'' da teoria, levanta problemas, tais como o custo e ``obsolescência'' \cite{autonetconfiggns3} dos equipamentos, a necessidade de presença no laboratório para desenvolvimento dos exercícios, as possíveis consequências de um uso indevido dos aparelhos \cite{ZHANG2012504}, a obrigatoriedade de preparação dos mesmos para a demonstração de problemas específicos, etc.
+
+Com a finalidade de dar resposta a estes problemas que, não sendo exclusivos do ensino universitário, se estendem ao ensino profissionalizante de escolas secundárias e politécnicos, cursos da própria indústria (de que a certificação CCNA da Cisco \cite{ccna} é exemplo), ou ensino à distância \cite{netvirtwithgns3}, são desenvolvidas há anos ferramentas de emulação e/ou simulação que, recorrendo a várias técnicas, pretendem superar algumas das desvantagens anteriormente referidas \cite{simandmod}.
+
+A base destas ferramentas está numa ideia teórica importante: a de, primeiro, modelar a rede e, depois, simulá-la. Estes problemas são inerentes ao desenvolvimento da área científica das redes, independentemente das questões do ensino, já que uma rede de computadores é, por definição, um grafo; por sua vez, os canais são arestas desse grafo e os computadores, \emph{routers} e \emph{switches} nós.
+
+Não só para dar resposta aos problemas indicados, mas porque são inerentes ao estudo e desenvolvimento das redes, a partir dos respectivos modelos matemáticos das redes --- essencialmente, baseados em grafos e filas de espera --- existem técnicas de simulação que podem ajudar a ultrapassar os obstáculos que a utilização de equipamento real em laboratório coloca.
+
+No entanto, sendo incontornáveis a modelação e simulação das redes na investigação e desenvolvimento, para o problema que motiva esta tese, os inconvenientes, alguns dos quais descritos em \cite{difsiminternet}, são muito importantes. Ainda assim existem simuladores que permitem testar a rede, aprender como os pacotes são encaminhados na rede, como funcionam protocolos de \emph{routing}, etc. Têm, porém, uma limitação: não é possível fazer experiências ``genéricas'' que vão além do que é suportado pelo simulador.
+
+O gigantesco aumento dos recursos --- sobretudo velocidade e número de núcleos dos processadores e dimensão e rapidez da memória principal dos computadores --- permitiu que surgisse um paradigma diferente: o do uso do software real completo, desde o sistema de operação às aplicações, tanto dos \emph{hosts} como dos \emph{routers}, para simular configurações reais de redes complexas, testar o funcionamento de protocolos de todas as camadas e utilizar aplicações reais \cite{reproduciblemininethifi}.
+
+\section{Objectivos}
+\label{sec:goals}
+
+Esta dissertação de mestrado surge com o propósito de abordar três tópicos ligados à problemática do ensino e investigação experimentais das redes de computadores:
+\begin{itemize}
+	\item analisar a viabilidade do uso de emuladores no nível de ensino correspondente ao primeiro ciclo (``\emph{undergraduate}''), isto é, na primeira disciplina de redes de computadores, na qual se poderia proceder à implementação dos algoritmos de encaminhamento estudados;
+	\item avaliar como realizar exercícios de laboratório com \emph{routers} e \emph{switches} sem que estes tenham de ser realizados presencialmente num espaço laboratorial, no âmbito de uma disciplina de redes avançada (segundo ciclo);
+	\item explorar a aplicação de emuladores à investigação avançada em redes de computadores.
+\end{itemize}
+Foi decidido que a tese privilegiará os dois primeiros.
+
+\section{Plano do documento}
+
+Neste capítulo explica-se a motivação e o problema: os laboratórios são caros, pouco flexíveis, o equipamento fica rapidamente desactualizado e carece da presença dos alunos (para não falar do número limitado de estudantes que podem usá-lo em simultâneo); as alternativas são simuladores e emuladores que, com diferentes vantagens e desvantagens, permitem superar esses obstáculos. No capítulo~\ref{ch:relatedwork}, dá-se uma visão geral do estado da arte, tanto a nível tecnológico (desenvolvimento de ferramentas) como de estudo comparativo e análise da aplicação a vertentes de ensino e investigação no âmbito dos simuladores e emuladores de redes. Por fim, o capítulo~\ref{ch:workplan} expõe o que se antevê como a sequência de tarefas a realizar para cumprir os objectivos (secção~\ref{sec:goals}), incluindo um diagrama de Gantt, que oferece uma visão temporal mais clara da organização cronológica dessas tarefas.
