@@ -1,0 +1,59 @@
+% !TEX root = ../Thesis.tex
+% !TEX spellcheck = en-US
+
+\chapter{GNS3}
+\label{ch:gns3}
+
+GNS3, whose original title was ``Graphical Network Simulator-3,'' is a software project, comprising several distinct components and, despite the ``simulator'' in its name, \emph{as a whole} falls under the category that, in this thesis, is called \emph{emulator}.
+By ``as a whole,'' it is meant that, as shall be seen later, although some of its components, like the Dynamips program, are emulators in a strict sense---i.e. serve to run real machine code on a different (than its native one) hardware architecture---, it differentiates itself on a high-level perspective from a simulator which is a program designed to execute a mathematical model, processing modeled events as internal data-structures with a collection of preset algorithms that somehow mimic (a part of) the reality.
+
+% end of intro
+
+\section{GNS3's purpose and \emph{raison d'être}}
+\label{sec:gns3why}
+
+The GNS3 project was created by Jeremy Grossmann at the University.
+It was built with a main goal: allowing students of Cisco certifcations to be able to test network topologies and practice their skills with the same software stack that is used in real Cisco devices and the hosts connected to them---from the operating system, up until application--level network utilities---, without having to use the expensive official solutions for that, or having to fall back on the limited graphical simulators like Cisco's Packet Tracer.
+
+Despite still having a strong relation with training for Cisco CCNA and related certifications, the magnitude of the project, part of which comes from an inherent extensibility, has made it suitable for a myriad of use-cases, of which testing and configuring topologies in the context of the modern \emph{DevOps}-driven infrastructure setup and implementation is a good example.
+But also potential applications that are still relatively unexplored.
+Such is the case of its usage in academic teaching and learning, the goal of of this work.
+
+% end of section gns3why
+
+\section{Building blocks. The programs ``inside'' GNS3}
+\label{sec:gns3buildingblocks}
+
+Here's a cool table that I made where I have put systematic information about the repositories and stuff like that.
+
+\input{Sources/Gns3/table-gns3parts}
+
+\subsection{GNS3 GUI}
+\label{subsec:gns3gui}
+
+Interaction between the end-user and GNS3 is usually---though, as will be clear, not necessarily---made in a graphical environment.
+
+\subsection{Dynamips}
+\label{subsec:gns3dynamips}
+
+The Dynamips emulator is a standalone \emph{free} program, written in C, that, normally, comes distributed together with the whole GNS3 package.
+It is an emulator of a MIPS processor and was the original--single way to run the software of the Cisco nodes of the topologies created with GNS3.
+
+% end of section gns3buildingblocks
+
+\section{General architecture}
+\label{sec:gns3architecture}
+
+% end of section gns3architecture
+
+\section{GNS3 in action}
+\label{sec:gns3inaction}
+
+% end of section gns3inaction
+
+\section{Performance and resources considerations}
+\label{sec:gns3performance}
+
+% end of section gns3performance
+
+% end of chapter
