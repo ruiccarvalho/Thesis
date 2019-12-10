@@ -6,7 +6,7 @@
 
 GNS3, whose original title was ``Graphical Network Simulator-3,'' is a software project, comprising several distinct components and, despite the ``simulator'' in its name, \emph{as a whole}, it falls under the category that, in this thesis, is called \emph{emulator}. % TODO try to (either with a source, or speculating) relate the name with ns-3
 % TODO also: cite the source for the name
-By ``as a whole,'' it is meant that, as shall be seen later, although some of its components, like the Dynamips program, are emulators in a strict sense---i.e. its purposes is to run real machine code on a different hardware architecture (than its native one)---, it differentiates itself, on a high-level perspective, from a simulator which is a program designed to execute a mathematical model, processing modeled events as internal data-structures with a collection of preset algorithms that somehow mimic (a part of) the reality.
+By ``as a whole,'' it is meant that, as shall be seen later, although some of its components, like the Dynamips program, are emulators in a very strict sense---i.e. its purpose is to run real machine code on a different hardware architecture (than its native one)---, it differentiates itself, on a high-level perspective, from a simulator which is a program designed to execute a mathematical model, processing modeled events as internal data-structures with a collection of preset algorithms that somehow mimic (a part of) the reality.
 
 It's important to notice that a necessary step towards the goal of this this thesis is to systematize a technical description of the architecture and functional underpinnings of the GNS3 system, how is it executed, how does it interact with the hardware and software it is running in, how much resources does it take to work with GNS3 according to the \emph{mode} it is running in, etc., as that is an aspect that is yet to be further explored for, at least, the following reasons:  % TODO improve the writing how is etc written in Engilsh?
 for one, the consulted academic material (i.e. research papers, mostly) is very brief and omissive in regards to the design, architecture and implementation of GNS3, and so is the official website and documentation. Besides that, many interesting details are in the ``paraofficial'' videos available via YouTube, but certified as official, by David Bombal\footnote{\url{https://www.youtube.com/channel/UCP7WmQ_U4GB3K51Od9QvM0w}}, namely a comprehensive overview of the architecture (compared with the functionality) of GNS3 by its creator, Jeremy Grossmann, and essentially are not anywhere else, at least from authoritative sources. % TODO same as the previous "sentence". Cite the videos (how and which ones?)
@@ -66,11 +66,24 @@ A GNS3 project, called a \emph{topology}, is constantly opened on one single win
 The Dynamips emulator is a standalone program, written in C, that, usually, comes distributed together with the whole GNS3 package.
 It is an emulator for a MIPS processor and was the original--single way to run the software of the Cisco nodes of the topologies created with GNS3.
 
-In an official video~\cite{ytdynamipsvpcs}, Jeremy Grossmann clearly says that, as of version 2.2 (whose first stable version was released on September 30 2019\footnote{\url{https://github.com/GNS3/gns3-gui/releases/tag/v2.2.0}}), usage of Dynamips as a way to enable running Cisco IOS devices in a topology is discourage.
+In an official video~\cite{ytdynamipsvpcs}, Jeremy Grossmann clearly says that, as of version 2.2 (whose first stable version was released on September 30 2019\footnote{\url{https://github.com/GNS3/gns3-gui/releases/tag/v2.2.0}}), usage of Dynamips as a way to enable running Cisco IOS devices in a topology is discouraged.
 
 % end of section gns3buildingblocks
 
 \section{General architecture}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\textwidth]{gns3-running-arch}
+  \caption{The GNS3 architecture}
+  \label{fig:gns3-running-arch}
+\end{figure}
+
+In this section, an attempt is made to describe the different parts of GNS3 is to see what role they play in an execution of a topology (i.e. a project) and how they communicate with each other.
+The diagram in figure~\ref{fig:gns3-running-arch} is based upon~\cite{ytgns3arch22}.
+A central idea is the potentially distributed nature of the components, allowing for a complex topology with many nodes to be distributed across many hosts.
+The precautions that must be taken to ensure a performance, and some caveats, will be explained in~\ref{sec:gns3inaction}. % TODO precautions taken?
+
 \label{sec:gns3architecture}
 
 % end of section gns3architecture
