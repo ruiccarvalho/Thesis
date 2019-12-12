@@ -27,10 +27,15 @@ However, despite having kept a strong relation with training for Cisco CCNA and 
 In the industry, GNS3 naturally can come handy as a tool to prototype and test a topology for a real organization network, in the context of the practice of a network professional. But also, in the age of the DevOps philosophy---a set of practices and methodologies/philosophies for faster delivery of applications and services---, of which \emph{infrastructure as code} is one of the culprits~\cite{awswhatisdevops}, it can be of value for software engineers to test distributed applications that depend on certain network behaviors. Use cases related to cybersecurity are abundant (one kind of node that is available to add to GNS3 \emph{topologies} are firewalls), as well as for usage in the context of \gls{SDN}.
 But also potential applications that are still relatively unexplored, such is the case of its usage in teaching and learning, particularly in the undergraduate and graduate university levels (and schools), the focus of of this work.
 
+At the moment of the writing of this thesis, version 2.2 has recently came out\footnote{\url{https://github.com/GNS3/gns3-gui/releases/tag/v2.2.0}}.
+This version brings a lot of improvements and new features, like the new web UI or ``physical'' link state detection for QEMU nodes~\cite{releasenotesgns3v22}, and at the same time some of the ways GNS3 has been typically used are changing.
+Such is the case of the discouragement of the usage of Dynamips and VPCS (in detriment of virtualized versions of IOS or others, or Docker containers for ``emulating'' hosts, respectively)~\cite{ytdynamipsvpcs}.
+
+
 \section{Building blocks. The programs ``inside'' GNS3}
 \label{sec:gns3buildingblocks}
 
-In an extremely naive way of summarizing it, GNS3 is a conjunction of UI tools, a powerful distributed orchestrator, and a set of integrations with virtualization, containarization, and emulation from ``the outside'' (i.e. that do not belong to the GNS3 project, like KVM, Docker, or QEMU) to provide a way to describe a topology of interconnected computing and routing nodes---that is, a computer network---, including firewalls and NAT devices, control their behavior and launch administrative tools (like \texttt{telnet} sessions).
+In an extremely naive way of summarizing it, GNS3 is a conjunction of UI tools (the official GUI, the new web UI, or any custom program that ``speaks'' the documented public \acrshort{REST} API), a powerful distributed orchestrator (the \emph{controller} in the server), and a set of integrations (the so-called ``compute nodes'') with virtualization, containarization, and emulation from ``the outside'' (i.e. that do not belong to the GNS3 project, like KVM, Docker, or QEMU) to provide a way to describe a topology of interconnected computing and routing nodes---that is, a computer network---, including firewalls and NAT devices, control their behavior and launch administrative tools (like \texttt{telnet} sessions). % TODO cite documentation of the REST API. Make sure we elaborate on "computes". How is so-called written - is an hyphen used?
 
 What follows is a description of what are those elements and what they do work internally.
 How they integrate with GNS3 or vice-versa, and also how they interact with each other, is described in~\ref{sec:gns3architecture}.
@@ -42,7 +47,7 @@ How they integrate with GNS3 or vice-versa, and also how they interact with each
   \label{fig:download-gns3}
 \end{figure}
 
-When GNS3 is installed downloading one of its desktop distributions---available for Windows, macOS, and GNU/Linux, like the screen shot~\ref{fig:download-gns3} shows---, a user is installing multiple ``programs'' (or applications, whichever is the preferred denomination), implemented in disjunct \emph{codebases}, and, given that they are \emph{free and open source} projects~\cite{gplv3}, hosted in GitHub, those \emph{codebases} are easily accessible---and developers can enhance features and provide bugfixes. Those are the essential building blocks of GNS3 and table~\ref{tab:gns3components} can serve a summary of what are those pieces.
+When GNS3 is installed downloading one of its desktop distributions---available for Windows, macOS, and GNU/Linux, like the screen shot~\ref{fig:download-gns3} shows---, a user is installing multiple ``programs'' (or applications, whichever is the preferred denomination), implemented in disjunct \emph{codebases}, and, given that they are \emph{free and open source} projects~\cite{gplv3}, hosted in GitHub, those \emph{codebases} are easily accessible---and developers can enhance features and provide bugfixes. Those are the essential building blocks of GNS3 and table~\ref{tab:gns3components} can serve a summary of what those pieces are.
 It's worth noting that they are all under the GNS3 organization in GitHub\footnote{\url{https://github.com/gns3}}.
 
 \input{Sources/Gns3/table-gns3parts}
@@ -50,8 +55,12 @@ It's worth noting that they are all under the GNS3 organization in GitHub\footno
 \subsection{GNS3 GUI}
 \label{subsec:gns3gui}
 
-Interaction between the end-user and GNS3 is usually---though, as will be clear, not necessarily---made in a graphical environment.
+Interaction between the end-user and GNS3 is usually---though, as will be clear, not necessarily---done in a graphical environment.
 A GNS3 project, called a \emph{topology}, is constantly opened on one single window (per running instance of the application) and is graphically represented in the main section of the window.
+
+Even though the GUI is not the authoritative source of truth for a topology (cf.~\ref{sec:gns3architecture}), it can be used as interface to all of GNS3's functionality: edit the topology itself (adding or removing nodes, changing links), performing actions on the nodes (like starting or stopping a host or router), or using helpers to launch consoles automatically connected via \texttt{telnet} or SSH.
+In the section dedicated to the usage of GNS3~\ref{sec:gns3inaction}, it will be shown how this is done from a user's perspective.
+Many GUI clients, on different hosts (e.g. laptops), can be editing the same topology at the same time. % TODO try to capture screenshots of this happening (use VMs)
 
 \begin{figure}
   \centering
@@ -66,11 +75,14 @@ A GNS3 project, called a \emph{topology}, is constantly opened on one single win
 The Dynamips emulator is a standalone program, written in C, that, usually, comes distributed together with the whole GNS3 package.
 It is an emulator for a MIPS processor and was the original--single way to run the software of the Cisco nodes of the topologies created with GNS3.
 
-In an official video~\cite{ytdynamipsvpcs}, Jeremy Grossmann clearly says that, as of version 2.2 (whose first stable version was released on September 30 2019\footnote{\url{https://github.com/GNS3/gns3-gui/releases/tag/v2.2.0}}), usage of Dynamips as a way to enable running Cisco IOS devices in a topology is discouraged.
+
+\subsection{GNS3 server}
+\label{subsec:gns3server}
 
 % end of section gns3buildingblocks
 
 \section{General architecture}
+\label{sec:gns3architecture}
 
 \begin{figure}
   \centering
@@ -83,8 +95,6 @@ In this section, an attempt is made to describe the different parts of GNS3 is t
 The diagram in figure~\ref{fig:gns3-running-arch} is based upon~\cite{ytgns3arch22}.
 A central idea is the potentially distributed nature of the components, allowing for a complex topology with many nodes to be distributed across many hosts.
 The precautions that must be taken to ensure a performance, and some caveats, will be explained in~\ref{sec:gns3inaction}. % TODO precautions taken?
-
-\label{sec:gns3architecture}
 
 % end of section gns3architecture
 
