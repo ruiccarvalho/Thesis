@@ -4,11 +4,11 @@
 \chapter{GNS3}
 \label{ch:gns3}
 
-GNS3, whose original title was ``Graphical Network Simulator-3,'' is a software project, comprising several distinct components and, despite the ``simulator'' in its name, \emph{as a whole}, it falls under the category that, in this thesis, is called \emph{emulator}. % TODO try to (either with a source, or speculating) relate the name with ns-3
+GNS3, whose original title was ``Graphical Network Simulator-3,'' is a software project, comprising several distinct components and, despite the ``simulator'' in its name, \emph{as a whole}, it falls under the category of emulators (cf.~\ref{sec:emulationsimulation}): its operation runs real code accross all the layers of the stack. % TODO try to (either with a source, or speculating) relate the name with ns-3
 % TODO also: cite the source for the name
-By ``as a whole,'' it is meant that, as shall be seen later, although some of its components, like the Dynamips program, are emulators in a very strict sense---i.e. its purpose is to run real machine code on a different hardware architecture (than its native one)---, it differentiates itself, on a high-level perspective, from a simulator which is a program designed to execute a mathematical model, processing modeled events as internal data-structures with a collection of preset algorithms that somehow mimic (a part of) the reality.
+% By ``as a whole,'' it is meant that, as shall be seen later, although some of its components, like the Dynamips program, are emulators in a very strict sense---i.e. its purpose is to run real machine code on a different hardware architecture (than its native one)---, it differentiates itself, on a high-level perspective, from a simulator which is a program designed to execute a mathematical model, processing modeled events as internal data-structures with a collection of preset algorithms that somehow mimic (a part of) the reality. % TODO: delete?
 
-Note that necessary step towards the goal of this this thesis is to systematize a technical description of the architecture and functional underpinnings of the GNS3 system.
+Note that a necessary step towards the goal of this this thesis is to systematize a technical description of the architecture and functional underpinnings of the GNS3 system.
 How does it interact with the hardware and software it is running in, how much resources does it take to work with GNS3 according to the ``mode'' it is running in, etc., as that is an aspect that is yet to be further explored for, at least, the following reasons:  % TODO improve the writing how is etc written in Engilsh?
 on the one hand, the consulted academic material (i.e. research papers, mostly) is very brief and omissive in regards to the design, architecture and implementation of GNS3, and so is the official website and documentation; on the other hand, many interesting details are in the ``paraofficial'' videos available via YouTube, mostly by David Bombal\footnote{\url{https://www.youtube.com/channel/UCP7WmQ_U4GB3K51Od9QvM0w}}, namely a comprehensive overview of the architecture (compared with the functionality) of GNS3 by its creator, Jeremy Grossmann, and essentially are not anywhere else, at least from authoritative sources. % TODO same as the previous "sentence". Cite the videos (how and which ones?)
 
@@ -19,25 +19,32 @@ on the one hand, the consulted academic material (i.e. research papers, mostly) 
 \section{GNS3's purpose and \emph{raison d'être}}
 \label{sec:gns3why}
 
-The GNS3 project was co-created by Jeremy Grossmann at the University, the EPITECH, as part of the \emph{EPITECH Innovative Project (EIP)}\footnote{\url{https://eip.epitech.eu/2013/gns3/en/index.html}, accessed on December 2019}.
-There is also a blog\footnote{\url{http://gns3.blogspot.com/2007/}, accessed on December 2019}, whose first posts date of 2007, that announces the first ``beta'' releases of the software and gives the details about the inception of GNS3, and also shows lists the original developers of the project.
+The GNS3 project was co-created by Jeremy Grossmann at the University, the Ecole informatique Epitech, as part of the \emph{EPITECH Innovative Project (EIP)}\footnote{\url{https://eip.epitech.eu/2013/gns3/en/index.html}, accessed on December 2019}.
+There is also a blog\footnote{\url{http://gns3.blogspot.com/2007/}, accessed on December 2019}, whose first posts date back to 2007, that announces the first ``beta'' releases of the software and gives the details about the inception of GNS3, and also lists the original developers of the project.
 
-It may be speculated that GNS3's first ``appeal'' was supplying students of Cisco certifications with a self-study tool more powerful that anything before, one that allows for the creation of arbitrary network topologies and practice their skills with the same software stack that is used in real Cisco devices and the hosts connected to them---from the operating system, up until application--level network utilities---, without having to use the expensive official solutions for that purpose, or depending on a real, physical networking laboratory, or having to fall back on the limited graphical simulators~\ref{sec:simulator}.
+It may be speculated that GNS3's first ``appeal'' was supplying students of Cisco certifications with a self-study tool more powerful that anything before, one that allows for the creation of arbitrary network topologies and practice their skills with the same software stack that is used in real Cisco devices and the hosts connected to them---from the operating system, up until application--level network utilities---, without having to use the expensive official solutions for that purpose, or depending on a real, physical networking laboratory.
 However, despite having kept a strong relation with training for Cisco CCNA and related certifications, the magnitude of the project, part of which comes from an inherent extensibility, has made it suitable for a myriad of use-cases.
 
 In the industry, GNS3 naturally can come handy as a tool to prototype and test a topology for a real organization network, in the context of the practice of a network professional.
 But also, in the age of the DevOps philosophy---a set of practices and methodologies/philosophies for faster delivery of applications and services---, of which \emph{infrastructure as code} is one of the culprits~\cite{awswhatisdevops}, it can be of value for software engineers to test distributed applications that depend on certain network behaviors. % TODO try to find a good list of use cases
 
-At the moment of the writing of this thesis, version 2.2 has recently came out\footnote{\url{https://github.com/GNS3/gns3-gui/releases/tag/v2.2.0}}.
-This version brings a lot of improvements and new features, like the new web UI or ``physical'' link state detection for QEMU nodes~\cite{releasenotesgns3v22}, and at the same time some of the ways GNS3 has been typically used are changing---such is the case of the discouragement of the usage of Dynamips and VPCS (in detriment of virtualized versions of IOS or others, or Docker containers for ``emulating'' hosts, respectively)~\cite{ytdynamipsvpcs}.
+% At the moment of the writing of this thesis, version 2.2 has recently came out\footnote{\url{https://github.com/GNS3/gns3-gui/releases/tag/v2.2.0}}.
+% This version brings a lot of improvements and new features, like the new web UI or ``physical'' link state detection for QEMU nodes~\cite{releasenotesgns3v22}, and at the same time some of the ways GNS3 has been typically used are changing---such is the case of the discouragement of the usage of Dynamips and VPCS (in detriment of virtualized versions of IOS or others, or Docker containers for ``emulating'' hosts, respectively)~\cite{ytdynamipsvpcs}.
 
 \section{Building blocks. The programs ``inside'' GNS3}
 \label{sec:gns3buildingblocks}
 
-In an very simplified way of summarizing it, GNS3 is a conjunction of UI tools (the official GUI, the new web UI, or any custom program that ``speaks'' the documented public \acrshort{REST} API), a powerful distributed orchestrator (the \emph{controller} in the server), and a set of integrations (the so-called ``compute nodes'') with virtualization, containarization, and emulation tools from ``the outside'', i.e. that do not belong to the GNS3 project, like KVM, Docker, or QEMU, to provide a way to describe a topology of interconnected computing and routing nodes---that is, a computer network---, including firewalls and NAT devices, control their behavior and launch administrative tools (like \texttt{telnet} sessions). % TODO cite documentation of the REST API. Make sure we elaborate on "computes". How is so-called written - is an hyphen used?
+In an very simplified way, GNS3 is a conjunction of UI/client tools (the official GUI, the new web UI, or any custom program that ``speaks'' the documented public \acrshort{REST} API), a powerful distributed orchestrator (the \emph{controller} in the server), and a set of integrations (the so-called ``compute nodes'') with virtualization and hardware emulation tools from ``the outside'', i.e. that do not belong to the GNS3 project, like KVM, Docker, or QEMU, to provide a way to describe a topology of interconnected computing and routing nodes---that is, a computer network---, including firewalls and NAT devices, control their behavior and launch administrative tools (like \texttt{telnet} sessions). % TODO cite documentation of the REST API. Make sure we elaborate on "computes". How is so-called written - is an hyphen used?
 
-What follows is a description of what are those elements and what they do work internally.
-How they integrate with GNS3 or vice-versa, and also how they interact with each other, is described in~\ref{sec:gns3architecture}.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{gns3-docs-arch}
+  \caption{The architecture of GNS3 (adapted from the official documentation)}
+  \label{fig:gns3-docs-arch}
+\end{figure}
+
+% What follows is a description of what are those elements and what they do work internally.
+% How they integrate with GNS3 or vice-versa, and also how they interact with each other, is described in~\ref{sec:gns3architecture}.
 
 \begin{figure}
   \centering
