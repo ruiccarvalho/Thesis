@@ -29,9 +29,11 @@ In between, complex solutions like GNS3, which is presented in great detail in c
 
 The reason why emulators are specially interesting and are essentially the motivation (\ref{sec:motivation}) of this work, though, is that giving away the lab room with its switches and cables requires to not lose the flexibility it offers to perform all kind of pedagogical exercises, and ``pure'' simulators do not offer by inherent limitation.
 
-A network simulator is a computer program (or software package) that implements algorithms corresponding to a model of the reality through software components, and which enables, through any interface---such as a graphical one---, designing, testing, analyzing, and observing the expected behavior of protocols, nodes, and links according to several parameters. Therefore, it serves as a way to study protocols used across the stack, and possibly even some application layer components can be ``mimicked''.
+A network simulator is a computer program (or software package) that implements algorithms corresponding to a \textbf{model} of the reality through software components.
+Simulators like ns-3~\footnote{\url{https://www.nsnam.org}} or the OPNET~\footnote{\url{http://opnetprojects.com/opnet-network-simulator/}} are discrete event simulators~\footnote{\textbf{DEFINE DISCRETE EVENT SIMULATION}}~\cite{netsimoremu}.
+They enable, through any interface---such as a graphical one---, designing, testing, analyzing, and observing the expected behavior of protocols, nodes, and links according to several parameters. Therefore, it serves as a way to study protocols used across the stack, and possibly even some application layer components can be ``mimicked''.
 
-Even though the usefulness of these tools cannot be questioned, and some like Cisco Packet Tracer~\footnote{\url{https://www.netacad.com/courses/packet-tracer/introduction-packet-tracer}} are very widely used in the training of professionals in the networks administration and engineering fields~\cite{rolepackettracer}, it is crucial to point out as the distinctive characteristic of simulators, as defined here, the fact that those applications constitute a ``closed'' universe in the sense of only \emph{simulating} events that change the status of internal data structures, but do not implement a real stack of protocols, where every operation that should be performed is, in fact, performed. % TODO this is super "Portuguese in English". Improve
+Even though the usefulness of these tools cannot be questioned, and some like Cisco Packet Tracer~\footnote{\url{https://www.netacad.com/courses/packet-tracer/introduction-packet-tracer}}, also a discrete event simulator~\cite{evaluatingnetsimmethodologicapproach}, are very widely used in the training of professionals in the networks administration and engineering fields~\cite{rolepackettracer}, it is crucial to point out as the distinctive characteristic of simulators, as defined here, the fact that those applications constitute a ``closed'' universe in the sense of only \emph{simulating} events that change the status of internal data structures, but do not implement a real stack of protocols, where every operation that should be performed is, in fact, performed. % TODO this is super "Portuguese in English". Improve
 
 In other words: a network simulator is a black box for the outside, with a set of available inspection and state alteration operations---i.e. that provides the ability to see some aspects of the simulated system and perform some finite set of changes to the simulated environment.
 % However, as long as the \emph{implemented} cause-effect behaviors for that set of operations \emph{is coherent} to their real-world counterparts, any kind of ``shortcuts'' inside can be taken.
@@ -52,6 +54,18 @@ Packet Tracer, Boson NetSim, ns-3...
 
 \subsection{GNS3}
 \label{subsec:relworkgns3}
+
+\subsubsection{Usage of GNS3 in education}
+\label{subsubsec:relgns3usageedu}
+
+There is already some published work about using GNS3 in education institutions.
+Usually, though, the experiments and comparisons are made against other ``graphical simulators''---instead of emulators---, since those are the software tools that, from a high-level perspective are equivalent, even if the functional possibilities and implementations are completely different, if not opposite.
+
+A brief comparison with Boson NetSim and Packet Tracer, two graphical simulators, is presented in~\cite{virtlabgnsvmware}, where the authors explain a way to use VMware Workstation VMs on a desktop to ``emulate'' end hosts on GNS3's virtual topologies, and using applications on those VMs which communicate with each other over the emulated links.
+
+In~\cite{automaticnetconfiggns}, the authors, two Professors from the Polytechnic Institute of Leiria, Portugal, dive into ways to automate GNS3 topology configurations, which, as will be seen in chapter~\ref{ch:gns3}, can be a major issue. % TODO
+
+The usefulness for distance learning is also explored, for example, in~\cite{networkvirtwithgns}.
 
 \subsection{Kathara}
 \label{subsec:relworkkathara}
