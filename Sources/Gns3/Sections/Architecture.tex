@@ -1,35 +1,61 @@
-\section{General architecture}
+\section{Architecture}
 \label{sec:gns3architecture}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=1\textwidth]{gns3-running-arch}
-  \caption{The GNS3 architecture}
-  \label{fig:gns3-running-arch}
-\end{figure}
+A good written, comprehensive description of the GNS3 architecture and technical details is lacking.
+There is a page, on the online developers-oriented documentation~\cite{gns3devarch}, which presents a very simple diagaram, that is reproduced~\footnote{Dashed strokes are added by the author of the thesis to provide extra information} on figure~\ref{fig:gns3-docs-arch}.
+Even the two published books that exist on the project~\cite{gns3netsimguide,thebookofgns3} are omissive or very brief, not allowing for gaining an in-depth knowledge, necessary to understand the possible issues of performance, resource consumption, scalability, and functional limitations that GNS3 may suffer from.
+Going from the simple diagram that was mentioned towards a more complete reference is one of this thesis' efforts.
 
-In this section, an attempt is made to describe the different parts of GNS3 is to see what role they play in an execution of a topology (i.e. a project) and how they communicate with each other.
-The diagram in figure~\ref{fig:gns3-running-arch} is based upon~\cite{ytgns3arch22}.
-A central idea is the potentially distributed nature of the components, allowing for a complex topology with many nodes to be run across many hosts, dividing the computing power load across more than one host.
-The precautions that must be taken to ensure a performance, and some caveats, will be explained in~\ref{sec:gns3inaction}. % TODO precautions taken?
+To accomplish such effort, a precious resource has been the ``paraofficial'' videos available via YouTube, mostly by David Bombal, an instructor and close collaborator of the GNS3 organization, namely a comprehensive overview of the architecture (compared with the functionality) of GNS3 by its creator, Jeremy Grossmann~\cite{ytgns3arch22}, and essentially are not anywhere else, at least from authoritative sources. % TODO do nothing with \footnote{\url{https://www.youtube.com/channel/UCP7WmQ_U4GB3K51Od9QvM0w}} ?
 
-The GNS3 server program, has two possible roles in a GNS3 session. % TODO define what's a "GNS3 session"
-Those are: ``computes'' and the controller.
-A GNS3 session only has one controller.
-Any desktop installation of GNS3 comes with the server installed, able to run as the controller.
-The GNS3 GUI will connect to the controller and allow for the user to ``open'' a topology on it.
-The communication, as said, between any client (the GUI or any script) and the controller happens through HTTP requests following a REST approach. % TODO link acronyms et al to gls
-The controller has knowledge of all the hosts running nodes of the topology.
-Those nodes are run using ``computes'', which are processes of the GNS3 server whose responsibility is to expose a private REST API---\emph{not the same} as the one that the controller exposes and only to be used internally---to receive commands from the decision point (the controller) and locally interact with QEMU processes, Docker containers, Dynamips processes, or other emulation, container, or virtualization solution over which a node of the topology (an IOS Cisco router, a host, or a NAT node) is executed.
+% Figure fig:gns3-docs-arch
+\input{Sources/Gns3/TablesFigures/figure-gns3-docs-arch}
 
-Therefore, on the diagram depicted in figure~\ref{fig:gns3-running-arch}, we see a topology running on distributed machines---these could be exclusively interconnected virtual machines on the same physical computer, without any loss of generality. % TODO put the background of the word of the same color that it has on the diagram
-What matters is that they are running in hosts able to communicate with each other via IP and where GNS3 server is supported.
-Each magenta rectangle is a separate host. % TODO check the color name
-On the backend there are two hosts.
-One of the hosts is the ``GNS3 VM'', running over VMware Workstation for Windows, and is ``playing'' both roles of the GNS3 server at the same time: it is the (single) controller for the running topology, which means that it loads the file describing the topology and has the receives the client's input, while knowing on which host should each topology node by run.
-Then, it has a compute running alongside, to run two topology nodes.
-These can be, for example, Cisco IOSv routers. % TODO how to spell IOSv. Somewhere we need to talk about this
-On another host, which is a ESXi virtual machine (running on some infrastructure), \emph{with nested virtualization enabled}, the GNS3 server is also running, but there is no controller---all it does is ``blindly'' (at specific requests from the controller via the private REST API) perform, in the compute nodes, the necessary local interactions with the emulators. % TODO ESXi cite/link something
-In the picture, there are three nodes running, which can be, for example, a Dynamips emulator for a <supported Dynamips Cisco router> and two hosts running on Docker. % TODO replce with a real model
+\subsection{The simple client-server perspective}
+\label{subsec:gns3clientserver}
+
+GNS3 works, first and foremost, as a client-server application.
+The standard installation for desktop provides all the necessary to components to fully(-ish) work on that physical machine, but the client doesn't have to be, and in many real scenarios isn't, running on the same host as the server.
+However, in fact, a \textbf{topology}---the name GNS3 gives to its ``projects'', which comprises of nodes (emulated/virtualized routers, switches, SDN-controllers, virtual PCs, interfaces for hardware network connections)---can be running in different machines, even on the ``backend'' side itself, as will be seen.
+
+The \textbf{GNS3 server} exposes a public \acrshort{REST} \acrshort{API}, documented in~\cite{gns3devarch}, which is the way any client edits the opened topology or performs actions on the nodes contained therein, or in the GNS3 running environment.
+GNS3 server, described more thoroughly afterwards, is the brains and central point of topology opened and in-execution.
+It has first-hand knowledge of events that occur in the nodes, their status, their interfaces' status, and communicates with the several means existing to actually provide the \emph{emulation} for each specific node.
+All of this will be posteriorly analyzed and explained posteriorly.
+For now, it suffices to see it as a central point, accessible by any number of clients, of a running topology.
+
+To interact with the system, by editing a topology, or performing actions on nodes---all the items in the topology, which can be connected via links---, one or more users simultaneously can utilize a graphical client. The \textbf{GNS3 GUI}, part of a standard installation on any desktop operating system, namely macOS, a desktop Linux distribution (official repositories for Ubuntu exist), or Windows~\footnote{\url{https://gns3.com/software/download}}, is a cross-platform application developed using the Qt graphical toolkit~\cite{qttoolkit}.
+They may also use a web UI (somewhat limited yet), or any tool, user-driven or automatic, programmed to send requests and receive responses according to the aforementioned REST specification.
+The official clients, bundled with the GNS3 installation packages for desktop environments, GNS3 GUI and the official web UI, show an in-real-time view of the topology---e.g. the status of virtual network interfaces, or changes made by other client---thanks to WebSockets server-to-client calls~\cite{ytgns3arch22}. % TODO link WS to the glossary, when definition is available
+
+% Figure fig:gns3-2hosts2routers-macOS
+\input{Sources/Gns3/TablesFigures/figure-gns3-2hosts2switches-macos}
+
+\subsection{The GNS3 server---distributed}
+\label{subsec:gns3serverindetail}
+
+The GNS3 server is a program with a code-base independent from other parts of the project.
+The software package \texttt{gns3-server} can be obtained from official repositories for Linux systems to install it on servers without video interface, with users running some of the already mentioned clients in their laptops or desktop computers.
+It is also possible to obtain a VMware ESXi image to directly spin-up a GNS3 server ready machine on an virtualized infrastructure.
+
+The same program behaves as two different roles, both of which are necessary to get the GNS3 system working.
+
+\begin{itemize}
+	\item The \textbf{controller node}, or just ``controller,'' of which there can only be one instance per running topology, and is ``[its] decision point'' (Jeremy Grossmann's words); the process responsible by fulfilling the client's requests and postback real-time information to them and know the hosts where nodes may be running.
+	\item The \textbf{compute node}, referred to as simply ``compute'' as well, which, for one running topology, can be running $N$ times, one per each machine (physical or virtual) taking care of emulating one or more topology nodes (again: switches, routers, etc.).
+	It is this separation and the ability to have multiple compute nodes that allows GNS3 to be configured in a way that can serve arbitrarily large topologies, since the cost in resources of an increasing number of ``live'' nodes can be balanced among an also increasing number of servers running a compute.
+\end{itemize}
+
+When the server is running on a single host, one \texttt{gns3-server} program instance (i.e. process) performs both roles, controller and compute.
+However, when the server is distributed across one or more machines, communication between the controller and the computes on other hosts happens through a REST API.
+That API is a private or internal one, unlike the one for client-server, and there isn't a programmer's manual for developing with it.
+Only the (single) controller is supposed to communicate with each process acting as compute.
+
+\subsection{Emulating the nodes}
+\label{subsec:gns3emulatingthenodes}
+
+For emulating the nodes...
+
+% TODO refer back to the ESXi running servers on clouds on virtualized machines and the need for enabling nested virtualization
 
 % end of section gns3architecture
