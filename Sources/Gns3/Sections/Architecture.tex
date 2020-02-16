@@ -1,4 +1,4 @@
-\section{Architecture}
+\section{Architecture and building blocks}
 \label{sec:gns3architecture}
 
 A good written, comprehensive description of the GNS3 architecture and technical details is lacking.
@@ -42,7 +42,7 @@ The same program behaves as two different roles, both of which are necessary to 
 
 \begin{itemize}
 	\item The \textbf{controller node}, or just ``controller,'' of which there can only be one instance per running topology, and is ``[its] decision point'' (Jeremy Grossmann's words); the process responsible by fulfilling the client's requests and postback real-time information to them and know the hosts where nodes may be running.
-	\item The \textbf{compute node}, referred to as simply ``compute'' as well, which, for one running topology, can be running $N$ times, one per each machine (physical or virtual) taking care of emulating one or more topology nodes (again: switches, routers, etc.).
+	\item The \textbf{compute node}, referred to simply as ``compute'' too, which, for one running topology, can be running $N$ times, one per each machine (physical or virtual) taking care of emulating one or more topology nodes (again: switches, routers, etc.).
 	It is this separation and the ability to have multiple compute nodes that allows GNS3 to be configured in a way that can serve arbitrarily large topologies, since the cost in resources of an increasing number of ``live'' nodes can be balanced among an also increasing number of servers running a compute.
 \end{itemize}
 
@@ -50,12 +50,5 @@ When the server is running on a single host, one \texttt{gns3-server} program in
 However, when the server is distributed across one or more machines, communication between the controller and the computes on other hosts happens through a REST API.
 That API is a private or internal one, unlike the one for client-server, and there isn't a programmer's manual for developing with it.
 Only the (single) controller is supposed to communicate with each process acting as compute.
-
-\subsection{Emulating the nodes}
-\label{subsec:gns3emulatingthenodes}
-
-For emulating the nodes...
-
-% TODO refer back to the ESXi running servers on clouds on virtualized machines and the need for enabling nested virtualization
 
 % end of section gns3architecture
