@@ -21,7 +21,7 @@ However, in fact, a \textbf{topology}---the name GNS3 gives to its ``projects'',
 The \textbf{GNS3 server} exposes a public \acrshort{REST} \acrshort{API}, documented in~\cite{gns3devarch}, which is the way any client edits the opened topology or performs actions on the nodes contained therein, or in the GNS3 running environment.
 GNS3 server, described more thoroughly afterwards, is the brains and central point of topology opened and in-execution.
 It has first-hand knowledge of events that occur in the nodes, their status, their interfaces' status, and communicates with the several means existing to actually provide the \emph{emulation} for each specific node.
-All of this will be posteriorly analyzed and explained posteriorly.
+All of this will be analyzed and explained posteriorly.
 For now, it suffices to see it as a central point, accessible by any number of clients, of a running topology.
 
 To interact with the system, by editing a topology, or performing actions on nodes---all the items in the topology, which can be connected via links---, one or more users simultaneously can utilize a graphical client. The \textbf{GNS3 GUI}, part of a standard installation on any desktop operating system, namely macOS, a desktop Linux distribution (official repositories for Ubuntu exist), or Windows~\footnote{\url{https://gns3.com/software/download}}, is a cross-platform application developed using the Qt graphical toolkit~\cite{qttoolkit}.
