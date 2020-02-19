@@ -18,7 +18,7 @@ GNS3 works, first and foremost, as a client-server application.
 The standard installation for desktop provides all the necessary to components to fully(-ish) work on that physical machine, but the client doesn't have to be, and in many real scenarios isn't, running on the same host as the server.
 However, in fact, a \textbf{topology}---the name GNS3 gives to its ``projects,'' which comprises of nodes (emulated/virtualized routers, switches, SDN-controllers, virtual PCs, interfaces for hardware network connections)---can be running in different machines, even on the ``backend'' side itself, as will be seen.
 
-The \textbf{GNS3 server} exposes a public \acrshort{REST} \acrshort{API}, documented in~\cite{gns3devarch}, which is the way any client edits the opened topology or performs actions on the nodes contained therein, or in the GNS3 running environment.
+The \textbf{GNS3 server} exposes a public \acrshort{rest} \acrshort{api}, documented in~\cite{gns3devarch}, which is the way any client edits the opened topology or performs actions on the nodes contained therein, or in the GNS3 running environment.
 GNS3 server, described more thoroughly afterwards, is the brains and central point of topology opened and in-execution.
 It has first-hand knowledge of events that occur in the nodes, their status, their interfaces' status, and communicates with the several means existing to actually provide the \emph{emulation} for each specific node.
 All of this will be analyzed and explained posteriorly.
