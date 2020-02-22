@@ -88,8 +88,19 @@ The experiences carried out for this thesis use exclusively Docker containers as
 \subsection{Links}
 \label{subsec:links}
 
-Yadda yadda yadda.
+A crucial part, and arguably the only element common to really \emph{any} GNS3 topology, is the emulation of data links.
+For any two nodes to communicate, their \acrshortpl{nic} must be connected through a ``pipe'' through which bits can flow in two directions.
+GNS3 maintains a program, with an independent code base and which can be used independently, outside GNS3, called ubridge (in some places stylized as uBridge)\footnote{\url{https://github.com/GNS3/ubridge}}.
+This program is the implementation of each of the straight lines that the user can draw on the canvas, clicking on two nodes, one after the other, and selecting the interfaces on each of them, to where the link is connected, reminding of a physical cable plugged on each free Ethernet port.
 
-% TODO refer back to the ESXi running servers on clouds on virtualized machines and the need for enabling nested virtualization
+A deep study of ubridge wasn't carried out to know the implementation details.
+What is practically observable is that, for each link, for each running interface on both of its ends (0, 1, or 2, depending on the status of the nodes), a user-level \texttt{ubridge} process exists on the compute's OS.
+
+These processes listen on the virtual/software interface they were plugged in and encapsulate the traffic in UDP packages and send them through the compute's host OS network stack to the \texttt{ubridge} process on the other end of the logical link (it may or may not be running on the same compute). % TODO put UDP on glossary/acronyms
+Conversely, they receive UDP datagrams, de-encapsulate the traffic inside them, and ``inject'' it back on the virtual interface they are attached to.
+
+<IF TIME, INVESTIGATE AND BRIEFLY DESCRIBE HOW THIS ``ATTACHMENT'' WORKS> % TODO <- ver!
+
+ubridge is known to provide functionality of configuring simulating packet loss (by frequency or percentage), time delay in packet delivery, corruption of a fraction of the packets, or a Berkeley Packet Filter (for filtering out packets matching an expression)~\cite{ubridgereadme}.
 
 % end of section gns3emulating
