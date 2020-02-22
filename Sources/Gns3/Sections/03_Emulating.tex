@@ -66,7 +66,24 @@ It is then used for spinning up VMs with virtual interfaces running the operatin
 \subsection{Guests and other appliances}
 \label{subsec:gns3guestsappliances}
 
-Bla bla bla.
+``Guest''s is how GNS3 refers, on its interface, to hosts that can be added in topologies.
+Here, host is meant in a conventional way, as what can be simply referred to as ``PCs'', ``servers'', or ``clients''.
+GNS3 also supports other special end-devices, which are not explored in this thesis, such as the \acrshort{nat} or \emph{cloud} nodes.
+
+A fresh install of GNS3 comes with only one guest appliance installed, VPCS.
+This is a kind of simulated PC, developed by the GNS3 project\footnote{\url{https://github.com/GNS3/vpcs}} as a way to provide to GNS3's usable nodes, capable of transmitting and receiving network traffic through a virtual interface, via tools like \texttt{ping}.
+Although the traffic it generates and receives is ``real'', and other nodes' interconnected to VPCS instances are not aware that it does not come from the usual applications on a host running a full-blown operating system, it doesn't have a kernel or possibility to run software over it.
+A running VPCS node is simply a process that provides a virtual network interface and has a simple command-line interface to which the GNS3 user can \texttt{telnet}.
+
+An advantage of these nodes is that they consume minimal resources, thus a topology can have a large quantity of them, and still allow to test topologies by checking connectivity on a variety of (potentially complex) scenarios.
+They were especially useful on previous versions of GNS3, when the only way to have virtual hosts running full operating systems on GNS3 topologies---and, through it, test more advanced scenarios, using real-life software tools---, was to orchestrate heavy VirtualBox or VMware Workstation VMs, which are heavy, take time to boot, and its cost increases constantly with the number of instances.
+
+Since version 2.1, though, GNS3 supports appliances based on Docker containers\footnote{Only on compute nodes running Linux}.
+These are very lightweight and, excluding the resources consumed by the \texttt{dockerd} process (which runs only once on the host and still doesn't compare to one full-blown VM), each live container isn't noticeable heavier than a VPCS process, while still providing a real UNIX shell and possibility to run potentially potentially any GNU/Linux-compatible application.  % TODO confirmar (e citar)!!!
+\input{Sources/Gns3/TablesFigures/figure-gns3-vpcs-cli-help}
+Due to this reason, the GNS3 project is recommending users to progressively stop using VPCS nodes and move towards Docker~\cite{ytdynamipsvpcs}.
+
+The experiences carried out for this thesis use exclusively Docker containers as guests.
 
 \subsection{Links}
 \label{subsec:links}
