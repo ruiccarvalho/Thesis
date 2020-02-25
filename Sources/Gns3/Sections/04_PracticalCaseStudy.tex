@@ -54,4 +54,41 @@ However, in an undergraduate or graduate university level, where applying theore
 That said, Dynamips ensures actually better throughput on its EtherSwitch modules (surpassing the FastEthernet 100Mbps barrier) with a simple \texttt{iperf3} test between two hosts connected to the same device than an analogous scenario with IOSvL2 switches, as figure <INSERT SCREENSHOTS> shows.
 It also is dramatically lighter on resource consumption, and users can emulate such nodes on their macOS or Windows---and obviously on GNU/Linux, which supports GNS3's emulation alternatives fully, too---without having any need for a distributed or load balanced architecture.
 
+\subsection{Routing and OSPF on Cisco routers}
+\label{subsec:gns3ospfrouting}
+
+For the third lab assignment, divided into two parts, students are requested to connect their laptops to a topology similar to the one in the switching labs, but setting up the network interfaces on the nine multi-layer devices that interconnect them as layer-3 routing ports.
+As written in the handout, the idea is that the routers interconnect the backbone of the offices of a nation-wide corporation.
+Therefore, the computers in each bench (office), have its interface in different IP prefixes, corresponding to separate LANs. % TODO add gls reference
+
+First, to set up set routing, students are requested to design an addressing plan, setting up prefixes and hosts on the routing interfaces connected each router to another, and then setup manually, using IOS's interface, static routes that allow to connect each office's LAN to another.
+After this, students can configure the router/switch virtual interface (which is also configured to be on its respective LAN) as the default gateway and \texttt{ping} each other's computer.
+
+The second goal is to, instead of doing the routing statically, configure the routers to use OSPF, and perform a set of analysis and variations on the exercise, such as changing the bandwidth of some links, turning other links off and foreseeing the behavior according to the specification of the protocol.
+
+Students can also use Wireshark to capture the data OSPF exchanges across the network.
+
+Although the considerations related to using Dynamips versus using IOSv are also applicable here, the complexity of this exercise will be used to demonstrate two facets of GNS3's functionality and setup-wise flexibility, namely:
+\begin{itemize}
+  \item Distributing the load between many servers (computes)---useful to scale, and particularly necessary when emulating heavier nodes such as IOSv instances.
+  \item Topology snapshots
+\end{itemize}
+
+\subsubsection{Running more than one server. Load balancing}
+
+The importance of load balancing is obvious in general. GNS3's topologies are JSON files describing which devices exist on it, their names, meta-information to be used in the moment where each emulator is executed, and which links connect which virtual interfaces~\cite{thebookofgns3}.
+Therefore, there is not a practical limitation of the central points, the controller and the GUI, in the size which a topology can have.
+It is possible, and examples across the web are given, of enormous topologies.
+
+The way this is possible is by using separate hosts to run an instance of the GNS3-server, in the role of a compute, receiving instructions from the controller (in turn controlled by the user using, for instance, the GNS3 GUI) to interact with the running emulators.
+As long as the total amount of emulators and ubridge processe attached to those processes running on each of those hosts doesn't use too many resources of each compute-host, there isn't exactly any bottle-neck, since the emulated nodes execute independently of GNS3's ``brains''.
+
+Unless the user is editing the topology, creating or deleting nodes and links, starting and stopping machines, or other orchestration-specific tasks, the interaction with the running nodes is done thought direct \texttt{telnet} connections to the emulator processes from terminal windows accessible to the user, outside of GNS3.
+To make that easier, if using the GNS3 GUI, a user can double click on e.g. a ``powered-on'' switched or Ubuntu Docker Guest, and a helper is transparently executed which will open a terminal window on that (graphical) host, automatically running a command like \texttt{telnet 10.170.138.106 5001}---where \texttt{10.170.138.106} is the IP address of the compute host where a certain node is running and \texttt{5001} is the concrete TCP port where the emulator process is listening to accept connections to the console.
+
+In the case of the lab assignment 3 (layer-3 routing and OSPF), two servers were setup on the FCT/NOVA DI infrastructure.
+One was running the GNS3 server as the controller (and also as compute for some nodes), and the other only as a ``secondary'' compute node.
+Note that there is no reason to assume that the ``primary'' (generally, the controller) is the host with the most resources.
+In fact, this wasn't the case in the architecture set up for this experiment.
+
 % end of section gns3practicalcasestudy
