@@ -19,9 +19,6 @@ It also informs of how to load the running configuration of the device into the 
 The second handout, ``lab-assignment2,'' is all about switching and layer-2 functionality.
 It proposes a topology, expected to map the real interconnecting and physical disposition of devices in the room, of the nine switches, labels them with ``areas'' corresponding to cardinal points.
 Students are then guided to answer questions about the expected behavior, e.g. in terms of reachability between hosts, according to parameters, which they should also issue in a coordinated fashion, for STP, VLANs, and trunks.
-In figure~\ref{fig:gns3-aprc-lab2-handout-topology}, a section of the document is shown to illustrate the topology, later transfered to GNS3.
-The topology has loops which STP is expected to eliminate by disabling certain link(s).
-Part of the exercise is to foresee, according to the protocol's specification, which one(s) will be shutdown.
 
 % Figures fig:gns3-aprc-lab2-handout-topology
 \input{Sources/Gns3/TablesFigures/figure-gns3-aprc-lab2-handout-topology}
@@ -29,6 +26,32 @@ Part of the exercise is to foresee, according to the protocol's specification, w
 \subsection{Introduction to Cisco IOS and switching labs}
 \label{subsec:gns3introswitching}
 
-As was said before, the first lab assignment introduces host-side commands (mostly Linux) and TCP/IP practical concepts such as IP address and \acrshort{mtu}, and its definition for the host's \acrfullpl{nic}.
+As said before, the first lab assignment introduces host-side commands (mostly Linux) and TCP/IP practical concepts such as IP address and \acrshort{mtu}, and its definition for the host's \acrfullpl{nic}.
+The part of this lab handout that is to be performed on Cisco is perfectly doable on a GNS3 session with both (lighter) Dynamips EtherSwitch-enabled legacy routers or the more modern Cisco IOSvL2-3.
+Double clicking on a node corresponding to one of these switches/routers, the GNS3 GUI will launch a terminal window on the user's desktop automatically executing the command necessary to create a \texttt{telnet} session to the node.
+
+To perform the second lab, the topology described in figure~\ref{fig:gns3-aprc-lab2-handout-topology} (a section of the handout document) is physically implemented in the lab room with Cisco Catalyst switches interconnected accordingly with UTP-Ethernet cables supporting the data links.
+The topology has loops which STP, running in the switches, is expected to eliminate by disabling certain link(s).
+Part of the exercise is to foresee, according to the protocol's specification, which one(s) will be shutdown.
+
+Execute this exercise in GNS3 already poses a bit of challenge, and introduces a dilemma.
+
+Using the recommended IOSvL2 appliances on a typical laptop is not \emph{easy}.
+First of all, IOSvL2, which as told before, runs on QEMU/KVM, is only supported on GNU/Linux computes.
+On a laptop setup with macOS or Windows the standard GNS3 installation recommends having VMware Fusion or Workstation, respectively, installed and downloading the so-called GNS3 VM, which nothing else than a VM image, optimized for VMware's desktop hypervisors, containing a pre-made installation of the GNS3 server on an Ubuntu Server LTS.
+The GNS3-gui for macOS and Windows then facilitates setting up the ``GNS3 VM'' to not need to setup a generic remote server to be used as compute, and is also able to open VMware Fusion or Workstation in the background and power on the GNS3 VM, so to serve as a standardized compute node.
+Needless to say, this does not come without its overhead, both in terms of performance and practicality.
+
+On the other hand, using a Dynamips EtherSwitch, that can be run on Dynamips directly on a macOS or Windows installation, and is much, much lighter, is not recommended anymore, since it requires legacy Cisco images, may not provide all the functionality, is reported to have bugs, etc.
+
+In practice, though, if students have access to the IOS images compatible with the school's labs switches, all the exercises were proven to be performable on a laptop using Dynamips nodes.
+VLANs are supported by these images, as well as STP, and standard routing protocols, such as OSPF (covered on a lab assignment too) are also run without problems on these equipments.
+
+Summarizing, using Dynamips is no longer encouraged.
+However, one assumes that the advice seen on the GNS3 forums, and on the videos and interviews with Jeremmy Grossmann already cited, for not using Dynamips is very much centered on advanced features and IOS interface compatibility.
+However, in an undergraduate or graduate university level, where applying theoretical principles and seeing and doing in practice, in a controlled environment, not bound to any vendor tools, this advice may very well be irrelevant.
+
+That said, Dynamips ensures actually better throughput on its EtherSwitch modules (surpassing the FastEthernet 100Mbps barrier) with a simple \texttt{iperf3} test between two hosts connected to the same device than an analogous scenario with IOSvL2 switches, as figure <INSERT SCREENSHOTS> shows.
+It also is dramatically lighter on resource consumption, and users can emulate such nodes on their macOS or Windows---and obviously on GNU/Linux, which supports GNS3's emulation alternatives fully, too---without having any need for a distributed or load balanced architecture.
 
 % end of section gns3practicalcasestudy
