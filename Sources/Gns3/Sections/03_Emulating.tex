@@ -28,7 +28,7 @@ Deliberately, \emph{commercial} vendors of hardware, whose emulation is supporte
 
 \begin{enumerate}
   \item There isn't as near as many documentation and references in the literature, the web, or academic material for it as there is for Cisco.
-  \item To narrow the scope of the investigation and this document, as the (again: commercial) network gear in laboratory used for the case study, FCT/NOVA's, is exclusively Cisco.
+  \item To narrow the scope of the investigation and this document, as the (again, commercial) network gear in laboratory used for the case study, FCT/NOVA's, is exclusively Cisco.
 \end{enumerate}
 
 Thus, this section is not intended to be exhaustive, or even less complete, in the sense of covering all the means GNS3 supplies out-of-the-box to emulate possible nodes in topologies.
@@ -42,7 +42,7 @@ Not only it the emulator is able to execute MIPS machine-level instructions, it 
 
 Dynamips does not support Cisco Catalyst layer-2 switches, only the aforementioned layer-3 modular routers.
 All it offers for switching capabilities is, for some models, the ability to insert a module, called EtherSwitch, which provides 16 switched ports to the routers, and allows for \emph{some} experiments with the switching capabilities (VLANs, STP) to be made.
-However,~\cite{thebookofgns3}, which has a lengthy reference on using Dynamips, its advantages and disadvantages is clear in stating that it isn't without its limitations, which comprehensively listed in this reference.
+However, \cite{thebookofgns3}, which has a lengthy reference on using Dynamips, its advantages and disadvantages is clear in stating that it isn't without its limitations, which comprehensively listed in this reference.
 
 In a video published in the already mentioned semi-official GNS3 YouTube channel, the software's creator Jeremy Grossmann clearly states that Dynamips is not recommended for production these days, since, as will be seen later, more modern and maintainable solutions exist. At the same time, the GNS3 creator and lead developer also states that there are not plans to remove Dynamips support in upcoming versions~\cite{ytdynamipsvpcs}.
 
@@ -89,7 +89,7 @@ The experiences carried out for this thesis use exclusively Docker containers as
 \label{subsec:links}
 
 A crucial part, and arguably the only element common to really \emph{any} GNS3 topology, is the emulation of data links.
-For any two nodes to communicate, their \acrshortpl{nic} must be connected through a ``pipe'' through which bits can flow in two directions.
+For any two nodes to communicate, their \acrshortpl{nic} must be connected through a ``pipe,'' through which bits can flow in two directions.
 GNS3 maintains a program, with an independent code base and which can be used independently, outside GNS3, called ubridge (in some places stylized as uBridge)\footnote{\url{https://github.com/GNS3/ubridge}}.
 This program is the implementation of each of the straight lines that the user can draw on the canvas, clicking on two nodes, one after the other, and selecting the interfaces on each of them, to where the link is connected, reminding of a physical cable plugged on each free Ethernet port.
 
