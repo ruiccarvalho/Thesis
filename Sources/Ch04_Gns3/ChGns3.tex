@@ -4,7 +4,7 @@
 \chapter{GNS3}
 \label{ch:gns3}
 
-GNS3, whose original name was ``Graphical Network Simulator-3,'' is a software project, comprising several distinct components and, despite the ``simulator'' in its name, it falls under the category of emulators (cf.~\ref{sec:emulationsimulation}): its operation runs real code accross all the layers of the stack. % TODO try to (either with a source, or speculating) relate the name with ns-3
+% GNS3, whose original name was ``Graphical Network Simulator-3,'' is a software project, comprising several distinct components and, despite the ``simulator'' in its name, it falls under the category of emulators (cf.~\ref{sec:emulationsimulation}): its operation runs real code accross all the layers of the stack. % TODO try to (either with a source, or speculating) relate the name with ns-3
 % TODO also: cite the source for the name
 % By ``as a whole,'' it is meant that, as shall be seen later, although some of its components, like the Dynamips program, are emulators in a very strict sense---i.e. its purpose is to run real machine code on a different hardware architecture (than its native one)---, it differentiates itself, on a high-level perspective, from a simulator which is a program designed to execute a mathematical model, processing modeled events as internal data-structures with a collection of preset algorithms that somehow mimic (a part of) the reality. % TODO: delete?
 
@@ -16,16 +16,17 @@ GNS3, whose original name was ``Graphical Network Simulator-3,'' is a software p
 
 % end of intro
 
-The first section of this chapter explains the motivation behind the creation of GNS3, as that fact determines implementation and functional aspects of this piece of software.
-Then, two sections present GNS3 from a more technical angle:
+% The first section of this chapter explains the motivation behind the creation of GNS3, as that fact determines implementation and functional aspects of this piece of software.
+This chapter consists in a detailed analysis and study of one of the two examples given in chapter~\ref{ch:examplesofemulators} which were chosen to be looked into more depth and, later, compared against each other---the GNS3 emulator.
+First, two sections present GNS3 from a more technical angle:
   \begin{enumerate*}[label=(\roman*), itemjoin={{, }}, itemjoin*={{, and }}]
   \item a description of the architecture and the main design characteristics of GNS3 are explained, giving a good overview of the kind of setup it needs, and in what kind of environments it can be executed and inherent scalability features
   \item the implementation solutions chosen by GNS3's developers to provide its high-level functionality.
   \end{enumerate*}
-Finally, the chapter presents a case-study that directly addresses the problem which motivates this thesis and describes how GNS3 offers solutions for that problem, and then performance and resource consumption considerations, result of the observation done mainly during the performance of the case-study, are exposed in a systematic way.
+Then, the chapter finishes by presenting a case-study that directly addresses the problem which motivates this thesis and describes how GNS3 offers solutions for that problem, and then performance and resource consumption considerations, result of the observation done mainly during the performance of the case-study, are exposed in a systematic way.
 
 % Section "GNS3's purpose and raison d'être"
-\input{Sources/Ch04_Gns3/Sections/01_Gns3sPurposeAndRaisonDEtre}
+% \input{Sources/Ch04_Gns3/Sections/01_Gns3sPurposeAndRaisonDEtre}
 
 % Section "General architecture"
 \input{Sources/Ch04_Gns3/Sections/02_Architecture}
