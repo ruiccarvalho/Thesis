@@ -1,6 +1,30 @@
 \section{Mininet}
 \label{sec:exemulmininet}
 
-Mininet~\cite{mininetnetworklaptop} is a network emulator created by researchers at Stanford University, intended to be lightweght, and allow, as the title of its founding paper says, \textquote{rapid prototyping for Software-Defined Networks.}
+Mininet~\cite{mininetnetworklaptop} is a network emulator created by researchers at Stanford University, intended to be lightweight, and allow, as the title of its founding paper says, \textquote{rapid prototyping for Software-Defined Networks.}
+
+Like essentially every emulator able to run on commodity PCs, standalone, Mininet makes use of virtualization.
+It was created specifically with that in mind, as an alternative to the limited simulators, but also expensive testbeds, that require a layer of real software, even if provided ``as a service'' to the users.
+It also has had from the beginning heavy concerns about performance and the ability to run large topologies on the researchers' machine.
+
+Mininet operates exclusively on Linux hosts and does everything with the low-level primitives of LXC (Linux Containers).
+This enabled very large topologies to be run without much effort from the host they're supported by.
+
+The kinds of nodes Mininet supports can't be dissociated from the fact that is was developed with SDN in mind.
+They are:
+\begin{description}
+	\item[hosts] corresponding to network namespaces, containers, consisting in processes with exclusive ownership of interfaces, ports, and routing tables;
+	\item[switches] these are OpenFlow ``dumb'' switches, \textbf{not} ``conventional'' layer-2 switches, which can run in kernel-space or user-space and be configured by the Mininet infrastructure;
+	\item[controllers] which can be on the ``virtual'' topology, but also be proper nodes in a deployed SDN, as long as the host where the other nodes are running has IP connectivity to the rest of the network.
+\end{description}
+
+There is a command-line utility to interact with Mininet, which serves to add and remove, and also start and stop, topology nodes, access their shells.
+It is also possible to automate these actions and declare shareable topologies using Mininet's Python API.
+
+It is out of the scope of this thesis studying in details what can be done with the SDN approach e.g. in terms of programming the control plane of switches, as well as how that is done, since the focus from the beginning is to reproduce experiments currently runnable with standard, layer-2 switches and conventional IP routers.
+
+To respond goals of the present work, even though the generality suggested by the simple definition of Mininet's \emph{host} nodes may lead one to assume that they could use something like Quagga~\cite{quagga} and an arbitrary number of interfaces to emulate a multilayer switch, both the lack of proper authoritative documentation to do so, as well as the results of Web searching, suggest that, for various reasons that is not easy or even feasible, at least maintaining two of the claimed ``good'' attributes of Mininet: deployability and sharability.
+
+Yet another reason for not investing in struggling against the ``stock'' limitation of Mininet is the fact that, as will be seen in other examples, there are other solutions, some able to run in more platforms (any host/OS supporting Docker out-of-the-box), which provide good, documented support for conventional open-source switches/routers (e.g. Quagga), maintaining the positive aspects of Mininet like declarative, scriptable topologies, and lightweight virtualization for large topologies.
 
 % end of section exemulmininet
