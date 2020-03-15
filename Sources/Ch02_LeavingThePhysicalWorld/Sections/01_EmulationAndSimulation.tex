@@ -26,12 +26,12 @@ The reason why emulators are specially interesting and are essentially the motiv
 
 %A network simulator is a computer program (or software package) that implements algorithms corresponding to a \textbf{model} of the reality through software components.
 In~\cite{netkit-full}, the article presenting Netkit (a tool studied later in this thesis) and the process that led to its inception, which largely overlaps with the present work, there's an interesting paragraph that explains succinctly the difference between simulation and emulation.
-Note that these concepts exist for any kind of \emph{system}, of which any computer system, such as computer networks, are only particular instances:
+Note that these concepts exist for any kind of \emph{system}, of which any computer system, such as computer networks, are only particular instances (emphasis \textbf{not} present in the original document):
 \begin{displayquote}
 Simulation aims at computing the behavior of a network based on an abstract model that usually ignores many functional details (e.g., message formats, the need for configurations, and the presence of command line interfaces).
 This approach is suited for massive performance-oriented experiments and usually produces accurate event timing information.
 Emulation aims at accurately reproducing the behavior of a real network in all its functional details and is usually achieved by exploiting as much as possible the same software (or an open version of it) that would be used on real devices.
-Although considerably less efficient than simulation and usually inadequate to reproduce timings observed in real network systems, this approach is very effective to capture the wide range of functionalities and behaviors of a real network, and we believe it is therefore much more suited for didactics than simulation.
+Although considerably less efficient than simulation and usually inadequate to reproduce timings observed in real network systems, this approach is very effective to capture the wide range of functionalities and behaviors of a real network, and we believe \emph{it is therefore much more suited for didactics than simulation}.
 \end{displayquote}
 Simulators like ns-3~\cite{ns3} or the OPNET~\cite{introtoopnet} are discrete event simulators~\cite{netsimoremu}.
 They enable, through some interface---such as a graphical one---, designing, testing, analyzing, and observing the expected behavior of protocols, nodes, and links according to several parameters. Therefore, it serves as a way to study protocols used across the stack, and possibly even some application layer components can be ``mimicked''.
