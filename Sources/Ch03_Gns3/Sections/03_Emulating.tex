@@ -22,7 +22,7 @@ The other available nodes are stock.
 Figure~\ref{fig:gns3-appliances-from-server-routers} shows the dialog where a partial list of available appliance templates is ready to be selected.
 
 % Figures fig:gns3-appliances-dock and fig:gns3-appliances-from-server-routers
-\input{Sources/Gns3/TablesFigures/figure-gns3-appliances}
+\input{Sources/Ch03_Gns3/TablesFigures/figure-gns3-appliances}
 
 Deliberately, \emph{commercial} vendors of hardware, whose emulation is supported by GNS3, other than Cisco are excluded from this case-study for the following reasons:
 
@@ -80,7 +80,7 @@ They were especially useful on previous versions of GNS3, when the only way to h
 
 Since version 2.1, though, GNS3 supports appliances based on Docker containers\footnote{Only on compute nodes running Linux}.
 These are very lightweight and, excluding the resources consumed by the \texttt{dockerd} process (which runs only once on the host and still doesn't compare to one full-blown VM), each live container isn't noticeable heavier than a VPCS process, while still providing a real UNIX shell and possibility to run potentially potentially any GNU/Linux-compatible application.  % TODO confirmar (e citar)!!!
-\input{Sources/Gns3/TablesFigures/figure-gns3-vpcs-cli-help}
+\input{Sources/Ch03_Gns3/TablesFigures/figure-gns3-vpcs-cli-help}
 Due to this reason, the GNS3 project is recommending users to progressively stop using VPCS nodes and move towards Docker~\cite{ytdynamipsvpcs}.
 
 The experiences carried out for this thesis use exclusively Docker containers as guests.
