@@ -1,4 +1,20 @@
 \section{Functionality and studied usages}
 \label{sec:katharafunctionality}
 
+According to its developers, Kathará was built having in mind the creation of software framework, a computer network emulator, that allowed to prototype, develop over, and experiment with, not only traditional switched and routed networks, but also with four emerging concepts and technologies in the scope of (or related to) networking:
+\begin{itemize}
+	\item SDN
+	\item NFV
+	\item P4~\cite{p4programming} % TODO add to glossary
+	\item Containers (and, in particular, Docker)
+\end{itemize}
+
+To build such a framework, the chosen starting point was an experimental tool called sdnetkit, which enhanced Netkit with OpenFlow enabled switches, still explicitly supporting ``traditional routers'' performing distributed routing protocols like OSPF~\cite{sdnkit}.
+Kathará then evolved to be a fully backwards compatible tool with Netkit, using the same conceptual philosophy in terms of interfaces and emulated topology definition, with a substantially different implementation, and the capabilities of adding both P4 and OpenFlow enabled switches, and also nodes running the OS/framework ClockOS (proposed in~\cite{clockos}).
+
+The high-level functional capabilities of Kathará explored in this work are the exactly the ones shared with the original Netkit---i.e. building and emulating topologies with traditional routers and switches and generic hosts.
+However, as will be seen later, the implementation changes and overall modernization that Kathará brings can benefit any user.
+
+Kathará's developers made the decision of considering a topology a set of nodes instantiated as Docker containers, communicating using Docker's low-level primitives
+
 % end of section katharafunctionality
