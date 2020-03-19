@@ -1,0 +1,181 @@
+\documentclass{mimosis}
+
+\usepackage{metalogo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some of my favourite personal adjustments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% These are the adjustments that I consider necessary for typesetting
+% a nice thesis. However, they are *not* included in the template, as
+% I do not want to force you to use them.
+
+% This ensures that I am able to typeset bold font in table while still aligning the numbers
+% correctly.
+\usepackage{etoolbox}
+
+\usepackage[binary-units=true]{siunitx}
+\DeclareSIUnit\px{px}
+
+\sisetup{%
+  detect-all           = true,
+  detect-family        = true,
+  detect-mode          = true,
+  detect-shape         = true,
+  detect-weight        = true,
+  detect-inline-weight = math,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hyperlinks & bookmarks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[%
+  colorlinks = true,
+  citecolor  = RoyalBlue,
+  linkcolor  = RoyalBlue,
+  urlcolor   = RoyalBlue,
+  unicode,
+  ]{hyperref}
+
+\usepackage{bookmark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% I like the bibliography to be extremely plain, showing only a numeric
+% identifier and citing everything in simple brackets. The first names,
+% if present, will be initialized. DOIs and URLs will be preserved.
+
+\usepackage[%
+  autocite     = plain,
+  backend      = bibtex,
+  doi          = true,
+  url          = true,
+  giveninits   = true,
+  hyperref     = true,
+  maxbibnames  = 99,
+  maxcitenames = 99,
+  sortcites    = true,
+  style        = numeric,
+  ]{biblatex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DEFINED BY RUI - NOT IN THE TEMPLATE
+
+\usepackage{tabulary}
+\usepackage[export]{adjustbox} % To put borders around some figures
+
+\usepackage[inline]{enumitem}
+
+%\input{bibliography-mimosis}
+\addbibresource{Thesis.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fonts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifxetexorluatex
+  \setmainfont{Minion Pro}
+\else
+  \usepackage[lf]{ebgaramond}
+  \usepackage[oldstyle,scale=0.7]{sourcecodepro}
+  \singlespacing
+\fi
+
+\renewcommand{\th}{\textsuperscript{\textup{th}}\xspace}
+
+%\newacronym[description={Principal component analysis}]{PCA}{PCA}{principal component analysis}
+\newacronym                                            {sdn}{SDN}{Software-defined networking}
+\newacronym                                            {api}{API}{Application Programming Interface}
+\newacronym                                            {vpcs}{VPCS}{Simple Virtual PC Simulator}
+\newacronym                                            {dhcp}{DHCP}{Dynamic Host Configuration Protocol}
+\newacronym                                            {rest}{REST}{Representational state transfer} % TODO put it the glossary
+\newacronym                                            {nic}{NIC}{network interface controller} % TODO put it the glossary
+\newacronym                                            {mtu}{MTU}{maximum transmission unit} % TODO put it the glossary
+\newacronym                                            {nat}{NAT}{network address translation}
+\newacronym                                            {gui}{GUI}{graphical user interface}
+
+\newglossaryentry{LaTeX}{%
+  name        = {\LaTeX},
+  description = {A document preparation system},
+  sort        = {LaTeX},
+}
+
+\newglossaryentry{Real numbers}{%
+  name        = {$\real$},
+  description = {The set of real numbers},
+  sort        = {Real numbers},
+}
+
+% TODO Add entry for REST
+% TODO Add entry for WebSockets
+
+\makeindex
+\makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Incipit
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Rui's LaTeX and/or editor hacks and notes go here.
+% e.g. useful regex to search for in the file.
+% Things we want to look for:
+% Comments starting with the "TODO" string
+% Lines (in the text file) that contain more than two sentence.
+% Take into account that some sentences end in doube-quotes
+% (with the perid . before it)
+%
+% TODO Use the oxford comma?
+% TODO see how dates are written in English across the whole document
+% TODO check if there are i.e. with a "comma" after it
+% TODO check how many text between parenthesis and m-dashes is there
+% TODO check for double-quote american errors, i.e. commas out of "",
+% TODO check for <CAPS LOCK STUFF INSIDE ST/GT SIGNS>
+% TODO see how NOVAthesis does the side by side figure thingy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Usage of network emulators for the benefit of teaching and learning}
+%\subtitle{A minimal, modern \LaTeX{} package for typesetting your thesis}
+\author{Rui Miguel Carrilho Carvalho}
+
+\begin{document}
+
+\frontmatter
+  \include{Sources/Title}
+  \include{Sources/Abstract/Abstract-en}
+
+  \tableofcontents
+
+\mainmatter
+
+  \include{Sources/Ch01_Introduction/ChIntroduction}
+  \include{Sources/Ch02_LeavingThePhysicalWorld/ChLeavingThePhysicalWorld}
+  \include{Sources/Ch03_ExamplesOfEmulators/ChExamplesOfEmulators}
+  \include{Sources/Ch04_Gns3/ChGns3}
+  \include{Sources/Ch05_Kathara/ChKathara}
+  \include{Sources/Ch06_Comparative/ChComparative}
+  \include{Sources/Ch07_Conclusions/ChConclusions}
+
+% This ensures that the subsequent sections are being included as root
+% items in the bookmark structure of your PDF reader.
+\bookmarksetup{startatroot}
+\backmatter
+
+  \begingroup
+    \let\clearpage\relax
+    \glsaddall
+    \printglossary[type=\acronymtype]
+    \newpage
+    \printglossary
+  \endgroup
+
+  \printindex
+  \printbibliography
+
+\end{document}
