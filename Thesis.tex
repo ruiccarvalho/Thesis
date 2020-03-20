@@ -1,6 +1,6 @@
-\documentclass[11pt,a4paper]{book}
+\documentclass[a4paper,11pt]{book}
 
-% \usepackage[a4paper]{geometry}
+\usepackage{pdfpages}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{subcaption}
 
@@ -89,6 +89,48 @@
 \usepackage{makeidx}  % For creating indices
 \usepackage{xspace}   % For automatically "eating" spaces
 
+\usepackage{verbatim}         % required for \verbinput
+
+\usepackage{listings}         % syntax hilighting code
+
+% some default configuration for code listings
+
+\lstset{
+   numbers=left,
+   basicstyle=\ttfamily\footnotesize,
+   keywordstyle=\bfseries\color{red},
+   numberstyle=\ttfamily\scriptsize,
+   commentstyle=\color[gray]{0.8},
+   stringstyle=\color{blue},
+   showstringspaces=false
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define our own page headers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+\fancypagestyle{plain}{%
+ \fancyhead{} % get rid of headers
+ \renewcommand{\headrulewidth}{0pt} % and the line
+}
+
+\addtolength{\headheight}{3pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% CONTENT RELATED STUFF
+
 \newacronym                                            {sdn}{SDN}{Software-defined networking}
 \newacronym                                            {api}{API}{Application Programming Interface}
 \newacronym                                            {vpcs}{VPCS}{Simple Virtual PC Simulator}
@@ -102,15 +144,16 @@
 \makeindex
 \makeglossaries
 
-\title{Usage of network emulators in education}
+\title{Use of network emulators to support education}
 \author{Rui Carvalho}
 \date{March 2020}
 
 \begin{document}
 
 \frontmatter
-  \include{Sources/Title}
-  \include{Sources/Abstract/Abstract-en}
+  \include{Sources/Frontmatter/Title}
+  \include{Sources/Frontmatter/Copyright}
+  \include{Sources/Frontmatter/Abstract-en}
 
   \tableofcontents
 
@@ -120,9 +163,9 @@
   \include{Sources/Ch02_LeavingThePhysicalWorld/ChLeavingThePhysicalWorld}
   \include{Sources/Ch03_ExamplesOfEmulators/ChExamplesOfEmulators}
   \include{Sources/Ch04_Gns3/ChGns3}
-  % \include{Sources/Ch05_Kathara/ChKathara}
-  % \include{Sources/Ch06_Comparative/ChComparative}
-  % \include{Sources/Ch07_Conclusions/ChConclusions}
+  \include{Sources/Ch05_Kathara/ChKathara}
+  \include{Sources/Ch06_Comparative/ChComparative}
+  \include{Sources/Ch07_Conclusions/ChConclusions}
 
 % This ensures that the subsequent sections are being included as root
 % items in the bookmark structure of your PDF reader.
