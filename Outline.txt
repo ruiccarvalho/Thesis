@@ -2,30 +2,31 @@
 	1.1. Motivation & problem statement
 	1.2. Structure of the thesis
 
-2. Related work
-	2.1. Emulation and simulation
-	2.1.1. Notable emulators (refer to http://www.brianlinkletter.com/open-source-network-simulators/)
-		- GNS3
-		- Kathara
-		- CORE
-		- Mininet - justify why we won't (probably) be using it
-	2.1.2. Notable simulators
-	2.2. Usage of simulators and emulators in teaching currently
+2. Leaving the physical world
+	2.1. Emulation and simulation (or "emulators and simulators"?)
+	2.2. (?) Current usage of emulators in education
+	2.3. Virtualization support for emulators
 
-3. GNS3
-	3.1. GNS3's purpose and raison d'être
-	3.2. Building blocks. The programs ``inside'' GNS3. Architecture
-	3.3. GNS3 GUI
-	3.4. Setup of the topology and results
+3. Examples of emulators
+	(Paragraph introducing the idea of presenting a selected choice of noteworthy emulators - refer to http://www.brianlinkletter.com/open-source-network-simulators/)
+	3.1. Mininet - justify why we won't (probably) be using it
+	3.2. CORE
+	3.3. GNS3
+	3.4. Kathará
 
-4. Kathara
-	4.1. What is it
-	4.2. Architecture
-	4.3. GUI to setup projects
-	4.4. Setup of the topology and results
+4. GNS3
+	4.1. Architecture and building blocks
+	4.2. Bringing topologies to life---emulating nodes and links
+	4.3. Using GNS3. Practical case study
 
-5. Comparative analysis
-	5.1 Functionality
-	5.2 Performance & resource consumption
+5. Kathará
+	5.1. UI and functionality
+	5.2. Technical overview
+	5.4. Using Kathará. Practical case study
 
-5. Conclusions & future work
+6. Comparative analysis
+	6.1 Functionality
+	6.2 Non-functional aspects
+	6.3 Performance & resource consumption
+
+7. Conclusions & future work
