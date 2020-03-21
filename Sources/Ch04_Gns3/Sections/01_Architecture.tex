@@ -2,7 +2,7 @@
 \label{sec:gns3architecture}
 
 A good written, comprehensive description of the GNS3 architecture and technical details is lacking.
-There is a page, on the online developers-oriented documentation~\cite{gns3devarch}, which presents a very simple diagaram, that is reproduced~\footnote{Dashed strokes are added by the author of the thesis to provide extra information} on figure~\ref{fig:gns3-docs-arch}.
+There is a page, on the online developers-oriented documentation~\cite{gns3devarch}, which presents a very simple diagaram, that is reproduced\footnote{Dashed strokes are added by the author of the thesis to provide extra information} on figure~\ref{fig:gns3-docs-arch}.
 Even the two published books that exist on the project~\cite{gns3netsimguide,thebookofgns3} are omissive or very brief, not allowing for gaining an in-depth knowledge, necessary to understand the possible issues of performance, resource consumption, scalability, and functional limitations that GNS3 may suffer from.
 Going from the simple diagram that was mentioned towards a more complete reference is one of this thesis' efforts.
 
@@ -24,7 +24,7 @@ It has first-hand knowledge of events that occur in the nodes, their status, the
 All of this will be analyzed and explained posteriorly.
 For now, it suffices to see it as a central point, accessible by any number of clients, of a running topology.
 
-To interact with the system, by editing a topology, or performing actions on nodes---all the items in the topology, which can be connected via links---, one or more users simultaneously can utilize a graphical client. The \textbf{GNS3 GUI}, part of a standard installation on any desktop operating system, namely macOS, a desktop Linux distribution (official repositories for Ubuntu exist), or Windows~\footnote{\url{https://gns3.com/software/download}}, is a cross-platform application developed using the Qt graphical toolkit~\cite{qttoolkit}.
+To interact with the system, by editing a topology, or performing actions on nodes---all the items in the topology, which can be connected via links---, one or more users simultaneously can utilize a graphical client. The \textbf{GNS3 GUI}, part of a standard installation on any desktop operating system, namely macOS, a desktop Linux distribution (official repositories for Ubuntu exist), or Windows,\footnote{\url{https://gns3.com/software/download}} is a cross-platform application developed using the Qt graphical toolkit~\cite{qttoolkit}.
 They may also use a web UI (somewhat limited yet), or any tool, user-driven or automatic, programmed to send requests and receive responses according to the aforementioned REST specification.
 The official clients, bundled with the GNS3 installation packages for desktop environments, GNS3 GUI and the official web UI, show an in-real-time view of the topology---e.g. the status of virtual network interfaces, or changes made by other client---thanks to WebSockets server-to-client calls~\cite{ytgns3arch22}. % TODO link WS to the glossary, when definition is available
 
