@@ -3,10 +3,26 @@
 \usepackage{pdfpages}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{subcaption}
+\usepackage[portuguese,english]{babel}
 
 % Make sub-references using \subref being typeset with parentheses.
 % Otherwise, only the counter will be printed.
 \captionsetup{subrefformat=parens}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hyperlinks & bookmarks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage[%
+%   colorlinks = true,
+%   citecolor  = RoyalBlue,
+%   linkcolor  = RoyalBlue,
+%   urlcolor   = RoyalBlue,
+%   unicode,
+%   ]{hyperref}
+
+\usepackage[hidelinks,unicode]{hyperref}
+\usepackage{bookmark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Glossaries
@@ -69,22 +85,6 @@
 \RequirePackage{graphicx}
 \graphicspath{{Figures/}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Hyperlinks & bookmarks
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \usepackage[%
-%   colorlinks = true,
-%   citecolor  = RoyalBlue,
-%   linkcolor  = RoyalBlue,
-%   urlcolor   = RoyalBlue,
-%   unicode,
-%   ]{hyperref}
-
-\usepackage{hyperref}
-
-\usepackage{bookmark}
-
 \usepackage{csquotes} % Context-sensitive quotation marks
 \usepackage{makeidx}  % For creating indices
 \usepackage{xspace}   % For automatically "eating" spaces
@@ -127,6 +127,16 @@
 
 \addtolength{\headheight}{3pt}
 
+\usepackage{emptypage}
+
+\usepackage[parfill]{parskip}
+\usepackage{microtype}
+% \let\origdoublepage\cleardoublepage
+% \newcommand{\clearemptydoublepage}{%
+%   \clearpage
+%   {\pagestyle{empty}\origdoublepage}%
+% }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % CONTENT RELATED STUFF
@@ -141,6 +151,18 @@
 \newacronym                                            {nat}{NAT}{network address translation}
 \newacronym                                            {gui}{GUI}{graphical user interface}
 
+\newglossaryentry{LaTeX}{%
+  name        = {\LaTeX},
+  description = {A document preparation system},
+  sort        = {LaTeX},
+}
+
+\newglossaryentry{Real numbers}{%
+  name        = {$X$},
+  description = {The set of real numbers},
+  sort        = {Real numbers},
+}
+
 \makeindex
 \makeglossaries
 
@@ -154,6 +176,7 @@
   \include{Sources/Frontmatter/Title}
   \include{Sources/Frontmatter/Copyright}
   \include{Sources/Frontmatter/Abstract-en}
+  \include{Sources/Frontmatter/Acknowledgments}
 
   \tableofcontents
 
@@ -169,16 +192,16 @@
 
 % This ensures that the subsequent sections are being included as root
 % items in the bookmark structure of your PDF reader.
-% \bookmarksetup{startatroot}
-% \backmatter
+\bookmarksetup{startatroot}
+\backmatter
 
-%   \begingroup
-%     \let\clearpage\relax
-%     \glsaddall
-%     \printglossary[type=\acronymtype]
-%     \newpage
-%     \printglossary
-%   \endgroup
+  \begingroup
+    \let\clearpage\relax
+    \glsaddall
+    \printglossary[type=\acronymtype]
+    \newpage
+    \printglossary
+  \endgroup
 
   \printindex
   \printbibliography
