@@ -5,7 +5,7 @@
 2. Leaving the physical world
 	2.1. Emulation and simulation (or "emulators and simulators"?)
 	2.2. (?) Current usage of emulators in education
-	2.3. Virtualization support for emulators
+	2.3. Virtualization. Support for emulators
 
 3. Examples of emulators
 	(Paragraph introducing the idea of presenting a selected choice of noteworthy emulators - refer to http://www.brianlinkletter.com/open-source-network-simulators/)
