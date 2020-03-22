@@ -1,4 +1,23 @@
 \section{Functionality}
 \label{sec:comparativefunctionality}
 
+Functionality, in particular in the emulated network-nodes,\footnote{by contrast with end-nodes, which no matter the technology are expected to be, in some sense, generic virtual, isolated hosts running a typical end-host operating system, and therefore are of least concern in this sense} is defined, in this document, in two senses:
+\begin{enumerate}
+  \item From a \emph{higher-level} perspective, the possibility to run \emph{generically} existing algorithms and protocols, exchanging packets in the respective layers according to the standard way to do so.
+  \item From a \emph{lower-level} point of view, the ability to run vendor-specific software, with all of its particular attributes, maybe proprietary optimizations, augmented headers, or any kind of functionality that a particular ``brand'' of networking software may offer.
+\end{enumerate}
+
+In terms of the \emph{higher-level functionality}, most general-purpose emulators, which GNS3 and Kathará are at heart, don't differ much.
+Both have a way to define arbitrary topologies and store them in the filesystem and the topologies describe nodes, default configuration of the nodes, and hosts represent ``computers'' that, according to the specifics of the software/firmware they are running and number of interfaces serve as switches, routers, end-hosts running application software (client/server, P2P, etc.), or even other kinds of nodes seen in real-world networks, often called middleboxes, not studied in the present work.
+
+However, if, for example, running Cisco software is a requirement (as is the case for the company's official certifications), Kathará itself cannot accommodate it.
+On the contrary, there aren't officially supported GNS3 appliances, running on any kind of platform, to run Quagga out of the box.
+This is to show that, \textbf{in an academic context}, where protocols and algorithms are the subject of the study, and not vendor-specific details, \textbf{Kathará has the advantage of doing without pricey licenses and vendor lock-in}.
+
+The degree of flexibility of the two emulators is different, due to reasons probably obvious by now.
+On the one hand, GNS3 is ``a suite of \emph{emulation methods}'' (and even more than that, giving the diversity of software packages that are inside a normal installation of the software on a desktop), and offers the ability to emulate nodes using large span of technologies that don't typically work with each other by making ensuring that one single software package, uBridge, is pluggable to each of them, being responsible to handling the transmission of the traffic, in a way that each node's emulation method is never aware of the emulation method on the other end of a virtual link.
+On the other hand, Kathará doesn't use any application-level data-link emulation, and requires that every kind of software, be it for switching/routing nodes, middleboxes, is able to communicate using Docker's virtual interfaces.
+Both Kathará and GNS3 provide a way to connect an interface on the host operating system to a virtual interface on its nodes.
+This, if thought in conjunction with the way hypervisors like VMware Workstation allow to create virtual switches and interfaces in the host computer, allows for virtually unlimited combination of topologies across both emulators, using physical interfaces, and even mixing them with other ones on the Internet.
+
 % end of section comparativefunctionality
