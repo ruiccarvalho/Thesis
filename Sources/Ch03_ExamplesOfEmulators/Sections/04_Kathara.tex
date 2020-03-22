@@ -1,4 +1,19 @@
 \section{Kathará}
 \label{sec:exemulkathara}
 
+Kathará, presented as \textquote{Container-Based Framework for Implementing Network Function Virtualization and Software Defined Networks,} is an emulation framework developed at the Roma Tre University~\cite{kathara}.
+It was created with the purpose of building a tool that, simultaneously, allowed to prototype and research with concepts considered ``recent'' or tending in networking and related fields.
+Its stated goal is to be able to prototype, test, learn, and research with SDN (via good OpenFlow switch support) and NFV (using ClickOS\footnote{ClickOS is a software system to provide Network Functions on lightweight middleboxes}~\cite{clickos}), and modern containers, namely Docker, as well as programmable data plane-enabled switches, using the new P4 domain-specific purpose programming language~\cite{p4programming}. % TODO add the concept of 'middlebox' to the glossary
+
+However, despite this motivation, Kathará implements the same topology definition syntax and user interface that Netkit~\cite{netkit-short} has, an emulator developed years before at the same institution, does, and supports, from a high-level perspective, the same capabilities for experimenting with traditional networks comprising distributed routing devices.
+Since this is one of the emulators being studied in more detail in the present work, no technical underpinnings are being presented in this section, only high-level features.
+
+Unlike GNS3, Kathará doesn't follow a ``graphical first'' approach to its UI, since it doesn't offer, out-of-the-box, any visual topology editor nor allows to manipulate running labs via graphical controls.
+Instead, it privileges a declarative approach for the definition of the labs/topologies as well as the usage of a command-line interface to start, stop, and interact with nodes.
+In this sense, it is relatively similar to Mininet, but it leverages the decision of using Docker containers to provide a very ``extensible-by-design'' functional philosophy, instead of being geared towards a strict OpenFlow switch, controller, and end host.
+Kathará explicitly wants to provide a rich environment to combine the emulation of latest software-defined and highly virtualized networks with the ``traditional'' model that Netkit already used to provide.
+
+Kathará is essentially an academic tool.
+As such, it is not oriented towards industry or vendor specific details, offering its exclusively through free and/or (partially) open-source software.
+
 % end of section exemulkathara
