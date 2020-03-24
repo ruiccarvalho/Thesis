@@ -26,7 +26,7 @@ For now, it suffices to see it as a central point, accessible by any number of c
 
 To interact with the system, by editing a topology, or performing actions on nodes---all the items in the topology, which can be connected via links---, one or more users simultaneously can utilize a graphical client. The \textbf{GNS3 GUI}, part of a standard installation on any desktop operating system, namely macOS, a desktop Linux distribution (official repositories for Ubuntu exist), or Windows,\footnote{\url{https://gns3.com/software/download}} is a cross-platform application developed using the Qt graphical toolkit~\cite{qttoolkit}.
 They may also use a web UI (somewhat limited yet), or any tool, user-driven or automatic, programmed to send requests and receive responses according to the aforementioned REST specification.
-The official clients, bundled with the GNS3 installation packages for desktop environments, GNS3 GUI and the official web UI, show an in-real-time view of the topology---e.g. the status of virtual network interfaces, or changes made by other client---thanks to WebSockets server-to-client calls~\cite{ytgns3arch22}. % TODO link WS to the glossary, when definition is available
+The official clients, bundled with the GNS3 installation packages for desktop environments, GNS3 GUI and the official web UI, show an in-real-time view of the topology---e.g. the status of virtual network interfaces, or changes made by other client---thanks to WebSockets server-to-client up-calls~\cite{ytgns3arch22}. % TODO link WS to the glossary, when definition is available
 
 % Figure fig:gns3-2hosts2routers-macOS
 \input{Sources/Ch04_Gns3/TablesFigures/figure-gns3-2hosts2switches-macos}
@@ -41,9 +41,9 @@ It is also possible to obtain a VMware ESXi image to directly spin-up a GNS3 ser
 The same program behaves as two different roles, both of which are necessary to get the GNS3 system working.
 
 \begin{itemize}
-	\item The \textbf{controller node}, or just ``controller,'' of which there can only be one instance per running topology, and is ``[its] decision point'' (Jeremy Grossmann's words); the process responsible by fulfilling the client's requests and postback real-time information to them and know the hosts where nodes may be running.
+	\item The \textbf{controller node}, or just ``controller,'' of which there can only be one instance per running topology, and is ``[its] decision point'' (Jeremy Grossmann's words); the process responsible for fulfilling the client's requests and postback real-time information to them and know the hosts where nodes may be running.
 	\item The \textbf{compute node}, referred to simply as ``compute'' too, which, for one running topology, can be running $N$ times, one per each machine (physical or virtual) taking care of emulating one or more topology nodes (again: switches, routers, etc.).
-	It is this separation and the ability to have multiple compute nodes that allows GNS3 to be configured in a way that can serve arbitrarily large topologies, since the cost in resources of an increasing number of ``live'' nodes can be balanced among an also increasing number of servers running a compute.
+	It is this separation and the ability to have multiple compute nodes that allows GNS3 to be configured in a way that can serve arbitrarily large topologies, since the cost in resources of an increasing number of ``live'' nodes can be balanced among an also increasing number of servers running a compute node.
 \end{itemize}
 
 When the server is running on a single host, one \texttt{gns3-server} program instance (i.e. process) performs both roles, controller and compute.
