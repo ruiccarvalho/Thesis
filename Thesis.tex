@@ -1,28 +1,25 @@
 \documentclass[a4paper,11pt]{book}
 
-\usepackage{pdfpages}
-\usepackage[font=small,labelfont=bf]{caption}
-\usepackage{subcaption}
 \usepackage[portuguese,english]{babel}
 
+\usepackage{pdfpages} % to include the official FCT/NOVA cover generated with novathesis
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
 % Make sub-references using \subref being typeset with parentheses.
 % Otherwise, only the counter will be printed.
 \captionsetup{subrefformat=parens}
+
+% This ensures that I am able to typeset bold font in table while still aligning the numbers
+% correctly.
+\usepackage{etoolbox}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Hyperlinks & bookmarks
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \usepackage[%
-%   colorlinks = true,
-%   citecolor  = RoyalBlue,
-%   linkcolor  = RoyalBlue,
-%   urlcolor   = RoyalBlue,
-%   unicode,
-%   ]{hyperref}
-
 \usepackage[hidelinks,unicode]{hyperref}
 \usepackage{bookmark}
+\usepackage[nottoc]{tocbibind}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Glossaries
@@ -162,7 +159,7 @@
   sort        = {Real numbers},
 }
 
-\makeindex
+% \makeindex
 \makeglossaries
 
 \title{Use of network emulators to support education}
@@ -177,9 +174,11 @@
   \include{Sources/Frontmatter/Acknowledgments}
   \include{Sources/Frontmatter/Abstract-en}
   \include{Sources/Frontmatter/Abstract-pt}
-
   \tableofcontents
-
+  \listoffigures
+  \listoftables
+  \printglossary[type=\acronymtype]
+  \printglossary
 \mainmatter
 
   \include{Sources/Ch01_Introduction/ChIntroduction}
@@ -190,42 +189,13 @@
   \include{Sources/Ch06_Comparative/ChComparative}
   \include{Sources/Ch07_Conclusions/ChConclusions}
 
-% This ensures that the subsequent sections are being included as root
-% items in the bookmark structure of your PDF reader.
-\bookmarksetup{startatroot}
+  \appendix
+  \chapter{Code listings}
+  Just a simple appendix which will be removed if keeping it
+  ends up being unnecessary.
+
+  If used for something, the idea is to store code listings
+  (such as an example of a Kathará lab) here.
 \backmatter
-
-  \begingroup
-    \let\clearpage\relax
-    \glsaddall
-    \printglossary[type=\acronymtype]
-    \newpage
-    \printglossary
-  \endgroup
-
-  \printindex
-  \printbibliography
-
+  \printbibliography[heading=bibintoc]
 \end{document}
-
-% \begin{document}
-% \frontmatter
-
-% \maketitle
-
-% \tableofcontents
-
-% % Introductory chapters
-% \chapter{Preface}
-% % ...
-
-% \mainmatter
-% \chapter{First chapter}
-% % ...
-
-% \appendix
-% \chapter{First Appendix}
-
-% \backmatter
-% \chapter{Last note}
-% \end{document}
