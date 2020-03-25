@@ -1,44 +1,43 @@
-\documentclass{mimosis}
+\documentclass[a4paper,11pt]{book}
 
-\usepackage{metalogo}
+\usepackage[portuguese,english]{babel}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Some of my favourite personal adjustments
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% These are the adjustments that I consider necessary for typesetting
-% a nice thesis. However, they are *not* included in the template, as
-% I do not want to force you to use them.
+\usepackage{pdfpages} % to include the official FCT/NOVA cover generated with novathesis
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+% Make sub-references using \subref being typeset with parentheses.
+% Otherwise, only the counter will be printed.
+\captionsetup{subrefformat=parens}
 
 % This ensures that I am able to typeset bold font in table while still aligning the numbers
 % correctly.
 \usepackage{etoolbox}
 
-\usepackage[binary-units=true]{siunitx}
-\DeclareSIUnit\px{px}
-
-\sisetup{%
-  detect-all           = true,
-  detect-family        = true,
-  detect-mode          = true,
-  detect-shape         = true,
-  detect-weight        = true,
-  detect-inline-weight = math,
-}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Hyperlinks & bookmarks
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[%
-  colorlinks = true,
-  citecolor  = RoyalBlue,
-  linkcolor  = RoyalBlue,
-  urlcolor   = RoyalBlue,
-  unicode,
-  ]{hyperref}
-
+\usepackage[hidelinks,unicode]{hyperref}
 \usepackage{bookmark}
+\usepackage[nottoc]{tocbibind}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossaries
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[%
+  acronym,
+  automake,
+  nogroupskip,
+  nopostdot,
+  nonumberlist,
+  toc,
+  ]{glossaries}
+
+\usepackage[%
+  olditem,  % Do not modify itemize environments by default
+  oldenum   % Do not modify enumerate environments by default
+]{paralist}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography
@@ -64,8 +63,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Tables
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% DEFINED BY RUI - NOT IN THE TEMPLATE
+
+\usepackage{booktabs}
+\usepackage{multirow}
 
 \usepackage{tabulary}
 \usepackage[export]{adjustbox} % To put borders around some figures
@@ -76,20 +76,67 @@
 \addbibresource{Thesis.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Fonts
+% Graphics & figures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifxetexorluatex
-  \setmainfont{Minion Pro}
-\else
-  \usepackage[lf]{ebgaramond}
-  \usepackage[oldstyle,scale=0.7]{sourcecodepro}
-  \singlespacing
-\fi
+\RequirePackage{graphicx}
+\graphicspath{{Figures/}}
 
-\renewcommand{\th}{\textsuperscript{\textup{th}}\xspace}
+\usepackage{csquotes} % Context-sensitive quotation marks
+\usepackage{makeidx}  % For creating indices
+\usepackage{xspace}   % For automatically "eating" spaces
 
-%\newacronym[description={Principal component analysis}]{PCA}{PCA}{principal component analysis}
+\usepackage{verbatim}         % required for \verbinput
+
+\usepackage{listings}         % syntax hilighting code
+
+% some default configuration for code listings
+
+\lstset{
+   numbers=left,
+   basicstyle=\ttfamily\footnotesize,
+   keywordstyle=\bfseries\color{red},
+   numberstyle=\ttfamily\scriptsize,
+   commentstyle=\color[gray]{0.8},
+   stringstyle=\color{blue},
+   showstringspaces=false
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define our own page headers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+\fancypagestyle{plain}{%
+ \fancyhead{} % get rid of headers
+ \renewcommand{\headrulewidth}{0pt} % and the line
+}
+\addtolength{\headheight}{3pt}
+\cfoot{\thepage}
+
+\usepackage{emptypage}
+
+\usepackage[parfill]{parskip}
+\usepackage{microtype}
+% \let\origdoublepage\cleardoublepage
+% \newcommand{\clearemptydoublepage}{%
+%   \clearpage
+%   {\pagestyle{empty}\origdoublepage}%
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% CONTENT RELATED STUFF
+
 \newacronym                                            {sdn}{SDN}{Software-defined networking}
 \newacronym                                            {api}{API}{Application Programming Interface}
 \newacronym                                            {vpcs}{VPCS}{Simple Virtual PC Simulator}
@@ -107,51 +154,31 @@
 }
 
 \newglossaryentry{Real numbers}{%
-  name        = {$\real$},
+  name        = {$X$},
   description = {The set of real numbers},
   sort        = {Real numbers},
 }
 
-% TODO Add entry for REST
-% TODO Add entry for WebSockets
-
-\makeindex
+% \makeindex
 \makeglossaries
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Incipit
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Rui's LaTeX and/or editor hacks and notes go here.
-% e.g. useful regex to search for in the file.
-% Things we want to look for:
-% Comments starting with the "TODO" string
-% Lines (in the text file) that contain more than two sentence.
-% Take into account that some sentences end in doube-quotes
-% (with the perid . before it)
-%
-% TODO Use the oxford comma?
-% TODO see how dates are written in English across the whole document
-% TODO check if there are i.e. with a "comma" after it
-% TODO check how many text between parenthesis and m-dashes is there
-% TODO check for double-quote american errors, i.e. commas out of "",
-% TODO check for <CAPS LOCK STUFF INSIDE ST/GT SIGNS>
-% TODO see how NOVAthesis does the side by side figure thingy
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\title{Usage of network emulators for the benefit of teaching and learning}
-%\subtitle{A minimal, modern \LaTeX{} package for typesetting your thesis}
-\author{Rui Miguel Carrilho Carvalho}
+\title{Use of network emulators to support education}
+\author{Rui Carvalho}
+\date{March 2020}
 
 \begin{document}
 
 \frontmatter
-  \include{Sources/Title}
-  \include{Sources/Abstract/Abstract-en}
-
+  \include{Sources/Frontmatter/Title}
+  \include{Sources/Frontmatter/Copyright}
+  \include{Sources/Frontmatter/Acknowledgments}
+  \include{Sources/Frontmatter/Abstract-en}
+  \include{Sources/Frontmatter/Abstract-pt}
   \tableofcontents
-
+  \listoffigures
+  \listoftables
+  \printglossary[type=\acronymtype]
+  \printglossary
 \mainmatter
 
   \include{Sources/Ch01_Introduction/ChIntroduction}
@@ -162,20 +189,13 @@
   \include{Sources/Ch06_Comparative/ChComparative}
   \include{Sources/Ch07_Conclusions/ChConclusions}
 
-% This ensures that the subsequent sections are being included as root
-% items in the bookmark structure of your PDF reader.
-\bookmarksetup{startatroot}
+  \appendix
+  \chapter{Code listings}
+  Just a simple appendix which will be removed if keeping it
+  ends up being unnecessary.
+
+  If used for something, the idea is to store code listings
+  (such as an example of a Kathará lab) here.
 \backmatter
-
-  \begingroup
-    \let\clearpage\relax
-    \glsaddall
-    \printglossary[type=\acronymtype]
-    \newpage
-    \printglossary
-  \endgroup
-
-  \printindex
-  \printbibliography
-
+  \printbibliography[heading=bibintoc]
 \end{document}
