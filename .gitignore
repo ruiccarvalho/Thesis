@@ -23,6 +23,8 @@ Thesis.pdf
 *.sav
 *.swp
 *.toc
+*.lot
+*.lof
 
 *.run.xml
 *-blx.bib
