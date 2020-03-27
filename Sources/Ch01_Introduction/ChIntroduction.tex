@@ -6,25 +6,19 @@
 
 This first chapter introduces the challenge of using virtual, fully software-based alternatives to computer network labs in education, with special emphasis on the undergraduate and graduate levels of the university. % TODO should university by capitalized here?
 It gives reasons to do so, and provides an overview of the work that has already been done both in development of those kinds of tools and in their current introduction, and study thereof, in existing universities and courses.
-Furthermore, it explains the motivation behind the main work performed in the present document, which consists in studying and comparing different existing software solutions for simulating and emulating computer networks and, both theoretically and practically, justifying how each one can or cannot be a good fit for particular use-cases of different courses or subjects inside computer networks studying.
-
-% It also proposes the definitions that, though not universal or unique, help precise differences between those software solutions, namely two main concepts: simulation and emulation. % TODO universal NOR unique?
-% Together with the last point, this chapter also explains the reason why this thesis is centered, starting from its title, in ``emulators'' more than on ``simulators''.
-% Finally, it gives a very brief overview of the work that has already been done in the field of computer networks simulators and emulators, and, orthogonally, in the replacement of laboratories with (physical) hosts and routers/switches in schools and universities by simulated or emulated (virtual) solutions.
+Furthermore, contains the motivation behind the main work performed in the present document, which consists in studying and comparing different existing software solutions for simulating and emulating computer networks and, both theoretically and practically, justifying how each one can or cannot be a good fit for particular use-cases of different courses or subjects inside computer networks studying.
 
 \section{Motivation and problem statement}
 \label{sec:motivation}
 
-% Teaching of computer networks courses and subjects, to fulfill the desired properties of a ``hands-on approach'' in engineering, one which enables putting in practice the knowledge acquired in the theoretical component of subjects, typically require performing two kinds of exercises: i. on the application layer, using APIs that give access to the OS's network-stack and the host interfaces; and, ii. on ``lower layers'' of the stack, oftentimes using physical labs, rooms equipped with networking gear, like switches and routers. % TODO glossário: APIs; citar referências às ditas "propriedades desejáveis" % TODO apagar
-Teaching of computer networks courses and subjects, to fulfill the desired properties of a ``hands-on approach'' in engineering---one which enables putting in practice the knowledge acquired in the theoretical component of subjects--- typically requires performing two kinds of exercises: % TODO glossário: APIs; citar referências às ditas "propriedades desejáveis"
+Teaching of computer networks courses and subjects, to fulfill the desired properties of a ``hands-on approach'' in engineering---one which enables putting in practice the knowledge acquired in the theoretical component of subjects---typically requires performing two kinds of exercises~\cite{problembasedlearning}: % TODO glossário: APIs; citar referências às ditas "propriedades desejáveis"
   \begin{enumerate*}[label=(\roman*), itemjoin={{, }}, itemjoin*={{, and }}]
   \item on the application layer, using APIs that give access to the OS's network-stack and the host interfaces
   \item on lower layers of the stack, oftentimes using physical labs, rooms equipped with networking gear, like switches and routers.
   \end{enumerate*}
 The existence of such laboratories is, even today, standard practice in many institutions of higher education.
-The Informatics Department of FCT/NOVA, which is not an exception, has a room with routers and switches for performing those practical exercises.
+The Informatics Department (DI) of FCT/NOVA, which is not an exception, has a room with routers and switches for performing those practical exercises.
 % This thisis' goal is to survey, study, and compare software based solutions to address the latter as well as possible.
-% The existence of those laboratories is, even today, standard practice in many institutions of higher education. FCT/NOVA, which is not an exception, has a room with routers and switches for performing those practical exercises. % TODO inserir aqui fotografia do laboratório da FCT/NOVA?
 
 In what concerns the use of labs with network gear, despite its virtues, this method for interacting with switching and routing, its protocols, the impacts of different parameters and node behavior on the behavior of a complex application that relies on the network, raises problems such as the cost and fast obsolescence~\cite{automaticnetconfiggns} of equipments, the demand for individual presence on the laboratory (at least for manipulating physical links and network interfaces) for exercise elaboration, the possible damage due to misuse~\cite{teachinginovation} or simple wear-and-tear, the time and effort to prepare and setup for given exercises, which may ``destroy'' the setup for other exercises, etc. % TODO avoid repeating "exercise" so much here
 
@@ -33,14 +27,18 @@ Aiming to address these problems, not exclusive from further or higher education
 These tools can, through the usage of several techniques, surpass some (if not all) of the aforementioned disadvantages.
 Critically evaluate whether one or more than one, used in a complementary fashion, of the existing simulators/emulators can live up to that ``promise'' is, in a few words, the goal of this work.
 
-% \subsection{The lab on a laptop}
-% \label{subsec:thelabonalaptop}
-
-% A very important question that must be taken into account is that the functional hyper-realism of emulators comes at a cost of a lot of resources.
-% One or more machines must run a potentially high number of processes where the code that typically runs inside \textbf{each slice} of the stack for \textbf{each node} of the topologies is executed, in a highly concurrent fashion.
-% The performance of the hardware can degrade and the observed behavior of the topology may look very unrealistic compared to ``the real thing,'' as obviously there may be less aggregate computing power
-
 \section{Structure of the thesis}
 \label{sec:structure}
+
+The content of the thesis is organized in the following way:
+\begin{itemize}
+  \item \textbf{Chapter~\ref{ch:leavingthephysicalworld}} introduces necessary notions of software-based solutions to replace hardware, some in a general sense, but especially in the applications of interest for the goal of thesis;
+  \item \textbf{Chapter~\ref{ch:examplesofemulators}} gives an overview of selected set of emulators chosen to exemplify different approaches to the problem of network emulation;
+  \item \textbf{Chapter~\ref{ch:gns3}} describes GNS3, an emulator, in terms of its capabilities, its technical underpinnings, and also its usage to perform a use-case which addresses the problem on the origin of this thesis;
+  \item \textbf{Chapter~\ref{ch:kathara}} describes Kathará, an emulator substantially different from GNS3, in identical terms to those of the aforementioned software project;
+  \item \textbf{Chapter~\ref{ch:comparative}} presents, in a way as systematic as possible, the pros and cons of the emulators studied and tested in the two previous chapters;
+  \item \textbf{Chapter~\ref{ch:conclusions}} presents conclusions and proposes work that can be done in the future in terms of how the existing emulators and their underlying technologies can be exploited deeper;
+  \item \textbf{Appendix~\ref{ch:listings}} contains any code or piece of text-form configuration provided as example.
+\end{itemize}
 
 % end of chapter
