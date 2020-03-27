@@ -12,7 +12,7 @@ Kathará's own architecture, depicted in figure~\ref{fig:kathara-architecture-pa
 % Scripts, Operations, and Container Platform Adapter
 \begin{description}
   \item[Scripts] used by the users to interact with Kathará.
-  These scripts implement the basic operations that are used to start, stop, and pause the network nodes defined in the Kathará configuration and are divided into the two categories referred to in section~\ref{sec:katharafunctionality}, the \texttt{ltools} and hte \texttt{vtools}.
+  These scripts implement the basic operations that are used to start, stop, and pause the network nodes defined in the Kathará configuration and are divided into the two categories referred to in section~\ref{sec:katharafunctionality}, the \texttt{ltools} and the \texttt{vtools}.
   \item[Operations] is a module which \textquote{includes a set of utility functions that are used by the Scripts module in order to allow Kathará to interpret the configuration provided by the users.}
   This module is made of three main logical components: \emph{parser}, \emph{start-up operations}, and \emph{common libraries}.
   The parser is responsible by translating the textual configuration into a network topology; the start-up operations component ensures the cross-system compatibility, namely copying the files that must be copied to inside the nodes;
