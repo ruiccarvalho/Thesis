@@ -21,6 +21,18 @@ The second handout, ``lab-assignment2,'' is all about switching and layer-2 func
 It proposes a topology, expected to map the real interconnecting and physical disposition of devices in the room, of the nine switches, labels them with ``areas'' corresponding to cardinal points.
 Students are then guided to answer questions about the expected behavior, e.g. in terms of reachability between hosts, according to parameters, which they should also issue in a coordinated fashion, for STP, VLANs, and trunks.
 
+\subsection{Testing environment}
+\label{subsec:environment}
+
+The testing for this component was done running the GNS3 server in virtual machines on DI's servers. % TODO acronyms?
+These are machines with two Intel Xeon E5-2650 v4 @ 2.20GHz (a total of 24 cores) and 64 GB of RAM.
+The virtual machines used to test the lab handouts' topologies are running on the VMware ESXi bare metal hypervisor, with nested virtualization enabled (needed so appliances, which are themselves VMs, can be emulated), had 4 CPU cores, and 2 and 8 GB of RAM allocated, respectively.
+
+For the switching labs, all the nodes of the topology were set to run on the same machine.
+Conversely, for the sake of testing that functionality, the routing (static and OSPF) labs were tested setting up nodes according to what's shown in <REFER TO FIGURE>. % TODO cf. § imediatamente abaixo
+
+<INSERT A PAIR OF FIGURES, ONE SHOWING EACH TOPOLOGY, ONE WITH LOAD BALANCE THE OTHER ONE WITHOUT> % TODO esta é para inserir mesmo
+
 % Figures fig:gns3-aprc-lab2-handout-topology
 \input{Sources/Ch04_Gns3/TablesFigures/figure-gns3-aprc-lab2-handout-topology}
 
@@ -52,14 +64,8 @@ Summarizing, using Dynamips is no longer encouraged.
 However, one assumes that the advice seen on the GNS3 forums, and on the videos and interviews with Jeremmy Grossmann already cited, for not using Dynamips is very much centered on advanced features and IOS interface compatibility.
 However, in an undergraduate or graduate university level, where applying theoretical principles and seeing and doing in practice, in a controlled environment, not bound to any vendor tools, this advice may very well be irrelevant.
 
-That said, Dynamips ensures actually better throughput on its EtherSwitch modules (surpassing the FastEthernet 100Mbps barrier) with a simple \texttt{iperf3} test between two hosts connected to the same device than an analogous scenario with IOSvL2 switches, as figure <INSERT SCREENSHOTS> shows.
+That said, Dynamips ensures actually better throughput on its EtherSwitch modules (surpassing the FastEthernet 100Mbps barrier) with a simple \texttt{iperf3} test between two hosts connected to the same device than an analogous scenario with IOSvL2 switches. % TODO add screenshot or something?
 It also is dramatically lighter on resource consumption, and users can emulate such nodes on their macOS or Windows---and obviously on GNU/Linux, which supports GNS3's emulation alternatives fully, too---without having any need for a distributed or load balanced architecture.
-
-\subsubsection{Testing environment and results}
-
-The testing for this component was done running the GNS3 server in virtual machines on Informatics Department's servers.
-These are machines with two Intel Xeon E5-2650 v4 @ 2.20GHz (a total of 24 cores) and 64 GB of RAM.
-The virtual machine used to test the switching lab is running on the VMware ESXi bare metal hypervisor, with nested virtualization enabled (needed so appliances, which are themselves VMs, can be emulated), had 4 CPU cores, and 8 GB of RAM allocated.
 
 \subsection{Routing and OSPF on Cisco routers}
 \label{subsec:gns3ospfrouting}
