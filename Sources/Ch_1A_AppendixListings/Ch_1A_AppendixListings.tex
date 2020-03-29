@@ -1,0 +1,66 @@
+\chapter{Listings}
+\label{ch:listings}
+
+\section{Kathará's switching lab (tentative solution)}
+
+\begin{lstlisting}[frame=single,caption=Lab 2's topology configuration,captionpos=b,label=lab2conf]
+sw[0]="A"
+cw[0]="A"
+
+sw[1]="B"
+nw[0]="B"
+
+sw[2]="C"
+nw[1]="C"
+
+c[0]="D"
+nw[2]="D"
+
+c[1]="E"
+ne[0]="E"
+
+n[0]="F"
+ne[1]="F"
+
+nw[3]="G"
+n[1]="G"
+
+nw[4]="H"
+ne[2]="H"
+
+se[0]="I"
+ne[3]="I"
+
+se[1]="J"
+ce[0]="J"
+
+ce[1]="K"
+c[2]="K"
+
+s[0]="L"
+n[2]="L"
+
+s[1]="M"
+c[3]="M"
+
+s[2]="N"
+se[2]="N"
+
+sw[3]="O"
+s[3]="O"
+
+sw[4]="P"
+se[3]="P"
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption=Example node startup configuration,captionpos=b,label=lab2conf]
+ifconfig eth0 up
+ifconfig eth1 up
+brctl addbr br0
+brctl addif br0 eth0
+brctl addif br0 eth1
+brctl stp br0 on
+ifconfig br0 up
+\end{lstlisting}
+
+% end of chapter
