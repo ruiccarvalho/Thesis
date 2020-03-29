@@ -26,6 +26,8 @@ The switching lab was set up using a similar methodology than the one described 
 
 Then, using Kathará's convention to ``pass-on'' configuration directories to each container, we defined the startup file (that is executed by its respective container when it ``boots up'') to setup a bridge virtual interface, according to the Linux bridge documentation and online resources~\cite{brctlman,howtobridgelinux}.
 
+The configurations, both the \texttt{lab.conf}, which defines the topology, and one of the nine (the other ones are analogous and only vary in the number of interfaces) \texttt{<node\_name>.startup}, are shown as examples in the listings appendix as listings~\ref{listlab2conf} and~\ref{listlab2startup}, respectively.
+
 For the switching exercises, we found out that there is some kind of limitation, either in Docker itself, in Docker's chosen intercontainer networking strategy, or in Kathará's implementation.
 The containers (lightweight virtual Linux hosts), equipped with multiple NICs that perform each switch, are not capable of successfully performing the Spanning Tree Protocol, which is demanding for a topology with a loop, witch the lab's deliberately has.  % TODO acronym in NIC
 

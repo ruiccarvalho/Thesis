@@ -3,7 +3,9 @@
 
 \section{Kathará's switching lab (tentative solution)}
 
-\begin{lstlisting}[frame=single,caption=Lab 2's topology configuration,captionpos=b,label=lab2conf]
+\begin{lstlisting}[frame=single,caption=Lab 2's topology configuration,captionpos=b,label=listlab2conf]
+# File ./lab.conf
+
 sw[0]="A"
 cw[0]="A"
 
@@ -53,7 +55,8 @@ sw[4]="P"
 se[3]="P"
 \end{lstlisting}
 
-\begin{lstlisting}[frame=single,caption=Example node startup configuration,captionpos=b,label=lab2conf]
+\begin{lstlisting}[frame=single,caption=Example node startup configuration,captionpos=b,label=listlab2startup]
+# File ./cw.startup
 ifconfig eth0 up
 ifconfig eth1 up
 brctl addbr br0
