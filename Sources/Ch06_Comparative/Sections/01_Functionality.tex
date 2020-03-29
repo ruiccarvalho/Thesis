@@ -7,10 +7,23 @@ Functionality, in particular in the emulated network-nodes,\footnote{By contrast
   \item From a \emph{lower-level} point of view, the ability to run vendor-specific software, with all of its particular attributes, maybe proprietary optimizations, augmented headers, or any kind of functionality that a particular ``brand'' of networking software may offer.
 \end{enumerate}
 
+\subsection{Higher-level functionality}
+
 In terms of the \emph{higher-level functionality}, most general-purpose emulators, which GNS3 and Kathará are at heart, don't differ much.
 Both have a way to define arbitrary topologies and store them in the filesystem and the topologies describe nodes, default configuration of the nodes, and hosts represent ``computers'' that, according to the specifics of the software/firmware they are running and number of interfaces serve as switches, routers, end-hosts running application software (client/server, P2P, etc.), or even other kinds of nodes seen in real-world networks, often called middleboxes, not studied in the present work.
 
-However, if, for example, running Cisco software is a requirement (as is the case for the company's official certifications), Kathará itself cannot accommodate it.
+An important limitation with Kathará has to be noted, though.
+Among all the documented labs, none is related to bridging/layer-2 switching.
+With Netkit, Kathará's precursor, whose implementation technologies were different, that wasn't the case---and exercises to test the working of STP in a switched network were documented.
+In fact, if we try to mimic those labs, as well as APRC's lab2-handout (cf.~\ref{sec:katharapracticalcasestudy}), they don't work---despite capturing network traffic between nodes shows that STP is communicating, the Linux bridges.
+
+Thus, as far as our experiments go, for layer-3 switching (data-plane) and routing (control-plane), every APRC exercise can be done with a mix of virtual Cisco gear and Linux guests in GNS3 \emph{can} be done with a Kathará lab.
+And, judging by the documented labs offered by Kathará itself, many more intra- and inter-domain routing protocols, quality of service, and other things can be performed without an issue.
+However, the same cannot be said for experimenting with switching network. % TODO acho que se pode dizer que isto em princípio pode ser debugged e corrigido, no trabalho further work, ou propor que isos se faça
+
+\subsection{Lower-level functionality}
+
+If, for example, running Cisco software is a requirement (as is the case for the company's official certifications), Kathará itself cannot accommodate it.
 On the contrary, there aren't officially supported GNS3 appliances, running on any kind of platform, to run Quagga out of the box.
 This is to show that, \textbf{in an academic context}, where protocols and algorithms are the subject of the study, and not vendor-specific details, \textbf{Kathará has the advantage of doing without pricey licenses and vendor lock-in}.
 
