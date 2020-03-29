@@ -1,8 +1,15 @@
 \section{Performance and resource consumption}
 \label{sec:comparativeperformance}
 
-For starters, let's put a nice table here.
-That table is~\ref{tab:comparativeramusage}.
+In terms of resource consumption, experiments with GNS3 and Kathará are very different.
+That has an impact in the required computer infrastructures and setups required to do the experiments.
+As stated in the explanation between containers-as-lightweight-virtual-machines versus standard VMs, a container provides a virtual isolation of the filesystem and networking (among others) for its processes while VMs need everything, in every layer of software, a regular host has to run (operating system, libraries, applications) to be loaded each time for each running virtual machine.
+
+In a running Kathará or GNS3 topology, there are associated processes to each node.
+As previously shown, GNS3's Cisco routers can be VMs running the modern Cisco IOSv or processes of the Dynamips emulator which in fact is a virtual machine, but not in the sense of \textquote{a PC running in isolation with virtualized IO} (e.g. the instructions of those IOS images isn't x86, and therefore there has to be a translation to machine instructions).
+
+Table~\ref{tab:comparativeramusage} lists approximate values measured with the \texttt{top} command on more than one GNU/Linux system for the memory consumption of each process that backs a live node in a topology for each studied possibility.
+These measures only approximate the order of magnitude, in a sense that can be described as: \textquote{of several different times the values were measured, on more than one machine, they didn't fluctuate more than, say, $50~\mbox{MiB}$ (for GNS3's) or $5~\mbox{MiB}$ (for Kathará's),} and therefore it doesn't correspond to an accurate arithmetic mean or other formal statistical method.
 
 % Table tab:comparativeramusage
 \input{Sources/Ch06_Comparative/TablesFigures/table-performance-resources-comparison}
