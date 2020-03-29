@@ -8,10 +8,15 @@ As stated in the explanation between containers-as-lightweight-virtual-machines 
 In a running Kathará or GNS3 topology, there are associated processes to each node.
 As previously shown, GNS3's Cisco routers can be VMs running the modern Cisco IOSv or processes of the Dynamips emulator which in fact is a virtual machine, but not in the sense of \textquote{a PC running in isolation with virtualized IO} (e.g. the instructions of those IOS images isn't x86, and therefore there has to be a translation to machine instructions).
 
-Table~\ref{tab:comparativeramusage} lists approximate values measured with the \texttt{top} command on more than one GNU/Linux system for the memory consumption of each process that backs a live node in a topology for each studied possibility.
+Table~\ref{tab:comparativeramusage} lists approximate values measured with the \texttt{top} command (and \texttt{docker~stats}, for Kathará's) on more than one GNU/Linux system for the memory consumption of each process that backs a live node in a topology for each studied possibility.
 These measures only approximate the order of magnitude, in a sense that can be described as: \textquote{of several different times the values were measured, on more than one machine, they didn't fluctuate more than, say, $50~\mbox{MiB}$ (for GNS3's) or $5~\mbox{MiB}$ (for Kathará's),} and therefore it doesn't correspond to an accurate arithmetic mean or other formal statistical method.
 
 % Table tab:comparativeramusage
 \input{Sources/Ch06_Comparative/TablesFigures/table-performance-resources-comparison}
+
+For the sake of example, the query for the memory footprint of the running Docker containers on a host (in this case, all of them are Quagga-enabled Linux hosts as Kathará nodes) is shown in figure~\ref{fig:comparative-docker-stats}.
+
+% Figure fig:comparative-docker-stats
+\input{Sources/Ch06_Comparative/TablesFigures/figure-comparative-docker-stats}
 
 % end of section comparativeperformance
