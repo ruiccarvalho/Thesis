@@ -1,6 +1,28 @@
 \section{CORE}
 \label{sec:exemulcore}
 
-CORE~\cite{coreemulator}\ldots
+The CORE~\cite{coreemulator} emulator was developed originally by Jeff Ahrenholz at the Boeing Company.
+Originally, CORE was an acronym meaning Common Open Research Emulator.
+Its official website\footnote{\url{https://www.nrl.navy.mil/itd/ncs/products/core}} is hosted under the Networks and Communication Systems Branch of the U.S. Naval Research Laboratory.
+
+It is a fork of a pre-existing project, Integrated Multiprotocol Network Emulator/Simulator (IMUNES), from the University of Zagreb.
+
+It's described as \textquote{a tool for building virtual networks. As an emulator, CORE builds a representation of a real computer network that runs in real time, as opposed to simulation, where abstract models are used.}
+Networks emulated with it can be, via the host machine of the emulation, connected to real world, physical networks.
+As its documentation~
+\cite{coreghdocs} also states, \textquote{it provides an environment for running real applications and protocols, taking advantage of tools provided by the Linux operating system.}
+
+The first versions of CORE, like its predecessor IMUNES, were based upon both FreeBSD' networking stack and ``jails'' (a particular implementation of containers by that BSD operating system~\cite{freebsdjails})~\cite{comparisonofcore}.
+
+Nowadays, though CORE relies on one of the ways provided by the Linux kernel to enable ``containerization,'' which, as seen earlier in this text, is a way to isolate, at some degree, processes from each other, in this case with special attention to the IO and in particular the OS's networking stack. % TODO acronym for OS
+
+CORE comprises multiple parts, but from a high-level standpoint what matters the most is that it has offers a GUI as the main, official way to interact with the system, and then has a daemon running as a service in the host's Linux setup that is its backend which ensures the creation of namespaces and orchestrates the virtual bridges between them (which support the emulated links).
+
+It is documented to be able to run in a distributed fashion, like GNS3 (cf. ~\ref{sec:exemulgns3}), so that large topologies with a lot of nodes can be put set in motion, distributing that load of virtual nodes across multiple hosts.
+
+The support for a regular layer-3 network with standard routers is provided by Quagga~\cite{quagga}.
+All nodes are abstracted as GNU/Linux hosts, which can have a series of \emph{services} running.
+The set of services running by default depends on the type (a PC, layer-3 router, layer-2 switch, etc.) that is selected for each node in a project, but can be further customized.
+The full list of the services available can be consulted in~\cite{coreemuservices}, but we highlight. % TODO preencher isto e pôr uma tabela
 
 % end of section exemulcore
