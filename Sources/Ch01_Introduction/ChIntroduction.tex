@@ -13,14 +13,14 @@ Furthermore, contains the motivation behind the main work performed in the prese
 
 Teaching of computer networks courses and subjects, to fulfill the desired properties of a ``hands-on approach'' in engineering---one which enables putting in practice the knowledge acquired in the theoretical component of subjects---typically requires performing two kinds of exercises~\cite{problembasedlearning}: % TODO glossário: APIs; citar referências às ditas "propriedades desejáveis"
   \begin{enumerate*}[label=(\roman*), itemjoin={{, }}, itemjoin*={{, and }}]
-  \item on the application layer, using APIs that give access to the OS's network-stack and the host interfaces
-  \item on lower layers of the stack, oftentimes using physical labs, rooms equipped with networking gear, like switches and routers.
+  \item on the ``higher-layers''---application and transport---, using APIs that give access to the OS's network-stack and the host interfaces
+  \item on lower layers of the stack, oftentimes using physical laboratories, rooms equipped with networking gear, like switches and routers.
   \end{enumerate*}
 The existence of such laboratories is, even today, standard practice in many institutions of higher education.
 The Informatics Department (DI) of FCT/NOVA, which is not an exception, has a room with routers and switches for performing those practical exercises.
 % This thisis' goal is to survey, study, and compare software based solutions to address the latter as well as possible.
 
-In what concerns the use of labs with network gear, despite its virtues, this method for interacting with switching and routing, its protocols, the impacts of different parameters and node behavior on the behavior of a complex application that relies on the network, raises problems such as the cost and fast obsolescence~\cite{automaticnetconfiggns} of equipments, the demand for individual presence on the laboratory (at least for manipulating physical links and network interfaces) for exercise elaboration, the possible damage due to misuse~\cite{teachinginovation} or simple wear-and-tear, the time and effort to prepare and setup for given exercises, which may ``destroy'' the setup for other exercises, etc. % TODO avoid repeating "exercise" so much here
+In what concerns the use of network gear, despite its virtues, this method for interacting with switching and routing, its protocols, the impacts of different parameters and node behavior on the behavior of a complex application that relies on the network, raises problems such as the cost and fast obsolescence~\cite{automaticnetconfiggns} of equipments, the demand for individual presence on the laboratory (at least for manipulating physical links and network interfaces) for exercise elaboration, the possible damage due to misuse~\cite{teachinginovation} or simple wear-and-tear, the time and effort to prepare and setup for given exercises, which may ``destroy'' the setup for other exercises, etc. % TODO avoid repeating "exercise" so much here
 
 Furthermost, overcoming the necessity of depending on specific geographic sites, of which university campuses are an example, is getting more and more desirable.
 In fact, during the final stages of the project culminating in this document, the outbreak---and subsequent pandemic declared by the World Health Organization---of the disease caused by the so-called novel coronavirus, COVID-19, has forced schools and universities to be closed and students, and citizens in general, to remain at home~\cite{covid19}.
@@ -32,6 +32,8 @@ Aiming to address these problems, not exclusive from further or higher education
 % In particular, emulators, much more powerful, flexible, and easier to use in the past due to the recent improvement in computer resources available, and also software technologies, as will be seen later, can provide real interactions...
 These tools can, through the usage of several techniques, surpass some (if not all) of the aforementioned disadvantages.
 Critically evaluate whether one or more than one, used in a complementary fashion, of the existing simulators/emulators can live up to that ``promise'' is, in a few words, the goal of this work.
+
+Other contribution offered by this work is an in-depth study of the technologies used by the selected emulators, and the clarification of the reasons behind its behavior performance-wise.
 
 \section{Structure of the document}
 \label{sec:structure}

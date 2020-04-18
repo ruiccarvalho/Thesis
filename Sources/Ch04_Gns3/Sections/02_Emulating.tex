@@ -59,7 +59,7 @@ That is not say that, if no ``advanced'' features are intended, Dynamips, whose 
 Another way to have Cisco gear inside a topology is using Cisco IOSv images, provided by the vendor itself as part of having access to their proprietary Virtual Internet Routing Lab (VIRL)~\cite{ciscovirl}.
 IOSv, which concretely are IOSvL2 and IOSvL3 (standing for layer-2 and layer-3, respectively) are described as ``an implementation of Cisco IOS running as a full virtual machine on a hypervisor''~\cite{ciscoiosvinfo}.
 
-On GNS3 this is accomplished via QEMU, a free and open source, general purpose emulator.
+On GNS3 this is accomplished via QEMU, a free and open source, general purpose emulator~\cite{qemu}.
 In particular, the way GNS3 uses QEMU is not as an emulator, but as a wrapper for KVM~\cite{whatiskvm}, which ensures extremely good virtualized performance, though naturally limited to the resources of the hypervisor machine:
 \begin{displayquote}
 Run KVM and Xen virtual machines with near native performance.\footnote{\url{https://www.qemu.org}}

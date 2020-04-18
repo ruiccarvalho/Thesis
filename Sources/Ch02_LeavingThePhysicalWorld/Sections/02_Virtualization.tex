@@ -15,7 +15,7 @@ In full-system virtualization (also called hardware-level virtualization), the a
 The VMM emulates a fully-fledged computer, the virtual machine (VM), with CPUs, RAM, peripheral devices (e.g. NICs, disks), etc.; therefore the VM, indistinguishable from a real machine, can run a standard OS, which is then called the guest OS.
 Usually, the term VM, without any more information, refers to a full-system virtual machine.
 
-Hypervisors such as, for example, VMware Workstation (and free alternatives, like VirtualBox from Sun, now Oracle) that run along a standard OS such as Windows, macOS, or Linux in the same host and rely on the OS for some operations are called type-II or hosted hypervisors.
+Hypervisors such as, for example, VMware Workstation\footnote{\url{https://www.vmware.com/products/workstation-pro.html}} (and free alternatives, like VirtualBox\footnote{\url{https://www.virtualbox.org}} from Sun, now Oracle) that run along a standard OS such as Windows, macOS, or Linux in the same host and rely on the OS for some operations are called type-II or hosted hypervisors.
 Others, such as VMware ESXi, Citrix Xen, Microsoft Hyper-V, Apple's Hypervisor, or KVM (the last three are provided by Windows, macOS, and Linux, respectively~\cite{whatiskvm,applehypervisor,hyperv}) that run stand-alone (ESXi) or rely on the standard OS only for resource management (all other examples), are called type-I, bare metal, or native hypervisors.
 
 In OS-based virtualization, the OS creates separated contexts, called containers, that share the base OS kernel, but run in isolation with regard to other containers.
