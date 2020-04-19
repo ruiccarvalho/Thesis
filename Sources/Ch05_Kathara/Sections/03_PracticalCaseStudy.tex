@@ -1,10 +1,10 @@
-\section{Using Kathará. Practical case study}
+\section{Using Kathará. Practical Case Study}
 \label{sec:katharapracticalcasestudy}
 
 For the practical case study of Kathará, we followed the same approach than for GNS3's, used the same lab handouts from APRC as reference, but implemented in Kathará's different paradigm.
 Refer to section~\ref{sec:gns3practicalcasestudy} for an overview of the labs and their topics.
 
-\subsection{Setting topologies in Kathará}
+\subsection{Setting Topologies in Kathará}
 
 As mentioned earlier in this chapter, Kathará doesn't offer a graphical interface to draw topologies, and nodes added and removed, started and stopped, and text-based consoles to them are created via a set shell commands.
 
@@ -20,7 +20,7 @@ In spite of the aforementioned, to be coherent with what was done in the GNS3 ca
 To facilitate this process, the graphical representation of the topology as given in the course's handout PDF was annotated with the letters that are becoming each collision domain, as figure~\ref{fig:kathara-annotated-lab3-topology} depicts. % TODO fazer versão vectorial desta figura
 Then, writing Kathará's \texttt{lab.conf} and making sure that it is correct becomes much easier.
 
-\subsection{Switching exercises}
+\subsection{Switching Exercises}
 
 The switching lab was set up using a similar methodology than the one described just before for lab~3---i.e. the topology was graphically annotated to define the collision domains among the several interfaces.
 
@@ -31,7 +31,7 @@ The configurations, both the \texttt{lab.conf}, which defines the topology, and 
 For the switching exercises, we found out that there is some kind of limitation, either in Docker itself, in Docker's chosen intercontainer networking strategy, or in Kathará's implementation.
 The containers (lightweight virtual Linux hosts), equipped with multiple NICs that perform each switch, are not capable of successfully performing the Spanning Tree Protocol, which is demanding for a topology with a loop, witch the lab's deliberately has.  % TODO acronym in NIC
 
-\subsection{Working under load and version control}
+\subsection{Working Under Load and Version Control}
 
 Kathará doesn't provide any \textbf{load balancing} mechanism out of the box.
 Containers are expected to run under one single Docker host.

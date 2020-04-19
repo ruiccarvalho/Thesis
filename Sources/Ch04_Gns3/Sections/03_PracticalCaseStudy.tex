@@ -1,4 +1,4 @@
-\section{Using GNS3. Practical case study}
+\section{Using GNS3. Practical Case Study}
 \label{sec:gns3practicalcasestudy}
 
 Here, we describe the process and results of the experiments carried out to assess aspects of the feasibility, and convenience, of using GNS3 in a computer networks course comprising the use of network gear on (emulated) network configurations.
@@ -7,7 +7,7 @@ Hopefully, some of the gained insights can be extrapolated for other similar tea
 
 To provide a real and well-defined set of examples to put in practice, the selected exercises and lab descriptions were taken out of the lab classes handouts for the 2018-2019 edition of ``Architecture and Protocols of Computer Networks,'' known by its Portuguese acronym APRC, an elective, graduate course offered at the Masters in Informatics at the FCT/NOVA.
 
-\subsection{Overview of the considered labs and exercises}
+\subsection{Overview of the Considered Labs and Exercises}
 \label{subsec:gns3consideredlabs}
 
 Out of the 5 lab assignments, some of which span across more than one class, planned for a semester, only the first ones, which resort to the lab equipment to put in practice the subjects related to layer-2 and 3 switching, and ``legacy'' routing, as opposed to SDN, were considered. % TODO "span across?". Usar esta nota para pôr, se tiver ficado esquecido, referência no trabalho futuro aos exercícios de SDN que podem tirar partido de GNS3 e afins. SDN tem tem de estar nos acrónimos e glossário
@@ -32,7 +32,7 @@ The second goal is to, instead of doing the routing statically, configure the ro
 
 Students are also requested to use Wireshark to capture the data OSPF exchanges across the network.
 
-\subsection{Testing environment}
+\subsection{Testing Environment}
 \label{subsec:environment}
 
 Testing with GNS3 was done running the GNS3 server in virtual machines on DI's servers, except for some experiments with Dynamips carried out on an Apple laptop. % TODO acronyms?
@@ -47,7 +47,7 @@ Conversely, for the sake of testing that functionality, the routing (static and 
 % Figure fig:gns3-aprc-lab2-handout-topology
 \input{Sources/Ch04_Gns3/TablesFigures/figure-gns3-aprc-lab2-handout-topology}
 
-\subsection{Introduction to Cisco IOS and switching labs}
+\subsection{Introduction to Cisco IOS and Switching Labs}
 \label{subsec:gns3introswitching}
 
 As stated earlier, the first lab assignment introduces host-side commands (mostly Linux) and TCP/IP practical concepts such as IP address and \acrshort{mtu}, and its definition for the host's \acrfullpl{nic}.
@@ -85,7 +85,7 @@ The emulated nodes were all in the same compute node, so no traffic between sepa
 That data, for IOSv was obtained in the campus infrastructure environment, described above, while, for a Dynamips EtherSwitch, the test was performed in both the infrastructure and the laptop, yielding virtually the same results.
 Another observed value was the memory used by each Dynamips process while running the \texttt{iperf3} command, which was very close for all cases---Docker guests, Cisco c3745 with EtherSwitch module, and IOSvL2---all between 99~MiB and 112~MiB.
 
-\subsection{Routing and OSPF on Cisco routers}
+\subsection{Routing and OSPF on Cisco Routers}
 \label{subsec:gns3ospfrouting}
 
 Although the considerations related to using Dynamips versus using IOSv are also applicable here, the complexity of this exercise will be used to demonstrate two facets of GNS3's functionality and setup-wise flexibility, namely:
