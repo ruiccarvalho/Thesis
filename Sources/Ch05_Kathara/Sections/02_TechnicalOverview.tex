@@ -21,7 +21,7 @@ Kathará's own architecture, depicted in figure~\ref{fig:kathara-architecture-pa
 
 To separate different kinds of nodes with different specific needs in terms of the software (e.g. daemons available to be run) running on them, Kathará allows for its topologies to specify which Docker image it should be running.
 The default one (which can be changed on the program's preferences) is \texttt{kathara/quagga}. Therefore, all nodes, are able to launch any of Quagga's functionality, even if they, by omission, don't do it.
-For P4 or \gls{sdn} enabled switches, two different images exist, as well as for the ClickOS-enabled one for creating VNFs.
+For P4 or \gls{sdn} enabled switches, two different images exist, as well as for the ClickOS-enabled one for creating \glspl{vnf}.
 
 The Docker networking mechanism~\cite{dockernetworking} to create the collision domains through which interfaces of different containers communicate with each other is not explicitly stated in Kathara's paper.
 Therefore, to be sure, one would need to look into the corresponding module on Kathara's source code.

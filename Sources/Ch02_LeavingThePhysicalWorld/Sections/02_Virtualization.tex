@@ -11,8 +11,8 @@ However, to narrow down the definition in this case, we can say that a virtual m
 However, to narrow down the definition in this case, we can say that a virtual machine, under  a modern multiprocess operating system (OS), is a software-based execution \emph{context} where one or more programs can be run in isolation when observed outside of that context.
 The degree by which this isolation is provided varies on different kinds of virtualization.
 
-In full-system virtualization (also called hardware-level virtualization), the aforementioned OS is a specialized one, called hypervisor or virtual machine monitor (VMM).
-The VMM emulates a fully-fledged computer, the \gls{vm}, with CPUs, RAM, peripheral devices (e.g. \glspl{nic}, disks), etc.; therefore the \gls{vm}, indistinguishable from a real machine, can run a standard OS, which is then called the guest OS.
+In full-system virtualization (also called hardware-level virtualization), the aforementioned OS is a specialized one, called hypervisor or \gls{vmm}.
+The \gls{vmm} emulates a fully-fledged computer, the \gls{vm}, with CPUs, RAM, peripheral devices (e.g. \glspl{nic}, disks), etc.; therefore the \gls{vm}, indistinguishable from a real machine, can run a standard OS, which is then called the guest OS.
 Usually, the term \gls{vm}, without any more information, refers to a full-system virtual machine.
 
 Hypervisors such as, for example, VMware Workstation\footnote{\url{https://www.vmware.com/products/workstation-pro.html}} (and free alternatives, like VirtualBox\footnote{\url{https://www.virtualbox.org}} from Sun, now Oracle) that run along a standard OS such as Windows, macOS, or Linux in the same host and rely on the OS for some operations are called type-II or hosted hypervisors.

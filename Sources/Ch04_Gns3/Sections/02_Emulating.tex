@@ -2,7 +2,7 @@
 \label{sec:gns3emulating}
 
 On section~\ref{sec:gns3architecture}, an overview of the way GNS3 is organized and runs in a distributed fashion was provided.
-However, a crucial part is missing: how can the compute nodes, coordinated by the controller, which in turn is commanded by one or more clients, give life to the nodes that are put into a topology, seen in the GUI represented by their respective icons.
+However, a crucial part is missing: how can the compute nodes, coordinated by the controller, which in turn is commanded by one or more clients, give life to the nodes that are put into a topology, seen in the \gls{gui} represented by their respective icons.
 And also what mechanism is used to pass along the traffic transmited, received, switched, or any other action a possible node does while running via the links connected to the interfaces.
 
 \subsection{Appliances}
@@ -10,7 +10,7 @@ And also what mechanism is used to pass along the traffic transmited, received, 
 
 Each element of the set of possible nodes to be added to a topology on someone's GNS3 installation and setup is called an \textbf{appliance}.
 GNS3 has a templating system for creating appliances, apart from the ones that come ``pre-installed.''
-Many templates are immediately accessible from the GUI.
+Many templates are immediately accessible from the \gls{gui}.
 These allow to prepare the GNS3 setup to be able to put in topologies certain nodes that it supports well but include components which cannot be distributed together with GNS3 for legal reasons or are simply too heavy and/or niche-oriented for bundling it by default to be worth it.
 That is the case for commercial routers and switches that can be emulated in GNS3.
 

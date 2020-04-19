@@ -16,7 +16,7 @@ The first versions of CORE, like its predecessor IMUNES, were based upon both Fr
 
 Nowadays, though CORE relies on one of the ways provided by the Linux kernel to enable ``containerization,'' which, as seen earlier in this text, is a way to isolate, at some degree, processes from each other, in this case with special attention to the IO and in particular the OS's networking stack. % TODO acronym for OS
 
-CORE comprises multiple parts, but from a high-level standpoint what matters the most is that it has offers a GUI as the main, official way to interact with the system, and then has a daemon running as a service in the host's Linux setup that is its backend which ensures the creation of namespaces and orchestrates the virtual bridges between them (which support the emulated links).
+CORE comprises multiple parts, but from a high-level standpoint what matters the most is that it has offers a \gls{gui} as the main, official way to interact with the system, and then has a daemon running as a service in the host's Linux setup that is its backend which ensures the creation of namespaces and orchestrates the virtual bridges between them (which support the emulated links).
 
 It is documented to be able to run in a distributed fashion, like GNS3 (cf. ~\ref{sec:exemulgns3}), so that large topologies with a lot of nodes can be put set in motion, distributing that load of virtual nodes across multiple hosts.
 

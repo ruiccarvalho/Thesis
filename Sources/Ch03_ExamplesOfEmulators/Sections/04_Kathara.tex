@@ -6,10 +6,10 @@ It was created with the purpose of building a tool that, simultaneously, allowed
 
 According to its developers, Kathará was built having in mind the creation of software framework, a computer network emulator, that allowed to prototype, develop over, and experiment with, not only traditional switched and routed networks, but also with four emerging concepts and technologies in the scope of (or related to) networking:
 \begin{itemize}
-	\item \gls{sdn}, enabling OpenFlow switches and their corresponding controllers to be added to topologies, allowing for separate data-plane-control-plane devices.
-	\item NFV, offering good support for ClickOS~\cite{clickos} (a software system to provide Network Functions on lightweight middleboxes) nodes which can provide VNFs such as \glspl{nat}, firewalls or DMZs.
-	\item P4~\cite{p4programming}, a domain specific language that is compiled and run on switching/routing devices providing the concept of a ``programmable data-plane'' (in the node, instead of separately, as in the ``original'' \glspl{sdn})
-	\item Containers (and, in particular, Docker) as the \textquote{lightweight and multi-platform alternative to standard virtualization solutions \ldots\ an isolated environment in which processes run independently, avoiding the overhead introduced by full virtualization that needs to maintain multiple kernels.}
+	\item \gls{sdn}, enabling OpenFlow switches and their corresponding controllers to be added to topologies, allowing for separate data-plane-control-plane devices;
+	\item \gls{nfv}, supporting ClickOS~\cite{clickos} (a software system to provide network functions on lightweight middleboxes) nodes which can provide \glspl{vnf} such as \glspl{nat}, firewalls or \glspl{dmz};
+	\item P4~\cite{p4programming}, a domain specific language that is compiled and run on switching/routing devices providing the concept of a ``programmable data-plane'' (in the node, instead of separately, as in the ``original'' \glspl{sdn});
+	\item containers (and, in particular, Docker) as the \textquote{lightweight and multi-platform alternative to standard virtualization solutions \ldots\ an isolated environment in which processes run independently, avoiding the overhead introduced by full virtualization that needs to maintain multiple kernels.}
 \end{itemize}
 
 However, despite this motivation, Kathará implements the same topology definition syntax and user interface that Netkit~\cite{netkit-short} has, an emulator developed years before at the same institution, does, and supports, from a high-level perspective, the same capabilities for experimenting with traditional networks comprising distributed routing devices.
