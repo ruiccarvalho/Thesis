@@ -5,13 +5,13 @@ Here, we describe the process and results of the experiments carried out to asse
 
 Hopefully, some of the gained insights can be extrapolated for other similar teaching facilities of slightly different characteristics.
 
-To provide a real and well-defined set of examples to put in practice, the selected exercises and lab descriptions were taken out of the lab classes handouts for the 2018-2019 edition of ``Architecture and Protocols of Computer Networks,'' known by its Portuguese acronym APRC, an elective, graduate course offered at the Masters in Informatics at the FCT/NOVA.
+To provide a real and well-defined set of examples to put in practice, the selected exercises and handouts were taken out of the laboratory classes for the 2018-2019 edition of ``Architecture and Protocols of Computer Networks,'' known by its Portuguese acronym APRC, an elective, graduate course offered at the Masters in Informatics at the FCT/NOVA.
 
 \subsection{Overview of the Considered Labs and Exercises}
 \label{subsec:gns3consideredlabs}
 
-Out of the 5 lab assignments, some of which span across more than one class, planned for a semester, only the first ones, which resort to the lab equipment to put in practice the subjects related to layer-2 and 3 switching, and ``legacy'' routing, as opposed to \gls{sdn}, were considered. % TODO "span across?". Usar esta nota para pôr, se tiver ficado esquecido, referência no trabalho futuro aos exercícios de SDN que podem tirar partido de GNS3 e afins. SDN tem tem de estar nos acrónimos e glossário
-Those are the exercises that, in the present, are expected to be done in the lab room, with real interconnected Cisco devices, issuing commands to the IOS command-line interface from the students' laptops.
+Out of the 5 laboratory assignments, some of which span across more than one class, planned for a semester, only the first ones, which resort to the laboratory equipment to put in practice the subjects related to layer-2 and 3 switching, and ``legacy'' routing, as opposed to \gls{sdn}, were considered. % TODO "span across?". Usar esta nota para pôr, se tiver ficado esquecido, referência no trabalho futuro aos exercícios de SDN que podem tirar partido de GNS3 e afins. SDN tem tem de estar nos acrónimos e glossário
+Those are the exercises that, in the present, are expected to be done in the laboratory, with real interconnected Cisco devices, issuing commands to the IOS command-line interface from the students' laptops.
 
 The so-called ``lab-assignment1'' has a part to introduce the Cisco IOS and some basic commands for it.
 Those are the ones to enter and escape the privileged mode, list the device's interfaces, and some other queries.
@@ -21,7 +21,7 @@ The second handout, ``lab-assignment2,'' is all about switching and layer-2 func
 It proposes a topology, expected to map the real interconnecting and physical disposition of devices in the room, of the nine switches, labels them with ``areas'' corresponding to cardinal points.
 Students are then guided to answer questions about the expected behavior, e.g. in terms of reachability between hosts, according to parameters, which they should also issue in a coordinated fashion, for STP, VLANs, and trunks.
 
-For the third lab assignment, divided into two parts, students are requested to connect their laptops to a topology similar to the one in the switching labs, but setting up the network interfaces on the nine multi-layer devices that interconnect them as layer-3 routing nodes.
+For the third ``lab assignment,'' divided into two parts, students are requested to connect their laptops to a topology similar to the one in the switching labs, but setting up the network interfaces on the nine multi-layer devices that interconnect them as layer-3 routing nodes.
 As written in the handout, the idea is that the routers interconnect the backbone of the offices of a nation-wide corporation.
 Therefore, the computers in each bench (office), have its interface in different IP prefixes, corresponding to separate LANs. % TODO add gls reference
 
@@ -50,11 +50,11 @@ Conversely, for the sake of testing that functionality, the routing (static and 
 \subsection{Introduction to Cisco IOS and Switching Labs}
 \label{subsec:gns3introswitching}
 
-As stated earlier, the first lab assignment introduces host-side commands (mostly Linux) and TCP/IP practical concepts such as IP address and \gls{mtu}, and its definition for the host's \gls{nic}.
-The part of this lab handout that is to be performed on Cisco is perfectly doable on a GNS3 session with both (lighter) Dynamips EtherSwitch-enabled legacy routers or the more modern Cisco IOSvL2-3.
+As stated earlier, the first laboratory assignment introduces host-side commands (mostly Linux) and TCP/IP practical concepts such as IP address and \gls{mtu}, and its definition for the host's \gls{nic}.
+The part of this laboratory handout that is to be performed on Cisco is perfectly doable on a GNS3 session with both (lighter) Dynamips EtherSwitch-enabled legacy routers or the more modern Cisco IOSvL2-3.
 Double clicking on a node corresponding to one of these switches/routers, the GNS3 GUI will launch a terminal window on the user's desktop automatically executing the command necessary to create a \texttt{telnet} session to the node.
 
-To perform the second lab, the topology described in figure~\ref{fig:gns3-aprc-lab2-handout-topology} (a section of the handout document) is physically implemented in the lab room with Cisco Catalyst switches interconnected accordingly with UTP-Ethernet cables supporting the data links.
+To perform the second set of exercises, the topology described in figure~\ref{fig:gns3-aprc-lab2-handout-topology} (a section of the handout document) is physically implemented in the laboratory with Cisco Catalyst switches interconnected accordingly with UTP-Ethernet cables supporting the data links.
 The topology has loops which STP, running in the switches, is expected to eliminate by disabling certain link(s).
 Part of the exercise is to foresee, according to the protocol's specification, which one(s) will be shutdown.
 
@@ -68,7 +68,7 @@ Needless to say, this does not come without its overhead, both in terms of perfo
 On the other hand, using a Dynamips EtherSwitch, that can be run directly on a macOS or Windows installation, and is much, much lighter, is not recommended anymore, since it requires legacy Cisco images, may not provide all the functionality, is reported to have bugs, etc.
 
 In practice, though, if students have access to the IOS images compatible with the school's labs switches, all the exercises were proven to be performable on a laptop using Dynamips nodes.
-VLANs are supported by these images, as well as STP, and standard routing protocols, such as OSPF (covered on a lab assignment too) are also run without problems on these equipments.
+VLANs are supported by these images, as well as STP, and standard routing protocols, such as OSPF (covered on an assignment too) are also run without problems on these equipments.
 
 Summarizing, using Dynamips is no longer (officially) encouraged.
 However, one assumes that the advice seen on the GNS3 forums, and on the videos and interviews with Jeremmy Grossmann already cited, for not using Dynamips is very much centered on advanced features and IOS interface compatibility.
@@ -106,7 +106,7 @@ As long as the total amount of emulators and ubridge processes attached to those
 Unless the user is editing the topology, creating or deleting nodes and links, starting and stopping machines, or other orchestration-specific tasks, the interaction with the running nodes is done thought direct \texttt{telnet} connections to the emulator processes from terminal windows accessible to the user, outside of GNS3.
 To make that easier, if using the GNS3 GUI, a user can double click on e.g. a ``powered-on'' switched or Ubuntu Docker Guest, and a helper is transparently executed which will open a terminal window on that (graphical) host, automatically running a command like \texttt{telnet 10.170.138.106 5001}---where \texttt{10.170.138.106} is the IP address of the compute host where a certain node is running and \texttt{5001} is the concrete TCP port where the emulator process is listening to accept connections to the console.
 
-In the case of the lab assignment 3 (layer-3 routing and OSPF), the (virtual) servers were set up in the way illustrated by figure~\ref{fig:gns3-ospf-lb}.
+In the case of ``lab assignment 3'' (layer-3 routing and OSPF), the (virtual) servers were set up in the way illustrated by figure~\ref{fig:gns3-ospf-lb}.
 One was running the GNS3 server as the controller (and also as compute for some nodes), and the other only as a ``secondary'' compute node.
 Note that there is no reason to assume that the ``primary'' (generally, the controller) is the host with the most resources.
 In fact, this wasn't the case in the architecture set up for this experiment.
