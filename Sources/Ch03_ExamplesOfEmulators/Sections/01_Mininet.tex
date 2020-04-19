@@ -26,8 +26,8 @@ It is out of the scope of this dissertation studying in details what can be done
 There have been attempts of using Mininet, either using its plain version as starting point~\cite{mininetquagga,mininetospfbgp} or adapting the software~\cite{mininext} to leverage the container orchestration and automation of the setup of virtual links between those containers, as a way to create topologies with standard routers.
 This can be achieved by installing routing daemons (e.g. Quagga~\cite{quagga}) in hosts with multiple interfaces, resorting to those daemons to implement the control-plane part of standard routers (updating the containers' routing tables according to a distributed protocol like OSPF or BGP), and the Linux routing abilities to perform the data-plane (layer-3 packet forwarding). % TODO BGP and OSPF in acronyms
 However, of these two different approaches, the former has its inconveniences.
-That installing Quagga demands a manual process of adding the source \emph{tarball} into the containers, and then compiling and installing from source, plus configuring, which demands some Python manual scripting
-The latter is currently unmaintained, as miniNeXT's repository doesn't receive a single commit since 2017.
+Installing Quagga demands a manual process of adding the source \emph{tarball} into the containers, and then compiling and installing from source, plus configuring, which demands some Python manual scripting.
+Conversely, the latter isn't valid, either, given that miniNeXT's repository doesn't receive a single commit since 2017, which means that it is probably in an unmaintained state.
 
 Fortunately, there are other solutions, some able to run in more platforms (any host/OS supporting Docker out-of-the-box), which provide good, documented support for conventional open-source switches/routers (e.g. Quagga), maintaining the positive aspects of Mininet like declarative, scriptable topologies, and lightweight virtualization for large topologies.
 
