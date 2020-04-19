@@ -67,4 +67,87 @@ brctl stp br0 on
 ifconfig br0 up
 \end{lstlisting}
 
+\section{Kathará's OSPF exercises setup}
+
+\begin{lstlisting}[frame=single,caption=Lab 3's topology configuration,captionpos=b,label=listlab3conf]
+# File ./lab.conf
+
+sw[0]=A
+cw[0]=A
+
+sw[1]=B
+nw[0]=B
+
+nw[1]=C
+n[0]=C
+
+c[0]=D
+nw[2]=D
+
+c[1]=E
+ne[0]=E
+
+sw[2]=F
+s[0]=F
+
+s[1]=G
+n[1]=G
+
+n[2]=H
+ne[1]=H
+
+c[2]=I
+ce[0]=I
+
+se[0]=J
+ce[1]=J
+
+s[2]=K
+se[1]=K
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption=Example node startup configuration,captionpos=b,label=listlab3startup]
+# File ./cw.startup
+
+ifconfig eth0 10.10.40.2 netmask 255.255.255.0 up
+ifconfig lo:40 192.168.9.1 netmask 255.255.255.0 up
+/etc/init.d/zebra start
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption=Example node's \texttt{daemons} file for enabling Quagga routing protocols,captionpos=b,label=listlab3daemons]
+# File ./cw/etc/quagga/daemons
+
+# This file tells the zebra package
+# which daemons to start.
+# Entries are in the format: <daemon>=(yes|no|priority)
+# where 'yes' is equivalent to infinitely low priority, and
+# lower numbers mean higher priority. Read
+# /usr/doc/zebra/README.Debian for details.
+# Daemons are: bgpd zebra ospfd ospf6d ripd ripngd
+zebra=yes
+bgpd=no
+ospfd=yes
+ospf6d=no
+ripd=no
+ripngd=no
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,caption=Example node's configuration of Quagga's OSPF daemon,captionpos=b,label=listlab3quagga]
+# File ./cw/etc/quagga/ospfd.conf
+
+!
+hostname ospfd
+password zebra
+enable password zebra
+!
+router ospf
+! Speak OSPF on all interfaces falling in 10.0.0.0/16
+network 192.168.0.0/16 area 0.0.0.0
+network 10.10.0.0/16 area 0.0.0.0
+! redistribute connected
+!
+log file /var/log/zebra/ospfd.log
+!
+\end{lstlisting}
+
 % end of chapter
