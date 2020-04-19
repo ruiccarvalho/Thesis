@@ -21,7 +21,7 @@ They are:
 There is a command-line utility to interact with Mininet, which serves to add and remove, and also start and stop, topology nodes, access their shells.
 It is also possible to automate these actions and declare shareable topologies using Mininet's Python \gls{api}.
 
-It is out of the scope of this thesis studying in details what can be done with the \gls{sdn} approach e.g. in terms of programming the control plane of switches, as well as how that is done, since the focus from the beginning is to reproduce experiments currently runnable with standard, layer-2 switches and conventional IP routers.
+It is out of the scope of this dissertation studying in details what can be done with the \gls{sdn} approach e.g. in terms of programming the control plane of switches, as well as how that is done, since the focus from the beginning is to reproduce experiments currently runnable with standard, layer-2 switches and conventional IP routers.
 
 There have been attempts of using Mininet, either using its plain version as starting point~\cite{mininetquagga,mininetospfbgp} or adapting the software~\cite{mininext} to leverage the container orchestration and automation of the setup of virtual links between those containers, as a way to create topologies with standard routers.
 This can be achieved by installing routing daemons (e.g. Quagga~\cite{quagga}) in hosts with multiple interfaces, resorting to those daemons to implement the control-plane part of standard routers (updating the containers' routing tables according to a distributed protocol like OSPF or BGP), and the Linux routing abilities to perform the data-plane (layer-3 packet forwarding). % TODO BGP and OSPF in acronyms
