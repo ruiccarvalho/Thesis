@@ -8,7 +8,7 @@ There is also a blog,\footnote{\url{http://gns3.blogspot.com/2007/}, accessed on
 
 % It may be speculated that GNS3's first ``appeal'' was supplying students of Cisco certifications with a self-study tool more powerful that anything before, one that allows for the creation of arbitrary network topologies and practice their skills with the same software stack that is used in real Cisco devices and the hosts connected to them---from the operating system, up until application--level network utilities---, without having to use the expensive official solutions for that purpose, or depending on a real, physical networking laboratory.
 Unlike Mininet, CORE, and Kathará, GNS3 wasn't created with ``lightweigthness'' in mind, but with the goal of providing as much as possible the ability to create rich and heterogeneous topologies with real, commercial router software (such as Cisco IOS) running in the switching and routing nodes.
-But also ready to add NATs and firewalls, as well as full-blown virtual machines serving as hosts.
+But also ready to add \glspl{nat} and firewalls, as well as full-blown virtual machines serving as hosts.
 All of this because GNS3's strong major strength is high functional realism and compliance with industrial production environments, making it a natural choice for the self-study of students  training for Cisco CCNA and related certifications~\cite{thebookofgns3,gns3netsimguide}, as well as a clever architecture for load distribution that makes it relatively simple to scale high-resource demanding large and complex topologies and experiments.
 
 However, the magnitude of the project, part of which comes from an inherent extensibility, has made it suitable for a myriad of use-cases.
@@ -22,7 +22,7 @@ But also, in the age of the DevOps philosophy---a set of practices and methodolo
 There is already some published work about using GNS3 in education institutions.
 Usually, though, the experiments and comparisons are made against other ``graphical simulators''---instead of emulators---, since those are the software tools that, from a high-level perspective are equivalent, even if the functional possibilities and implementations are completely different, if not opposite.
 
-A brief comparison with Boson NetSim and Packet Tracer, two graphical simulators, is presented in~\cite{virtlabgnsvmware}, where the authors explain a way to use VMware Workstation VMs on a desktop to ``emulate'' end hosts on GNS3's virtual topologies, and using applications on those VMs which communicate with each other over the emulated links.
+A brief comparison with Boson NetSim and Packet Tracer, two graphical simulators, is presented in~\cite{virtlabgnsvmware}, where the authors explain a way to use VMware Workstation \glspl{vm} on a desktop to ``emulate'' end hosts on GNS3's virtual topologies, and using applications on those \glspl{vm} which communicate with each other over the emulated links.
 
 In~\cite{automaticnetconfiggns}, the authors, two Professors from the Polytechnic Institute of Leiria, Portugal, dive into ways to automate GNS3 topology configurations, which, as will be seen in chapter~\ref{ch:gns3}, can be a major issue. % TODO
 

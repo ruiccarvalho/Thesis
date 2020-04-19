@@ -12,14 +12,14 @@ However, to narrow down the definition in this case, we can say that a virtual m
 The degree by which this isolation is provided varies on different kinds of virtualization.
 
 In full-system virtualization (also called hardware-level virtualization), the aforementioned OS is a specialized one, called hypervisor or virtual machine monitor (VMM).
-The VMM emulates a fully-fledged computer, the virtual machine (VM), with CPUs, RAM, peripheral devices (e.g. NICs, disks), etc.; therefore the VM, indistinguishable from a real machine, can run a standard OS, which is then called the guest OS.
-Usually, the term VM, without any more information, refers to a full-system virtual machine.
+The VMM emulates a fully-fledged computer, the \gls{vm}, with CPUs, RAM, peripheral devices (e.g. \glspl{nic}, disks), etc.; therefore the \gls{vm}, indistinguishable from a real machine, can run a standard OS, which is then called the guest OS.
+Usually, the term \gls{vm}, without any more information, refers to a full-system virtual machine.
 
 Hypervisors such as, for example, VMware Workstation\footnote{\url{https://www.vmware.com/products/workstation-pro.html}} (and free alternatives, like VirtualBox\footnote{\url{https://www.virtualbox.org}} from Sun, now Oracle) that run along a standard OS such as Windows, macOS, or Linux in the same host and rely on the OS for some operations are called type-II or hosted hypervisors.
 Others, such as VMware ESXi, Citrix Xen, Microsoft Hyper-V, Apple's Hypervisor, or KVM (the last three are provided by Windows, macOS, and Linux, respectively~\cite{whatiskvm,applehypervisor,hyperv}) that run stand-alone (ESXi) or rely on the standard OS only for resource management (all other examples), are called type-I, bare metal, or native hypervisors.
 
 In OS-based virtualization, the OS creates separated contexts, called containers, that share the base OS kernel, but run in isolation with regard to other containers.
-They are, when compared with VMs, less resource hungry, and as such are also designated as a lightweight virtualization technology.
+They are, when compared with \glspl{vm}, less resource hungry, and as such are also designated as a lightweight virtualization technology.
 
 Linux has included in-kernel support for containerization for many years, but there was a recent upsurge in the use of containers as a result of Docker Inc.'s work on a string of technologies that very much simplify the use of containers~\cite{hwswvirt,virtessentials}.
 The a schematic depiction of the difference between full-system virtualization and containers is offered in~\ref{fig:docker-vs-vms}, taken from~\cite{dockercontreplacingvms}.
