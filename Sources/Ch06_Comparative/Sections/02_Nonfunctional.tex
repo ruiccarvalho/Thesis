@@ -1,15 +1,19 @@
 \section{Non-functional aspects}
 \label{sec:comparativenonfunctional}
 
-From a non-functional standpoint, and deliberately omitting the issues of performance which are discussed in section~\ref{sec:comparativeperformance}, GNS3 and Kathará are very different, and therefore these aspects should be taken into account with the utmost attention.
+From a non-functional standpoint (even ignoring the performance aspect, discussed outside of this section, later on), GNS3 and Kathará are very different, and therefore these aspects should be taken into account with the utmost attention.
 
 \subsection{User interface}
 \label{subsec:comparativeui}
 
-The differences in the user interface paradigm were introduced in the presentation of Kathará in the examples of simulators (cf.~\ref{sec:exemulkathara}), namely the fact that GNS3's normal usage was thought out to be done through one or more instances of the GUI (more than one in case multiple users are concurrently and in a distributed fashion working on the same topology), while in Kathará a declarative, textual approach is necessary.
-In fact, except for one rudimentary web-based interactive tool to generate Netkit labs (and, therefore, compatible with Kathará), tested and discarded for introducing more noise than making things easier, which in any case then are used using the normal command-line interface, there isn't any GUI for Kathará.
+The differences in the user interface paradigm between GNS3 and Kathará were introduced in the presentation of Kathará in the examples of simulators (cf.~\ref{sec:exemulkathara}).
+In particular, the fact that GNS3's normal usage was thought out to be done through one or more instances of the GUI (more than one in case multiple users are concurrently and in a distributed fashion working on the same topology), while in Kathará a declarative, textual approach is necessary.
 
-In Kathará users running similar experiments, maybe even the same ``lab'' (which is usually just a set of directories and text files), do it in their machine in total isolation.
+There isn't any GUI for Kathará.
+The only graphical tool is a web-based app~\cite{netkitlabgen}, made for Netkit, which runs in the browser allows to drag-and-drop elements into a canvas and parameterize, through web page forms, which interfaces are plugged to each, node startup IP addresses, etc., and then export a zipped directory with config files that Kathará, due to its backwards compatibility can import.
+From our experience, this tool is very clumsy and incomplete.
+
+In Kathará, users running similar experiments, maybe even the same ``lab'' (which is usually just a set of directories and text files), do it in their machine in total isolation.
 Conversely, GNS3 introduces a conceptual client-server decoupling is exposed throughout the whole system.
 This has an impact on how both are to be used and is caused, as will be seen in the next later in this chapter, by the difference in the weight both the projects (and their dependencies) themselves have and the resource consumption which, in GNS3, very easily creates the urge to balance the load.
 

@@ -91,8 +91,8 @@ Therefore, there is not a practical limitation for the central points, the contr
 It is possible, and examples across the web are given, of enormous topologies.
 
 The real burden is on the computes, which symbolize each host where virtual routers and guests run.
-To balance the load, one uses separate hosts to run an instance of the GNS3-server, in the role of a compute, receiving instructions from the controller (in turn controlled by the user using, for instance, the GNS3 GUI) to interact with the running emulators.
-As long as the total amount of emulators and ubridge processes attached to those processes running on each of those hosts doesn't use too many resources of each compute-host, there isn't exactly any bottleneck, since the emulated nodes execute independently of GNS3's ``brains''.
+To \textbf{distribute the load}, one uses separate hosts to run an instance of the GNS3-server, in the role of a compute, receiving instructions from the controller (in turn controlled by the user using, for instance, the GNS3 GUI) to interact with the running emulators.
+As long as the total amount of emulators and ubridge processes attached to those processes running on each of those hosts doesn't use too many resources of each compute-host, there isn't exactly any bottleneck (obviously, apart from the \emph{real} networking connectivity between the compute hosts of nodes in the topology), since the emulated nodes execute independently of GNS3's ``brains''.
 
 Unless the user is editing the topology, creating or deleting nodes and links, starting and stopping machines, or other orchestration-specific tasks, the interaction with the running nodes is done thought direct \texttt{telnet} connections to the emulator processes from terminal windows accessible to the user, outside of GNS3.
 To make that easier, if using the GNS3 GUI, a user can double click on e.g. a ``powered-on'' switched or Ubuntu Docker Guest, and a helper is transparently executed which will open a terminal window on that (graphical) host, automatically running a command like \texttt{telnet 10.170.138.106 5001}---where \texttt{10.170.138.106} is the IP address of the compute host where a certain node is running and \texttt{5001} is the concrete TCP port where the emulator process is listening to accept connections to the console.
@@ -101,6 +101,10 @@ In the case of the lab assignment 3 (layer-3 routing and OSPF), the (virtual) se
 One was running the GNS3 server as the controller (and also as compute for some nodes), and the other only as a ``secondary'' compute node.
 Note that there is no reason to assume that the ``primary'' (generally, the controller) is the host with the most resources.
 In fact, this wasn't the case in the architecture set up for this experiment.
+
+The \textbf{topology snapshots} functionality of GNS3 can be extremely useful for incremental laboratory handouts, where certain ``checkpoints'' must be achieve.
+Instructors may setup certain parameters in advance and record snapshots.
+Snapshots contain any kind of current state not only of the topology/project configuration at GNS3's level itself (in the role of the orchestrator, link simulation parameters like package loss rate, etc.) but also the persisted state of emulated devices, like Dynamips or IOSv routers, which allows playing with the IOS settings much more easily, including with the \texttt{copy ...}-family commands.
 
 % Figure fig:gns3-ospf-lb
 \input{Sources/Ch04_Gns3/TablesFigures/figure-gns3-ospf-lb}
