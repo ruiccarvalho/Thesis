@@ -10,18 +10,18 @@ It also has had from the beginning heavy concerns about performance and the abil
 Mininet operates exclusively on Linux hosts and does everything with the low-level primitives of LXC (Linux Containers).
 This enabled very large topologies to be run without much effort from the host they're supported by.
 
-The kinds of nodes Mininet supports can't be dissociated from the fact that is was developed with SDN in mind.
+The kinds of nodes Mininet supports can't be dissociated from the fact that is was developed with \gls{sdn} in mind.
 They are:
 \begin{description}
 	\item[hosts] corresponding to network namespaces, containers, consisting in processes with exclusive ownership of interfaces, ports, and routing tables;
 	\item[switches] these are OpenFlow ``dumb'' switches, \textbf{not} ``conventional'' layer-2 switches, which can run in kernel-space or user-space and be configured by the Mininet infrastructure;
-	\item[controllers] which can be on the ``virtual'' topology, but also be proper nodes in a deployed SDN, as long as the host where the other nodes are running has IP connectivity to the rest of the network.
+	\item[controllers] which can be on the ``virtual'' topology, but also be proper nodes in a deployed \gls{sdn}, as long as the host where the other nodes are running has IP connectivity to the rest of the network.
 \end{description}
 
 There is a command-line utility to interact with Mininet, which serves to add and remove, and also start and stop, topology nodes, access their shells.
-It is also possible to automate these actions and declare shareable topologies using Mininet's Python API.
+It is also possible to automate these actions and declare shareable topologies using Mininet's Python \gls{api}.
 
-It is out of the scope of this thesis studying in details what can be done with the SDN approach e.g. in terms of programming the control plane of switches, as well as how that is done, since the focus from the beginning is to reproduce experiments currently runnable with standard, layer-2 switches and conventional IP routers.
+It is out of the scope of this thesis studying in details what can be done with the \gls{sdn} approach e.g. in terms of programming the control plane of switches, as well as how that is done, since the focus from the beginning is to reproduce experiments currently runnable with standard, layer-2 switches and conventional IP routers.
 
 There have been attempts of using Mininet, either using its plain version as starting point~\cite{mininetquagga,mininetospfbgp} or adapting the software~\cite{mininext} to leverage the container orchestration and automation of the setup of virtual links between those containers, as a way to create topologies with standard routers.
 This can be achieved by installing routing daemons (e.g. Quagga~\cite{quagga}) in hosts with multiple interfaces, resorting to those daemons to implement the control-plane part of standard routers (updating the containers' routing tables according to a distributed protocol like OSPF or BGP), and the Linux routing abilities to perform the data-plane (layer-3 packet forwarding). % TODO BGP and OSPF in acronyms

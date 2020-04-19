@@ -16,16 +16,16 @@ To accomplish such effort, a precious resource has been the ``paraofficial'' vid
 
 GNS3 works, first and foremost, as a client-server application.
 The standard installation for desktop provides all the necessary components to fully(-ish) work on that physical machine, but the client doesn't have to be, and in many real scenarios isn't, running on the same host as the server.
-However, in fact, a \textbf{topology}---the name GNS3 gives to its ``projects,'' which comprises of nodes (emulated/virtualized routers, switches, SDN-controllers, virtual PCs, interfaces for hardware network connections)---can be running in different machines, even on the ``backend'' side itself, as will be seen.
+However, in fact, a \textbf{topology}---the name GNS3 gives to its ``projects,'' which comprises of nodes (emulated/virtualized routers, switches, \gls{sdn}-controllers, virtual PCs, interfaces for hardware network connections)---can be running in different machines, even on the ``backend'' side itself, as will be seen.
 
-The \textbf{GNS3 server} exposes a public \acrshort{rest} \acrshort{api}, documented in~\cite{gns3devarch}, which is the way any client edits the opened topology or performs actions on the nodes contained therein, or in the GNS3 running environment.
+The \textbf{GNS3 server} exposes a public \gls{rest} \gls{api}, documented in~\cite{gns3devarch}, which is the way any client edits the opened topology or performs actions on the nodes contained therein, or in the GNS3 running environment.
 GNS3 server, described more thoroughly afterwards, is the brains and central point of topology opened and in-execution.
 It has first-hand knowledge of events that occur in the nodes, their status, their interfaces' status, and communicates with the several means existing to actually provide the \emph{emulation} for each specific node.
 All of this will be analyzed and explained posteriorly.
 For now, it suffices to see it as a central point, accessible by any number of clients, of a running topology.
 
 To interact with the system---i.e. editing a topology or performing actions on nodes which are all the items in the topology, that can be connected via links---, one or more users simultaneously can utilize a graphical client, usually GNS3 GUI. The \textbf{GNS3 GUI}, part of a standard installation on any desktop operating system, namely macOS, a desktop Linux distribution (official repositories for Ubuntu exist), or Windows,\footnote{\url{https://gns3.com/software/download}} is a cross-platform application developed using the Qt graphical toolkit~\cite{qttoolkit}.
-Users may also use a web UI (somewhat limited yet), or any tool, user-driven or automatic, programmed to send requests and receive responses according to the aforementioned REST specification.
+Users may also use a web UI (somewhat limited yet), or any tool, user-driven or automatic, programmed to send requests and receive responses according to the aforementioned \gls{rest} specification.
 The official clients, bundled with the GNS3 installation packages for desktop environments, GNS3 GUI and the official web UI, show an in-real-time view of the topology---e.g. the status of virtual network interfaces, or changes made by other client---thanks to WebSockets server-to-client up-calls~\cite{ytgns3arch22}. % TODO link WS to the glossary, when definition is available
 
 % Figure fig:gns3-2hosts2routers-macOS
@@ -47,8 +47,8 @@ The same program behaves as two different roles, both of which are necessary to 
 \end{itemize}
 
 When the server is running on a single host, one \texttt{gns3-server} program instance (i.e. process) performs both roles, controller and compute.
-However, when the server is distributed across one or more machines, communication between the controller and the computes on other hosts happens through a REST API.
-That API is a private or internal one, unlike the one for client-server, and there isn't a programmer's manual for developing with it.
+However, when the server is distributed across one or more machines, communication between the controller and the computes on other hosts happens through a \gls{rest} \gls{api}.
+That \gls{api} is a private or internal one, unlike the one for client-server, and there isn't a programmer's manual for developing with it.
 Only the (single) controller is supposed to communicate with each process acting as compute.
 
 % end of section gns3architecture
