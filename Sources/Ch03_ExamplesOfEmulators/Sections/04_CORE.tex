@@ -11,9 +11,9 @@ It's described as \textquote{a tool for building virtual networks. As an emulato
 Networks emulated with it can be, via the host machine of the emulation, connected to real world, physical networks.
 Its documentation~\cite{coreghdocs} also states that \textquote{it provides an environment for running real applications and protocols, taking advantage of tools provided by the Linux operating system.}
 
-Like the other emulators studied in this dissertation, except for GNS3, CORE is a means for leverage a general-purpose lightweight virtual host's OS networking stack as the way to provide its emulated network nodes and links, opposed to GNS3's goal of using full, heavy-weight virtual machines running vendorized routing software.
+Like the other emulators studied in this dissertation, except for GNS3, CORE is a framework for leveraging very lightweight OS-virtualized hosts, also known as containers, as a means to run isolated network stacks for each node---be it routers/switches, hosts, or any network service that can be run on top of Linux.
 
-It is particularly similar to Kathará in that it offers a very wide range of services (essentally, appliances) working out of the box right after being added to a topology, relying on specific combinations of (open) software running on each node.
+It is particularly similar to Kathará in that it offers a very wide range of services (essentally, appliances) working out of the box right after being added to a topology, relying on specific combinations of open-source software running on each node.
 
 On the other hand, like GNS3, it provides a \gls{gui} as the default fashion to edit topologies and control a running emulation work session in real time, rather than a pure textual/declarative language to specify and configure projects (topologies) and a command-line interface to control the emulation~\cite{coreghdocs}.
 
