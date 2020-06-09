@@ -9,15 +9,16 @@ Functionality, in particular in the emulated network-nodes, is defined, in this 
 
 \subsection{Higher-level Functionality}
 
-In terms of the \emph{higher-level functionality}, most general-purpose emulators, which GNS3 and Kathará are at heart, don't differ much.
-Both have a way to define arbitrary topologies and store them in the filesystem and the topologies describe nodes, default configuration of the nodes, and hosts represent ``computers'' that, according to the specifics of the software/firmware they are running and number of interfaces serve as switches, routers, end-hosts running application software (client/server, P2P, etc.), or even other kinds of nodes seen in real-world networks, often called middleboxes, not studied in the present work.
+In terms of the \emph{higher-level functionality}, most general-purpose emulators, which GNS3, Kathará, and CORE are at heart, don't differ much.
+They all have a way to define arbitrary topologies and store them in the filesystem and the topologies describe nodes, default configuration of the nodes, and hosts represent ``computers'' that, according to the specifics of the software/firmware they are running and number of interfaces serve as switches, routers, end-hosts running application software (client/server, P2P, etc.), or even other kinds of nodes seen in real-world networks, often called middleboxes, not studied in the present work.
 
-An important limitation with Kathará has to be noted, though.
+An important limitation with Kathará and CORE has to be noted, though.
 Among all the documented labs, none is related to bridging/layer-2 switching.
 With Netkit, Kathará's precursor, whose implementation technologies were different, that wasn't the case---and exercises to test the working of STP in a switched network were documented.
 In fact, if we try to mimic those labs, as well as APRC's lab2-handout (cf.~\ref{sec:katharapracticalcasestudy}), they don't work---despite capturing network traffic between nodes shows that STP is communicating, the Linux bridges.
+This was not tested with CORE.
 
-Thus, as far as our experiments go, for layer-3 switching (data-plane) and routing (control-plane), every APRC exercise can be done with a mix of virtual Cisco gear and Linux guests in GNS3 \emph{can} be done with a Kathará lab.
+Thus, as far as our experiments go, for layer-3 switching (data-plane) and routing (control-plane), every APRC exercise can be done with a mix of virtual Cisco gear and Linux guests in GNS3 \emph{can} be done with a Kathará lab or CORE project.
 And, judging by the documented labs offered by Kathará itself, many more intra- and inter-domain routing protocols, quality of service, and other things can be performed without an issue.
 However, the same cannot be said for experimenting with switching network. % TODO acho que se pode dizer que isto em princípio pode ser debugged e corrigido, no trabalho further work, ou propor que isos se faça
 
@@ -25,12 +26,12 @@ However, the same cannot be said for experimenting with switching network. % TOD
 
 If, for example, running Cisco software is a requirement (as is the case for the company's official certifications), Kathará itself cannot accommodate it.
 On the contrary, there aren't officially supported GNS3 appliances, running on any kind of platform, to run Quagga out of the box.
-This is to show that, \textbf{in an academic context}, where protocols and algorithms are the subject of the study, and not vendor-specific details, \textbf{Kathará has the advantage of doing without pricey licenses and vendor lock-in}.
+This is to show that, \textbf{in an academic context}, where protocols and algorithms are the subject of the study, and not vendor-specific details, \textbf{Kathará and CORE have the advantage of doing without pricey licenses and vendor lock-in}.
 
 The degree of flexibility of the two emulators is different, due to reasons probably obvious by now.
 On the one hand, GNS3 is ``a suite of \emph{emulation methods}'' (and even more than that, giving the diversity of software packages that are inside a normal installation of the software on a desktop), and offers the ability to emulate nodes using large span of technologies that don't typically work with each other by making ensuring that one single software package, uBridge, is pluggable to each of them, being responsible to handling the transmission of the traffic, in a way that each node's emulation method is never aware of the emulation method on the other end of a virtual link.
 On the other hand, Kathará doesn't use any application-level data-link emulation, and requires that every kind of software, be it for switching/routing nodes, middleboxes, is able to communicate using Docker's virtual interfaces.
-Both Kathará and GNS3 provide a way to connect an interface on the host operating system to a virtual interface on its nodes.
+Kathará, CORE, and GNS3 provide a way to connect an interface on the host operating system to a virtual interface on its nodes.
 This, if thought in conjunction with the way hypervisors like VMware Workstation allow to create virtual switches and interfaces in the host computer, allows for virtually unlimited combination of topologies across both emulators, using physical interfaces, and even mixing them with other ones on the Internet.
 
 % end of section comparativefunctionality
