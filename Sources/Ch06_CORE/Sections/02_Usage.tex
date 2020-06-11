@@ -11,12 +11,12 @@ Then, the terminal windows can be launched through the user interface to issue s
 The available commands, and software in general, are the ones available in the host OS.
 If, for instance, \texttt{iperf3} is to be used, it has to be installed globally on the host running the emulation session.
 
-\emph{Services} are the entities consisting of software set-up in a ``plug-in'' fashion---either provided by default by CORE, or user made, according to the steps described in the documentation---, that can be easily enabled, disabled, started, and stopped for all or some nodes.
-The Quagga routing suite (with its many daemons for different routing protocols) is a service. Apache's \texttt{httpd} is also a service.
+\emph{Services} are the entities consisting of software set-up in a ``plug-in'' fashion---either bundled with CORE, or implemented and installed by the user, according to the steps described in the documentation---, that can be easily enabled, disabled, started, and stopped for all or some nodes.
+The Quagga routing suite (with its many daemons for different routing protocols) is a service. Apache's \texttt{httpd} is a service as well.
 
 Node \emph{types} are the set ``templates'' of different kinds of emulated machines that can be added to a canvas. They range from routers or switches to a simple PC or a firewall.
 These types differ on the services that come enabled on them by default, and also on the parameters that can be set through menu-dialogs which are automatically translated to internal configurations, depending of the context.
 A node of type \emph{host} has an SSH service running, while a node of the \emph{router} kind has the Quagga service with Zebra and OSPF daemons enabled by default.
-The full list can be found at~\cite{coredocs}.
+The full list can be found at~\cite{coreghdocs}.
 
 % end of section
