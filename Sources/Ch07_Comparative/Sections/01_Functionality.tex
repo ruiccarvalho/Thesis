@@ -18,13 +18,15 @@ With Netkit, Kathará's precursor, whose implementation technologies were differ
 In fact, if we try to mimic those labs, as well as APRC's lab2-handout (cf.~\ref{sec:katharapracticalcasestudy}), they don't work---despite capturing network traffic between nodes shows that STP is communicating, the Linux bridges.
 This was not tested with CORE.
 
-Thus, as far as our experiments go, for layer-3 switching (data-plane) and routing (control-plane), every APRC exercise can be done with a mix of virtual Cisco gear and Linux guests in GNS3 \emph{can} be done with a Kathará lab or CORE project.
-And, judging by the documented labs offered by Kathará itself, many more intra- and inter-domain routing protocols, quality of service, and other things can be performed without an issue.
-However, the same cannot be said for experimenting with switching network. % TODO acho que se pode dizer que isto em princípio pode ser debugged e corrigido, no trabalho further work, ou propor que isos se faça
+Thus, as far as our experiments go, for layer-3 switching (data-plane) and routing (control-plane), every APRC exercise can be implemented in any of the three emulators.
+However, GNS3 is the only one which gives the Cisco IOS experience (that is available in the lab).
+
+According to our tests, the layer-2 exercises are not possible in Kathará.
+They were not tested in CORE.
 
 \subsection{Lower-level Functionality}
 
-If, for example, running Cisco software is a requirement (as is the case for the company's official certifications), Kathará itself cannot accommodate it.
+If, for example, running Cisco software is a requirement (as is the case for the company's official certifications), Kathará or CORE themselves cannot accommodate it.
 On the contrary, there aren't officially supported GNS3 appliances, running on any kind of platform, to run Quagga out of the box.
 This is to show that, \textbf{in an academic context}, where protocols and algorithms are the subject of the study, and not vendor-specific details, \textbf{Kathará and CORE have the advantage of doing without pricey licenses and vendor lock-in}.
 
