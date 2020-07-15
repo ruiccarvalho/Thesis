@@ -84,7 +84,7 @@ An advantage of these nodes is that they consume minimal resources, thus a topol
 They were especially useful on previous versions of GNS3, when the only way to have virtual hosts running full operating systems on GNS3 topologies---and, through it, test more advanced scenarios, using real-life software tools---, was to orchestrate heavy VirtualBox or VMware Workstation \glspl{vm}, which are heavy, take time to boot, and its cost increases constantly with the number of instances.
 
 Since version 2.1, though, GNS3 supports appliances based on Docker containers.\footnote{Only on compute nodes running Linux}
-These are very lightweight and, excluding the resources consumed by the \texttt{dockerd} process (which runs only once on the host and still doesn't compare to one full-blown \gls{vm}), each live container isn't noticeable heavier than a VPCS process, while still providing a real UNIX shell and possibility to run potentially potentially any GNU/Linux-compatible application.  % TODO confirmar (e citar)!!!
+These are very lightweight and, excluding the resources consumed by the \texttt{dockerd} process (which runs only once on the host and still doesn't compare to one full-blown \gls{vm}), each live container isn't noticeable heavier than a VPCS process, while still providing a real UNIX shell and possibility to run potentially any GNU/Linux-compatible application.  % TODO confirmar (e citar)!!!
 \input{Sources/Ch04_Gns3/TablesFigures/figure-gns3-vpcs-cli-help}
 Due to this reason, the GNS3 project is recommending users to progressively stop using VPCS nodes and move towards Docker~\cite{ytdynamipsvpcs}.
 
@@ -101,8 +101,8 @@ This program is the implementation of each of the straight lines that the user c
 A deep study of ubridge wasn't carried out to know the implementation details.
 What is practically observable is that, for each link, for each running interface on both of its ends (0, 1, or 2, depending on the status of the nodes), a user-level \texttt{ubridge} process exists on the compute's OS.
 
-These processes listen on the virtual/software interface they were plugged in and encapsulate the traffic in UDP packages and send them through the compute's host OS network stack to the \texttt{ubridge} process on the other end of the logical link (it may or may not be running on the same compute). % TODO put UDP on glossary/acronyms
-Conversely, they receive UDP datagrams, de-encapsulate the traffic inside them, and ``inject'' it back on the virtual interface they are attached to.
+These processes listen on the virtual/software interface they were plugged in and encapsulate the traffic in UDP packets and send them through the compute's host OS network stack to the \texttt{ubridge} process on the other end of the logical link (it may or may not be running on the same compute). % TODO put UDP on glossary/acronyms
+Conversely, they receive UDP datagrams, de-encapsulate the traffic inside them, and ``inject'' them back on the virtual interface they are attached to.
 
 % <IF TIME, INVESTIGATE AND BRIEFLY DESCRIBE HOW THIS ``ATTACHMENT'' WORKS> % TODO <- ver!
 

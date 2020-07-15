@@ -23,9 +23,9 @@ Students are then guided to answer questions about the expected behavior, e.g. i
 
 For the third ``lab assignment,'' divided into two parts, students are requested to connect their laptops to a topology similar to the one in the switching labs, but setting up the network interfaces on the nine multi-layer devices that interconnect them as layer-3 routing nodes.
 As written in the handout, the idea is that the routers interconnect the backbone of the offices of a nation-wide corporation.
-Therefore, the computers in each bench (office), have its interface in different IP prefixes, corresponding to separate LANs. % TODO add gls reference
+Therefore, the computers in each bench (office) have their interfaces in the same IP prefix, and each bench has its own specific IP prefix.
 
-First, to set up set routing, students are requested to design an addressing plan, setting up prefixes and hosts on the routing interfaces connected each router to another, and then setup manually, using IOS's interface, static routes that allow to connect each office's LAN to another.
+First, to set up routing, students are requested to design an addressing plan, setting up prefixes and hosts on the routing interfaces connected each router to another, and then setup manually, using IOS's interface, static routes that allow to connect each office's LAN to another.
 After this, students can configure the router/switch virtual interface (which is also configured to be on its respective LAN) as the default gateway and \texttt{ping} each other's computer.
 
 The second goal is to, instead of doing the routing statically, configure the routers to use OSPF, and perform a set of analysis and variations on the exercise, such as changing the bandwidth of some links, turning other links off and foreseeing the behavior according to the specification of the protocol.
@@ -113,7 +113,7 @@ In fact, this wasn't the case in the architecture set up for this experiment.
 
 The \textbf{topology snapshots} functionality of GNS3 can be extremely useful for incremental laboratory handouts, where certain ``checkpoints'' must be achieve.
 Instructors may setup certain parameters in advance and record snapshots.
-Snapshots contain any kind of current state not only of the topology/project configuration at GNS3's level itself (in the role of the orchestrator, link simulation parameters like package loss rate, etc.) but also the persisted state of emulated devices, like Dynamips or IOSv routers, which allows playing with the IOS settings much more easily, including with the \texttt{copy ...}-family commands.
+Snapshots contain any kind of current state not only of the topology/project configuration at GNS3's level itself (in the role of the orchestrator, link simulation parameters like package loss rate, etc.) but also the persisted state of emulated devices, like Dynamips or IOSv routers, which allows playing with the IOS settings much more easily, including with the \texttt{copy ...}-family commands.\footnote{These commands can be issued on a Cisco IOS command-line and allow to save the running configuration of a router in its persistent memory}
 
 % Figure fig:gns3-ospf-lb
 \input{Sources/Ch04_Gns3/TablesFigures/figure-gns3-ospf-lb}
