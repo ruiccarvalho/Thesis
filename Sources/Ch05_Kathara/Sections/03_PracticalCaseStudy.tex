@@ -30,16 +30,22 @@ The configurations, both the \texttt{lab.conf}, which defines the topology, and 
 
 For the switching exercises, we found out that there is some kind of limitation, either in Docker itself, in Docker's chosen intercontainer networking strategy, or in Kathará's implementation.
 The containers (lightweight virtual Linux hosts), equipped with multiple \glspl{nic} that perform each switch, are not capable of successfully performing the Spanning Tree Protocol, which is demanding for a topology with a loop, which the exercise deliberately has.
+We were not able to find a convincing explanation for this fact.
 
 \subsection{Working Under Load and Version Control}
 
 Kathará doesn't provide any \textbf{load balancing} mechanism out of the box.
 Containers are expected to run under one single Docker host.
-On the one hand, one can try to image ways to tunnel the traffic from certain nodes to any arbitrary different topology, by bridging virtual Docker interfaces to some of the hosts' interface.
+On the one hand, one can try to imagine ways to tunnel the traffic from certain nodes to any arbitrary different topology, by bridging virtual Docker interfaces to some of the hosts' interface.
 On the other hand, as exposed in more detail later on, Kathará doesn't demand nearly as many resources for a large topology as GNS3.
 
 Regarding \textbf{version control} (what, in GNS3, is achieved via \textbf{snapshots}), Kathará's approach is different.
 Every relevant configuration is expected to be written, either in the configurations passed in conventionalized sub-directories of the project to the hosts to configure the routing daemons or any other software running in the container, or in the declaration of the graph in the \texttt{lab.conf}.
 All of these are plain-text files, therefore the user is encouraged to resort to a version-controls solution, like Git\footnote{\url{https://git-scm.com}}.
+
+\subsection{Performance measurements}
+
+For completeness, we measured the host to host bandwidth in Kathará, measured with \texttt{iperf3}, like shown, in the case of GNS3, in~\ref{tab:gns3-iperf}.
+The values are consistently~$\approx 25.0~\mbox{Gbit/s}$, even on 1~Gbps virtual \glspl{nic}.
 
 % end of section katharapracticalcasestudy

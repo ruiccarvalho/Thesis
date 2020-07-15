@@ -1,0 +1,16 @@
+\begin{table}
+  \centering
+  \small
+  \begin{tabulary}{0.9\textwidth}{ll}
+    \toprule
+      \textbf{Network appliance}     & \textbf{Throughput between two nodes}\\
+    \midrule
+      Cisco c3745 (Dynamips process) & $\approx 191~\mbox{Mbit/s}$\\
+      Cisco IOSvL2 (KVM via QEMU)    & $\approx 66~\mbox{Mbit/s}$\\
+    \bottomrule
+  \end{tabulary}
+  \caption{%
+    Approximate average throughput between two Docker Ubuntu Guest appliances connected to two different network node implementations, measured with \texttt{iperf3} and a total 1024~MiB of transfered data.
+  }
+  \label{tab:gns3-iperf}
+\end{table}

@@ -26,10 +26,11 @@ All this is illustrated by figure~\ref{fig:kathara-topologynodes}.
 
 Kathará's interface has two parts: a set of commands that can be issued in the host (the machine where the emulator is being executed) shell, and the a structured way to define labs, which includes a syntax for defining topologies---i.e. which nodes are there, what are their names, how many network interfaces do they have and to which collision domain (i.e. links) are they connected to---and also a conventionalized way to structure configuration files that are automatically read by the software inside the nodes, like IP configurations or routing parameters.
 
-These interfaces are not exhaustively exposed in this work since that would just mean duplicating the documentation resources, which are easily accessible and very clear.
-However, figure~\ref{fig:kathara-topologynodes} serves as a way to illustrate, in contrast with graphical interactive tools, the way topologies are described and allows to take an immediate conclusion: to have only point-to-point links, this means that only each two interfaces that are connected via that each link need a separate collision domain and local-area networks of interconnected $N$ Ethernet-equiped hosts need a switch between them.
+Kathará's command-line interface documentation, available from its UNIX manual page (\hbox{\texttt{man kathara}}) is very clear and complete.
+Figure~\ref{fig:kathara-topologynodes} is a good illustration, in contrast with graphical interactive tools, of how topologies are described in Kathará.
+It also make it clear that to have only point-to-point links, this means that only each two interfaces that are connected via that each link need a separate collision domain and local-area networks of interconnected $N$ Ethernet-equiped hosts need a switch between them.
 
-What was just said poses a question that will be further explored in the practical case study (section~\ref{sec:katharapracticalcasestudy}): there aren't conventional (layer-2) switching labs in the aforementioned repository, and the routing ones assume that more than one hosts sharing the same IP-prefix simply share collision domains.
+What was just said poses a question that will be further explored in the practical case study (section~\ref{sec:katharapracticalcasestudy}): there aren't conventional (layer-2) switching labs in the aforementioned repository, and the routing ones assume simple (non-switched) LANs, where interfaces with different host numbers but the same IP prefix share a single collision domain.
 
 % Figure fig:kathara-topologynodes
 \input{Sources/Ch05_Kathara/TablesFigures/figure-kathara-labconf.tex}
