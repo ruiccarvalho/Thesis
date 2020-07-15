@@ -118,4 +118,21 @@ Snapshots contain any kind of current state not only of the topology/project con
 % Figure fig:gns3-ospf-lb
 \input{Sources/Ch04_Gns3/TablesFigures/figure-gns3-ospf-lb}
 
+\subsubsection{OSPF convergence on link failure}
+
+We finish this section by presenting an analysis of how well GNS3 emulations can reproduce scenarios of a topology of OSPF-enabled routers handling link failures.
+
+It's important to realize that only recently did GNS3 start having link-state support (in the sense of the nodes being aware of a link suspension or removal, analogous to a real-world physical wire-cutting, for instance), and that this support only exists for the modern QEMU nodes, like IOSv ones.
+
+This means that Dynamips nodes, with their ``lightweightness'' advantages, cannot react to link-state changes. We carried a test to confirm this statement, on a topology consisting of Dynamips nodes, dynamically routed using OSPF: suspending a link en route between two hosts on different LANs (in fact, connected to different routers) doesn't trigger any route recalculation, and timeouts will happen indefinitely if a \texttt{ping} is issued from one host to another.
+
+The same test was performed on the topology of IOSv layer-3 routers shown in figure~\ref{fig:gns3-ospf-convergence}, issuing a \texttt{ping} command in host \texttt{H1}, with extra options to print the timestamps and the IP addresses of hosts/interfaces en route.
+
+% Figure tab:gns3-ospf-convergence
+\input{Sources/Ch04_Gns3/TablesFigures/figure-gns3-ospf-convergence}
+
+After suspending the link that directly connects \texttt{R1} and \texttt{R2} (the initial route set-up by OSPF to reach \texttt{H2}'s LAN), it takes about eight seconds for packets to start reaching both the hosts again, with a new route with more hops.
+
+Waiting 30 seconds to re-enable the link from \texttt{R1} to \texttt{R2}, we measured approximately 50 seconds until \texttt{ping}'s successful --- i.e. no timeouts --- round-trips resumed using the initial (better) route.
+
 % end of section gns3practicalcasestudy
