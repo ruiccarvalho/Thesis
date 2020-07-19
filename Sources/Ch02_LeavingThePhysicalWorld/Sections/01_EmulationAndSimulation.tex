@@ -1,16 +1,16 @@
 \section{Emulation and Simulation}
 \label{sec:leavingemulationandsimulation}
 
-Providing a precise definition, or a ``definition framework,'' to distinguish simulators from emulators and why \emph{emulation} (as opposed to \emph{simulation}) is the focus of this dissertation is paramount.
+Providing a precise definition, or a ``definition framework,'' to distinguish simulators from emulators and why \emph{emulation} (as opposed to \emph{simulation}) is the focus of this dissertation is of paramount importance.
 In the literature, Wikipedia, or general-purpose dictionaries, there are contradictory definitions, overlapping concepts, and, in general, a vague distinction between the two is presented~\cite{netsimoremu}.
 Therefore, our aim is, rather than universally establishing what an emulator and a simulator are, to convey to the reader the ability to know without ambiguity what we mean when we say that, in this or that sense, software package $A$ is an emulator and $B$ is a simulator.
 
-Before pointing out the differences between emulators and simulators, it is important to say what both have in common: they are ways of providing students, researches, developers, administrators, or any computer networks professional with an alternative to the real network that is being studied, for convenience and/or cost effectiveness.
+Before pointing out the differences between emulators and simulators, it is important to say what both have in common: they are ways of providing students, researchers, developers, administrators, or any computer networks professional with an alternative to the real network that is being studied, for convenience and/or cost effectiveness.
 However, a laboratory with network nodes is also different from the reality it is trying to model.
 %That idea is exposed in the diagram in figure~\ref{fig:emulationvsreality}.
 
 On one end there is reality; but even in a hardware-based laboratory, factors like number of nodes, physical length of links (and therefore propagation times) can only be \textbf{simulated}, let alone on a setup that is fully software-based, like the emulators described later in this section.
-An anecdote like the 500-mile email~\footnote{\input{Sources/Ch02_LeavingThePhysicalWorld/TablesFigures/500-mile-email}} could not be reproduced, without simulating an---then---unknown ``flaw,'' in an emulator consisting in virtual machines running the real software and performing the real operations: the cause of the problem was latency.
+An anecdote like the 500-mile email\footnote{\input{Sources/Ch02_LeavingThePhysicalWorld/TablesFigures/500-mile-email}} could not be reproduced, without simulating an---then---unknown ``flaw,'' in an emulator consisting in virtual machines running the real software and performing the real operations: the cause of the problem was latency.
 On the other end, there are pure simulators, defined further down in this document.
 
 % In between, complex solutions like GNS3, which is presented in great detail in chapter~\ref{ch:gns3}, can offer a mixture, while being mainly emulators in the sense that it consists in an orchestrated set of processes running the real code, and also allowing to simulate aspects of reality like failures in links and delays.
@@ -28,21 +28,20 @@ Emulation aims at accurately reproducing the behavior of a real network in all i
 Although considerably less efficient than simulation and usually inadequate to reproduce timings observed in real network systems, this approach is very effective to capture the wide range of functionalities and behaviors of a real network, and we believe \emph{it is therefore much more suited for didactics than simulation}.
 \end{displayquote}
 Simulators like ns-3~\cite{ns3} or the OPNET~\cite{introtoopnet} are discrete event simulators~\cite{netsimoremu}.
-They enable, through some interface---such as a graphical one---, designing, testing, analyzing, and observing the expected behavior of protocols, nodes, and links according to several parameters, while using synthetic models of them. Therefore, it serves as a way to study, do research on, and even develop, protocols that may be used across the whole stack.
+They enable, through some interface---such as a graphical one---, designing, testing, analyzing, and observing the expected behavior of protocols, nodes, and links according to several parameters, while using synthetic models of them. Therefore, they allow us to study, do research on, and even develop, protocols that may be used across the whole stack.
 
 Even though the usefulness of these tools cannot be questioned, and some like Cisco Packet Tracer,\footnote{\url{https://www.netacad.com/courses/packet-tracer/introduction-packet-tracer}} also a discrete event simulator~\cite{evaluatingnetsimmethodologicapproach}, are very widely used in training of network administration professionals and in engineering fields~\cite{rolepackettracer}, it is crucial to point out a distinctive characteristic of simulators, as defined here: those applications constitute a ``closed'' universe in the sense that they only \emph{simulate} events that change the status of their internal data structures, but do not implement a real protocol stack, where every operation that should be performed is, in fact, performed.
 
 In other words: a network simulator is a black box, with a set of available inspection and state modifying operations---i.e. that provides the ability to see some aspects of the simulated system and perform some finite set of changes to the simulated environment.
 % However, as long as the \emph{implemented} cause-effect behaviors for that set of operations \emph{is coherent} to their real-world counterparts, any kind of ``shortcuts'' inside can be taken.
 
-On the other hand, the definition for an emulator can, therefore, pretty much be inferred from the simulator as its ``complementary.''
-Computer network emulators are solutions that allow, without resorting to physical devices (even though sometimes they allow them, if desired) prototyping networks for analysis and study of underlying mechanisms, research, and development of new protocols and solutions, etc., thanks to an array of techniques that can span from virtualization and containerization, hardware architecture emulation, and leveraging operating system functionality in multi-process environments.
+On the other hand, the definition of an emulator can, therefore, pretty much be inferred from the simulator as its ``complementary.''
+Computer network emulators are solutions that allow, without resorting to physical devices (even though sometimes they allow them, if desired) to prototype networks for analysis and study of their underlying mechanisms, research, and development of new protocols and solutions, etc., thanks to an array of techniques that can span from virtualization and containerization, to hardware architecture emulation, and leveraging operating system functionality in multi-process environments.
 
-Unlike with simulation, described earlier, in emulation the traffic is real (at least from a logical standpoint) and it is possible to ``glue'' emulated interfaces with the physical ones detected by the host operating system, which offers the possibility of mixing emulated topologies with real topologies, cloud infrastructures, etc.
-Furthermore, since the computational nodes (hosts in the emulated topologies) are in, fact, ``generic'' hosts (nowadays, usually \glspl{vm} or containers), running real software, the limit in terms of what it is possible to configure, parameterize, implement, or test, for any stack level (from the link to the application layer) is virtually nonexistent.
+Unlike with simulation, described earlier, in emulation the traffic is real (at least from a logical standpoint), which opens the possibility to ``glue'' emulated interfaces with the physical ones, as detected by the host operating system, and, therefore, mixing emulated topologies with real topologies, cloud infrastructures, etc.
+Furthermore, since the computational nodes (hosts in the emulated topologies) are in, fact, ``generic'' hosts (nowadays, usually \glspl{vm} or containers), running real software, there are virtually no limitations in terms of what it is possible to configure, parameterize, implement, or test, for any stack level (from the link to the application layer).
 
-However, with any software based solution there is also a virtualization of the physical layer.
-Sometimes, that virtualization is not taken into account, since there is e.g. no requirement that mandates a layer-2 to be implemented on a physical link (it can be just an in-memory communications path).
+However, with any software based solution there is also a virtualization of the physical layer, and, sometimes, that virtualization is not taken into account, since there is, for example, no requirement that mandates a layer-2 to be implemented on a physical link (it can be just an in-memory communications path).
 But, since many aspects of networking address the physical characteristics of some links (like distance induced latency or packet loss), when necessary, these attributes have to be simulated in code by whatever mechanism is used to ``implement'' those links.
 
 % end of section leavingemulationandsimulation
