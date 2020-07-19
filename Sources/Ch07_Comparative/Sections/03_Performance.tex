@@ -1,8 +1,9 @@
 \section{Performance and Resource Consumption}
 \label{sec:comparativeperformance}
 
-In terms of resource consumption, experiments with GNS3, on one side, and Kathará and CORE, on the other, are very different.
+In terms of resource consumption, the results observed with GNS3, on one side, and Kathará and CORE, on the other, were very different.
 That has an impact in the required computer infrastructures and setups required to do the experiments.
+
 As stated in the explanation between containers-as-lightweight-virtual-machines versus standard \glspl{vm}, a container provides a virtual isolation of the filesystem and networking (among others) for its processes while \glspl{vm} need everything, in every layer of software, a regular host has to run (operating system, libraries, applications) to be loaded each time for each running virtual machine.
 
 In a running Kathará, CORE, or GNS3 topology, there are associated processes to each node.
