@@ -72,12 +72,12 @@ It is then used for spinning up \glspl{vm} with virtual interfaces running the o
 \label{subsec:gns3guestsappliances}
 
 ``Guest''s is how GNS3 refers, on its interface, to hosts that can be added in topologies.
-Here, host is meant in a conventional way, as what can be simply referred to as ``PCs'', ``servers'', or ``clients''.
+Here, host is meant in a conventional way, as what can be simply referred to as ``PCs,'' ``servers,'' or ``clients.''
 GNS3 also supports other special end-devices, which are not explored in this dissertation, such as the \gls{nat} or \emph{cloud} nodes.
 
 A fresh install of GNS3 comes with only one guest appliance installed, VPCS.
 This is a kind of simulated PC, developed by the GNS3 project\footnote{\url{https://github.com/GNS3/vpcs}} as a way to provide to GNS3's usable nodes, capable of transmitting and receiving network traffic through a virtual interface, via tools like \texttt{ping}.
-Although the traffic it generates and receives is ``real'', and other nodes' interconnected to VPCS instances are not aware that it does not come from the usual applications on a host running a full-blown operating system, it doesn't have a kernel or possibility to run software over it.
+Although the traffic it generates and receives is ``real,'' and other nodes' interconnected to VPCS instances are not aware that it does not come from the usual applications on a host running a full-blown operating system, it doesn't have a kernel or possibility to run software over it.
 A running VPCS node is simply a process that provides a virtual network interface and has a simple command-line interface to which the GNS3 user can \texttt{telnet}.
 
 An advantage of these nodes is that they consume minimal resources, thus a topology can have a large quantity of them, and still allow to test topologies by checking connectivity on a variety of (potentially complex) scenarios.
