@@ -1,33 +1,33 @@
 \section{Mininet}
 \label{sec:exemulmininet}
 
-Mininet~\cite{mininetnetworklaptop} is a network emulator created by researchers at Stanford University, intended to be lightweight, and allow, as the title of the paper that presented it for the first time says, \textquote{rapid prototyping for Software-Defined Networks.}
+Mininet~\cite{mininetnetworklaptop} is a network emulator created by researchers at Stanford University, intended to be lightweight, and allow, as stated in the title of the paper that presented it for the first time, \textquote{rapid prototyping for Software-Defined Networks.}
 
-Like essentially every emulator able to run on commodity PCs, standalone, Mininet makes use of virtualization.
-It was created specifically with that in mind, as an alternative to the limited simulators, but also expensive testbeds, that require a layer of real software, even if provided ``as a service'' to the users.
-It also has had from the beginning heavy concerns about performance and the ability to run large topologies on the researchers' machine.
+Like essentially every emulator able to run on commodity PCs, Mininet makes use of virtualization.
+It was created specifically with that in mind, as an alternative not only to simulators with limited capabilities, but also to expensive testbeds that require a layer of real networking hardware, even if remotely provided ``as a service'' to the users.
 
-Mininet operates exclusively on Linux hosts and does everything with the low-level primitives of LXC (Linux Containers).
-This enabled very large topologies to be run without much effort from the host they're supported by.
+Mininet was also developed, from scratch, with performance in mind, and to be able to run large topologies on the researchers' own machine.
+It runs exclusively on Linux hosts, and relies on low-level primitives of LXC (Linux Containers), and, therefore, very large topologies can be run without requiring too much resource consumption on the target host.
 
-The kinds of nodes Mininet supports can't be dissociated from the fact that is was developed with \gls{sdn} in mind.
+The set of different types of nodes supported by Mininet cannot be dissociated from the fact that is was developed with \gls{sdn} in mind.
 They are:
 \begin{description}
-	\item[hosts] corresponding to network namespaces, containers, consisting in processes with exclusive ownership of interfaces, ports, and routing tables;
-	\item[switches] these are OpenFlow ``dumb'' switches, \textbf{not} ``conventional'' layer-2 switches, which can run in kernel-space or user-space and be configured by the Mininet infrastructure;
-	\item[controllers] which can be on the ``virtual'' topology, but also be proper nodes in a deployed \gls{sdn}, as long as the host where the other nodes are running has IP connectivity to the rest of the network.
+  \item[hosts] containers the user can access through a conventional UNIX shell;
+  \item[switches] these are \textbf{not} ``conventional'' layer-2 switches, but OpenFlow ``dumb'' switches that may run either in kernel- or user-space and are configured by the Mininet infrastructure;
+  \item[controllers] these are \gls{sdn} controllers which can be deployed on the ``virtual'' topology, but may also be real nodes in a \gls{sdn}, as long hosts where other nodes are running have IP connectivity to the rest of the network.
 \end{description}
 
-There is a command-line utility to interact with Mininet, which serves to add and remove, and also start and stop, topology nodes, and access their shells.
+There is a command-line utility to interact with Mininet, for topology node management (add, remove, start, and stop nodes) and to connect to the nodes (e.g. access their shells).
+
 It is also possible to automate these actions and declare shareable topologies using Mininet's Python \gls{api}.
 
-It is out of the scope of this dissertation studying in details what can be done with the \gls{sdn} approach e.g. in terms of programming the control plane of switches, as well as how that is done, since the focus from the beginning is to reproduce experiments currently runnable with standard, layer-2 switches and conventional IP routers.
+It is out of the scope of this dissertation a detailed study of what can be done with the \gls{sdn} approach, e.g. in terms of programming the control plane of the switches, as well as on how that is done, since the focus, from the beginning, is to reproduce experiments currently runnable with standard, layer-2 switches and conventional IP routers.
 
-There have been attempts of using Mininet, either using its plain version as starting point~\cite{mininetquagga,mininetospfbgp} or adapting the software~\cite{mininext} to leverage the container orchestration and automation of the setup of virtual links between those containers, as a way to create topologies with standard routers.
+There have been attempts of using Mininet, either resorting to its plain version as starting point~\cite{mininetquagga,mininetospfbgp}, or adapting the software~\cite{mininext} to leverage Mininet's container orchestration and automation of the setup of virtual links as a way to create topologies with standard routers.
 This can be achieved by installing routing daemons (e.g. Quagga~\cite{quagga}) in host nodes with multiple interfaces, so that the control-plane part of standard routers (updating the containers' routing tables according to a distributed protocol like OSPF or BGP) is responsability of the node itself.
-However, installing Quagga demands a manual process of adding the source \emph{tarball} into the containers, and then compiling and installing from source, plus configuring, which demands some Python manual scripting.
-On the other hand, out-of-the-box solutions, like miniNeXT, aren't viable either, as its repository doesn't receive a single commit since 2017, which means that it is probably in an unmaintained state.
+However, installing Quagga requires a manual process of adding the source \emph{tarball} to the containers, and then compiling and installing from the source code, and configuring, all requiring some manual scripting in Python.
+On the other hand, an out-of-the-box solution like miniNeXT isn't viable, as its repository doesn't receive a single commit since 2017, which probably means that it is in an unmaintained state.
 
-Fortunately, there are other solutions, some able to run in more platforms (any host/OS supporting Docker out-of-the-box), which provide good, documented support for conventional open-source switches/routers (e.g. Quagga), maintaining the positive aspects of Mininet like declarative, scriptable topologies, and lightweight virtualization for large topologies.
+Fortunately, there are other solutions, some able to run in more platforms (any host/OS supporting Docker out-of-the-box), which provide good, documented support for conventional open-source switches/routers (e.g. Quagga), maintaining the positive aspects of Mininet---declarative, scriptable topologies---, and using lightweight virtualization, which enables us to run large topologies.
 
 % end of section exemulmininet
