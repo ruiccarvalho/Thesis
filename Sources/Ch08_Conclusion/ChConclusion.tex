@@ -13,11 +13,21 @@ This dissertation approached the problem of evaluating the suitability of emulat
 
 This work provided a clearer picture of the current situation of emulators.
 The technical underpinnings of most of them, which is strictly related to how well they perform in certain cases, and also their weaknesses.
-It also clearly shows in what aspects a real course---in particular the one chosen for the case studies, APRC---can benefit from any of the studied emulators starting now.
+It also clearly shows in what aspects a real course---in particular the one chosen for the case studies, APRC---can benefit from any of the studied emulators.
+
+In short:
+\begin{itemize}
+  \item we saw that emulators bring clear benefits over simulators, e.g. that it is possible to use real-world tooling to perform experiments on top of them and see how real routing software, network applications, and operating systems behave in different topologies and under certain parameters;
+  \item we presented a survey of different emulator software with a high-level perspective of their claimed strengths and weaknesses and main usage targets;
+  \item out of the surveyed emulators, we studied three of them in detail and took conclusions out of the study of their technical architecture and implementation techniques, and usability aspects;
+  \item we performed a side-by-side comparison of these emulators concerning a fixed set of functional and non-functional metrics.
+\end{itemize}
+
+The conducted experiments, the knowledge gained about the internal properties of the studied emulators, and the documented usages already in place in certain areas of the academia and the industry clearly point towards the conclusion that many more experiments than the ones described in this dissertation are possible and that, if not completely (for reasons already explained in this document), emulators can live up to the promise of replacing physical laboratories, equipped with network gear, to large extent.
 
 \section{Future Work}
 
-Despite all that was done, there are many more aspects of computer networks studying that were not touch here---some of them are part of the chosen course's curricula (like Open vSwitch and \gls{sdn}), other are not, like programmable routers with the recent P4 network or NFV.
+Despite all that was done, there are many more aspects of computer networks studying that were not approached here---some of them are part of the chosen course's curricula (like Open vSwitch and \gls{sdn}), other are not, like programmable routers with the recent P4 network or NFV.
 Seeing how to profit from emulators to introduce new practical topics.
 
 Also, a more fine-grained testing can be done, both in terms of the how these platforms work under scale (more nodes, more traffic between the nodes) but also being used by many students at the time.
