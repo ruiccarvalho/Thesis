@@ -16,7 +16,7 @@ From our experience, this tool is very clumsy and incomplete.
 In Kathará, users running similar experiments, maybe even the same ``lab'' (which is usually just a set of directories and text files), do it in their machine in total isolation.
 Conversely, GNS3 introduces a conceptual client-server decoupling is exposed throughout the whole system.
 Despite CORE's ``daemon'' and \gls{gui} being slightly different from the GNS3's server-client, practically it allows for the same flexibility~\cite{coreghdocs}.
-This has an impact on how both are to be used and is caused, as will be seen in the next later in this chapter, by the difference in the weight both the projects (and their dependencies) themselves have and the resource consumption which, in GNS3, very easily creates the urge to balance the load.
+This has an impact on how both are to be used and is caused, as will be seen later in this chapter, by the difference in the weight both the projects (and their dependencies) themselves have and the resource consumption which, in GNS3, very easily creates the urge to balance the load.
 
 % Figure fig:gns3-setup-wizard-servers
 \input{Sources/Ch07_Comparative/TablesFigures/figure-comparative-gns3-setup-wizard-servers}
@@ -30,7 +30,7 @@ In texts offering comparisons between network emulators and simulators~\cite{net
 
 On Kathará, if the default Docker images are used (or, in case they are customized, the extended images are published on Docker Hub, and they can always be) the labs are easily shareable and reproducible with the same behavior.
 
-On GNS3, that is not the case.
+On GNS3, the aforementioned observation (about Kathará) doesn't hold.
 The dependency
   \begin{enumerate*}[label=(\roman*), itemjoin={{, }}, itemjoin*={{, and }}]
   \item on the proprietary images for either Dynamips or IOSv

@@ -36,7 +36,7 @@ Students are also requested to use Wireshark to capture the data OSPF exchanges 
 \label{subsec:environment}
 
 Testing with GNS3 was done running the GNS3 server in virtual machines on DI's servers, except for some experiments with Dynamips carried out on an Apple laptop. % TODO acronyms?
-The virtual machines are machines with two Intel Xeon E5-2650~v4~@~2.20~GHz (a total of 24 cores) and 64~GiB of RAM.
+The virtual machines run on top of a physical server with two Intel Xeon E5-2650~v4~@~2.20~GHz (a total of 24 cores) and 64~GiB of RAM.
 The two virtual machines used to test the lab handouts' topologies are running on the VMware ESXi bare metal hypervisor, with nested virtualization enabled (needed so appliances, which are themselves \glspl{vm}, can be emulated), had 4 CPU cores, and 2 and 8 GB of RAM allocated, respectively.
 The laptop is a MacBook Pro with a 6-core Intel Core~i7~@~2.20~GHz and 16~GiB of RAM.
 Exercises with IOSv were first tried out in the aforementioned laptop, but it was impossible to even start the nodes and have them functional.
@@ -58,10 +58,10 @@ To perform the second set of exercises, the topology described in figure~\ref{fi
 The topology has loops which STP, running in the switches, is expected to eliminate by disabling certain link(s).
 Part of the exercise is to foresee, according to the protocol's specification, which one(s) will be shutdown.
 
-Execute this exercise in GNS3 already poses a bit of challenge, and introduces a dilemma.
+Executing this exercise in GNS3 already poses a bit of challenge, and introduces a dilemma.
 
 IOSvL2, as mentioned earlier, runs on QEMU/KVM, which is only supported on GNU/Linux computes.
-On a laptop setup with macOS or Windows the standard GNS3 installation recommends having VMware Fusion or Workstation, respectively, installed and downloading the so-called GNS3 VM, which nothing else than a \gls{vm} image, optimized for VMware's desktop hypervisors, containing a pre-made installation of the GNS3 server on an Ubuntu Server LTS.
+On a laptop setup with macOS or Windows, the standard GNS3 installation recommends having VMware Fusion or Workstation, respectively, installed and downloading the so-called GNS3 VM, which is nothing more than a \gls{vm} image, optimized for VMware's desktop hypervisors, containing a pre-made installation of the GNS3 server on an Ubuntu Server LTS.
 The GNS3 GUI for macOS and Windows then facilitates setting up the ``GNS3 VM'' to not need to setup a generic remote server to be used as compute, and is also able to open VMware Fusion or Workstation in the background and power on the GNS3 VM, as a means to offer a standardized compute node.
 Needless to say, this does not come without its overhead, both in terms of performance and practicality.
 
